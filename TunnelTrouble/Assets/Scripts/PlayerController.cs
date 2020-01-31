@@ -42,17 +42,9 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-
 	void FixedUpdate()
 	{
 		m_Rigidbody.MovePosition(m_Rigidbody.position + m_Inputs * Speed * Time.fixedDeltaTime);
 	}
-
-
-
-
-
-
-
 
 }
