@@ -512,6 +512,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b552f906d9c35b245a09c09b1a3b15ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AttackCooldownMin: 10
+  AttackCooldownMax: 15
+  AttackWarningDuration: 10
 --- !u!1 &432857720
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,7 +544,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6147ae2bca2d4b4f93b0dc5e40d0ecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PathPoints: []
 --- !u!4 &432857722
 Transform:
   m_ObjectHideFlags: 0
