@@ -33,11 +33,11 @@ public class PlayerController : MonoBehaviour
 
 		if (Input.GetButtonDown("Jump") && m_IsGrounded)
 		{
-			m_Rigidbody.AddForce(Vector3.up * JumpHeight, ForceMode.VelocityChange);
+			m_Rigidbody.AddForce(Vector3.up * JumpHeight , ForceMode.VelocityChange);
 		}
 		if (Input.GetButtonDown("Dash"))
 		{
-			Vector3 dashVelocity = Vector3.Scale(transform.forward, DashDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * m_Rigidbody.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * m_Rigidbody.drag + 1)) / -Time.deltaTime)));
+			Vector3 dashVelocity = transform.forward * DashDistance;
 			m_Rigidbody.AddForce(dashVelocity, ForceMode.VelocityChange);
 		}
 	}
