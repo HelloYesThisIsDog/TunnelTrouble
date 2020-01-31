@@ -47,33 +47,51 @@ public class Walker : MonoBehaviour
 
     ///////////////////////////////////////////////////////////////////////////
 
+    bool HandleWaypointChange()
+    {
+		Vector3 targetPoint = GetTargetPoint();
+		Vector2 selfToTarget2D = (targetPoint - transform.position).xz();
+
+		float distanceToTarget = selfToTarget2D.magnitude;
+
+		if (distanceToTarget < ReachTargetThreshold)
+		{
+			int pathPointCount = WalkerPath.Get().PathPoints.Length;
+			m_CurrentTargetPointIndex++;
+
+			if (m_CurrentTargetPointIndex >= pathPointCount)
+			{
+				m_CurrentTargetPointIndex--;
+				GameObject.Destroy(gameObject);
+				return false;
+			}
+		}
+
+        return true;
+	}
+
+    ///////////////////////////////////////////////////////////////////////////
+
     void Update()
     {
-        Vector3 targetPoint = GetTargetPoint();
-        Vector2 selfToTarget2D = (targetPoint - transform.position).xz();
-
-        float distanceToTarget = selfToTarget2D.magnitude;
-
-        if (distanceToTarget < ReachTargetThreshold)
+        if (!HandleWaypointChange())
         {
-            int pathPointCount = WalkerPath.Get().PathPoints.Length;
-            m_CurrentTargetPointIndex++;
-
-            if (m_CurrentTargetPointIndex >= pathPointCount)
-            {
-                m_CurrentTargetPointIndex--;
-                GameObject.Destroy(gameObject);
-                return;
-            }
+            return;
         }
 
-		
-        Vector2 selfToTarget2D_Norm = selfToTarget2D;
+		Vector3 targetPoint = GetTargetPoint();
+		Vector2 selfToTarget2D = (targetPoint - transform.position).xz();
+
+		Vector2 selfToTarget2D_Norm = selfToTarget2D;
         selfToTarget2D_Norm.Normalize();
 
         Vector3 directionVector = selfToTarget2D_Norm.To3D(0.0f);
 
         m_Rigidbody.AddForce(Acceleration * directionVector, ForceMode.VelocityChange);
+
+        Vector3 smoothForwardDir = Vector3.Lerp(transform.forward, directionVector, 0.2f);
+        smoothForwardDir.Normalize();
+        transform.forward = smoothForwardDir;
     }
 
     ///////////////////////////////////////////////////////////////////////////
