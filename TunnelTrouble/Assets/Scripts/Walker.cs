@@ -6,12 +6,14 @@ public class Walker : MonoBehaviour
 {
     public float    DirectionChangeInterval     = 1.0f;
     public float    DirectionChangeDelta        = 1.0f;
-    public float    Acceleration                = 1.0f;          
+    public float    Speed                       = 1.0f;          
     public float    ReachTargetThreshold        = 0.2f;
+    public float    ClampVelocity               = 1.0f;
 
     Rigidbody       m_Rigidbody;
     
     public int      m_CurrentTargetPointIndex = 0;
+    Vector3         m_Direction = Vector3.right;
 
     private void Awake()
     {
@@ -70,6 +72,15 @@ public class Walker : MonoBehaviour
 
     ///////////////////////////////////////////////////////////////////////////
 
+    private void FixedUpdate()
+    {
+		m_Rigidbody.AddForce(Speed * m_Direction, ForceMode.VelocityChange);
+
+		m_Rigidbody.velocity = Vector3.ClampMagnitude(m_Rigidbody.velocity, ClampVelocity);
+	}
+
+    ///////////////////////////////////////////////////////////////////////////
+
     void Update()
     {
         if (!HandleWaypointChange())
@@ -84,8 +95,7 @@ public class Walker : MonoBehaviour
         selfToTarget2D_Norm.Normalize();
 
         Vector3 directionVector = selfToTarget2D_Norm.To3D(0.0f);
-
-        m_Rigidbody.AddForce(Acceleration * directionVector, ForceMode.VelocityChange);
+        m_Direction = directionVector;
 
         Vector3 smoothForwardDir = Vector3.Lerp(transform.forward, directionVector, 0.2f);
         smoothForwardDir.Normalize();
