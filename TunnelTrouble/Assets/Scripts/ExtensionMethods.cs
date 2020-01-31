@@ -298,4 +298,20 @@ public static class VectorExtensions
 
 	///////////////////////////////////////////////////////////////////////////
 
+	public static float GetFixedRandom(int seed)
+	{
+		int lolValue = (int)0b01010101010101010101010101010101;
+		seed ^= lolValue;
+		seed *= 1103515245;
+		seed *= seed;
+		seed ^= lolValue;
+
+		int rndInt = seed & 0xfff;
+
+		double rndDouble = ((double)rndInt) / (double)(0xfff);
+		return Mathf.Clamp((float)rndDouble, 0.0f, 1.0f);
+	}
+
+	///////////////////////////////////////////////////////////////////////////
+
 }

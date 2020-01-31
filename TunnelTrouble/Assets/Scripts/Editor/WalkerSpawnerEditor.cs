@@ -27,6 +27,12 @@ public class WalkerSpawnerEditor : Editor
 			walkerSpawner.SpawnWalker(0.0f);
 		}
 
+		if (GUILayout.Button("Spawn Multiple"))
+		{
+			for (int i = 0; i < 20; ++i)
+			walkerSpawner.SpawnWalker(i / 20.0f);
+		}
+
 		if (GUILayout.Button(walkerSpawner.enabled ? "Stop Spawning" : "Resume Spawning"))
 		{
 			walkerSpawner.enabled = !walkerSpawner.enabled;

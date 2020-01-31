@@ -2,11 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public struct PathLine
+{
+    public Vector3 Left;
+    public Vector3 Right;
+
+    public Vector3 GetLerped(float f) { return Vector3.Lerp(Left, Right, f); }
+}
+
 public class WalkerPath : MonoBehaviour
 {
     private static WalkerPath s_Instance;
     
-    public Transform[] PathPoints;
+    public PathLine[] PathLines;
 
     public static WalkerPath Get()
     {
@@ -24,11 +32,18 @@ public class WalkerPath : MonoBehaviour
     {
         s_Instance = this;
 
-        PathPoints = new Transform[transform.childCount];
+        PathLines = new PathLine[transform.childCount / 2];
 
         for (int c = 0; c < transform.childCount; ++c)
         {
-            PathPoints[c] = transform.GetChild(c);
+            if (c % 2 == 0)
+            {
+                PathLines[c/2].Left = transform.GetChild(c).transform.position;
+            }
+            else
+            {
+                PathLines[c/2].Right = transform.GetChild(c).transform.position;
+            }
         }
     }
 

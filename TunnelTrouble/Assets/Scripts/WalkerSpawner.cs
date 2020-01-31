@@ -55,6 +55,7 @@ public class WalkerSpawner : MonoBehaviour
     public void SpawnWalker(float relativeSpawnOfBurst)
     {
         Walker walker = GameObject.Instantiate(WalkerSpawnPrefab, transform);
+        walker.ID = m_SpawnedCount;
         walker.gameObject.name = "Walker " + m_SpawnedCount;
 
         Vector2 offset = Vector2.zero;

@@ -9,6 +9,7 @@ public class Walker : MonoBehaviour
     public float    Speed                       = 1.0f;          
     public float    ReachTargetThreshold        = 0.8f;
     public float    ClampVelocity               = 1.0f;
+    public int      ID                          = -1;
 
     Rigidbody       m_Rigidbody;
     
@@ -20,11 +21,14 @@ public class Walker : MonoBehaviour
         m_Rigidbody = GetComponent<Rigidbody>();    
     }
 
+	///////////////////////////////////////////////////////////////////////////
+
+
     ///////////////////////////////////////////////////////////////////////////
 
-    Vector3 GetTargetPoint()
+	Vector3 GetTargetPoint()
     {
-        int pathPointCount = WalkerPath.Get().PathPoints.Length;
+        int pathPointCount = WalkerPath.Get().PathLines.Length;
 
         if (pathPointCount == 0 || m_CurrentTargetPointIndex >= pathPointCount)
         {
@@ -32,7 +36,8 @@ public class Walker : MonoBehaviour
             return Vector3.zero;
         }
 
-        Vector3 pathPoint = WalkerPath.Get().PathPoints[m_CurrentTargetPointIndex].position;
+        float fixedRnd = VectorExtensions.GetFixedRandom(ID);
+        Vector3 pathPoint = WalkerPath.Get().PathLines[m_CurrentTargetPointIndex].GetLerped(fixedRnd);
         return pathPoint;
     }
 
@@ -63,7 +68,7 @@ public class Walker : MonoBehaviour
 
 		if (distanceToTarget < ReachTargetThreshold)
 		{
-			int pathPointCount = WalkerPath.Get().PathPoints.Length;
+			int pathPointCount = WalkerPath.Get().PathLines.Length;
 			m_CurrentTargetPointIndex++;
 
 			if (m_CurrentTargetPointIndex >= pathPointCount)
