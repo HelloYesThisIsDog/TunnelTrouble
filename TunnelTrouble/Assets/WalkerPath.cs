@@ -4,19 +4,31 @@ using UnityEngine;
 
 public class WalkerPath : MonoBehaviour
 {
-    public static WalkerPath s_WalkerPath;
+    private static WalkerPath s_Instance;
     
-    private Transform[] m_PathPoints;
+    public Transform[] PathPoints;
+
+    public static WalkerPath Get()
+    {
+        if (s_Instance)
+        {
+            return s_Instance;
+        }
+        else
+        {
+            return GameObject.FindObjectOfType<WalkerPath>();
+        }
+    }
 
     void Awake()
     {
-        s_WalkerPath = this;
+        s_Instance = this;
 
-        m_PathPoints = new Transform[transform.childCount];
+        PathPoints = new Transform[transform.childCount];
 
         for (int c = 0; c < transform.childCount; ++c)
         {
-            m_PathPoints[c] = transform.GetChild(c);
+            PathPoints[c] = transform.GetChild(c);
         }
     }
 

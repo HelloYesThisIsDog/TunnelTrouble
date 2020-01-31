@@ -47,7 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DirectionChangeInterval: 0
   DirectionChangeDelta: 38.2
-  Acceleration: 3
+  Acceleration: 1.5
+  ReachTargetThreshold: 0.5
+  m_CurrentTargetPointIndex: 0
 --- !u!54 &8759019178428789369
 Rigidbody:
   m_ObjectHideFlags: 0
