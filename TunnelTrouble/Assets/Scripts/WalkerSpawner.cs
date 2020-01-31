@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class WalkerSpawner : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Walker   WalkerSpawnPrefab;
+    public float    SpawnBurstInterval;
+    public int      SpawnsPerBurst;
+
+    private float   m_LastSpawnTime = float.NegativeInfinity;
+
+    private void Update()
     {
-        
+        if (Time.time - m_LastSpawnTime > SpawnBurstInterval)
+        {
+            m_LastSpawnTime = Time.time;
+
+            for (int i = 0; i < SpawnsPerBurst; ++i)
+            {
+                SpawnWalker();
+            }
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SpawnWalker()
     {
-        
+        GameObject.Instantiate(WalkerSpawnPrefab, transform);
     }
 }

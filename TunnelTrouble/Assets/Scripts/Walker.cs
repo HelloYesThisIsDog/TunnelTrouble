@@ -14,7 +14,7 @@ public class Walker : MonoBehaviour
 
     private void Awake()
     {
-        m_Rigidbody = GetComponent<Rigidbody>();
+        m_Rigidbody = GetComponent<Rigidbody>();    
     }
 
     void Update()
