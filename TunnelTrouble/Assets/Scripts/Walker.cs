@@ -67,23 +67,13 @@ public class Walker : MonoBehaviour
             }
         }
 
-		/*m_NextDirectionChange -= Time.deltaTime;
-
-		if (m_NextDirectionChange <= 0)
-		{
-			m_CurAngle += Random.Range(-DirectionChangeDelta, DirectionChangeDelta);
-			m_CurAngle = NormalizeAngle(m_CurAngle);
-			m_NextDirectionChange = DirectionChangeInterval;
-		}
-
-		Vector3 directionVector = Quaternion.AngleAxis(m_CurAngle, Vector3.up) * Vector3.right;*/
-        
+		
         Vector2 selfToTarget2D_Norm = selfToTarget2D;
         selfToTarget2D_Norm.Normalize();
 
         Vector3 directionVector = selfToTarget2D_Norm.To3D(0.0f);
 
-        m_Rigidbody.AddForce(Acceleration * directionVector , ForceMode.VelocityChange);
+        m_Rigidbody.AddForce(Acceleration * directionVector, ForceMode.VelocityChange);
     }
 
     ///////////////////////////////////////////////////////////////////////////

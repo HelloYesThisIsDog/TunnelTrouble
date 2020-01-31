@@ -47,8 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DirectionChangeInterval: 0
   DirectionChangeDelta: 38.2
-  Acceleration: 1.5
-  ReachTargetThreshold: 0.5
+  Acceleration: 5
+  ReachTargetThreshold: 1
   m_CurrentTargetPointIndex: 0
 --- !u!54 &8759019178428789369
 Rigidbody:
@@ -59,7 +59,7 @@ Rigidbody:
   m_GameObject: {fileID: 8759019178428789371}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 0.5
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
