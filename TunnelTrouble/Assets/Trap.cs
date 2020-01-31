@@ -16,7 +16,38 @@ public class Trap : MonoBehaviour
     public float AttackCooldownMax      = 15.0f;
     public float AttackWarningDuration  = 10.0f;
 
-    TrapState   m_State = TrapState.WaitingForAttack;
+    float       m_NextStateChange       = 0.0f;
 
- 
+    TrapState   m_State = TrapState.WaitingForAttack;
+    /*
+    private void Awake()
+    {
+        
+    }
+
+    private void ChangeToState(TrapState forceSetState)
+    {
+
+    }
+
+    private void Update()
+    {
+        float timeSinceLastStateChange = Time.time - m_LastStateChange;
+
+        switch ( m_State )
+        {
+            case TrapState.WaitingForAttack:
+                if (timeSinceLastStateChange > )
+                break;
+            case TrapState.Warning:
+                break;
+            case TrapState.Attacking_WaitForFix:
+                break;
+            case TrapState.Broken_WaitForFix:
+                break;
+            default:
+                break;
+
+        }
+    }*/
 }
