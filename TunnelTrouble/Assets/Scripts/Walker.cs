@@ -7,7 +7,7 @@ public class Walker : MonoBehaviour
     public float    DirectionChangeInterval     = 1.0f;
     public float    DirectionChangeDelta        = 1.0f;
     public float    Speed                       = 1.0f;          
-    public float    ReachTargetThreshold        = 0.2f;
+    public float    ReachTargetThreshold        = 0.8f;
     public float    ClampVelocity               = 1.0f;
 
     Rigidbody       m_Rigidbody;
@@ -43,6 +43,7 @@ public class Walker : MonoBehaviour
         Vector3 targetPos = GetTargetPoint();
 
         Debug.DrawLine(transform.position, targetPos);
+        Gizmos.DrawSphere(targetPos, ReachTargetThreshold);
     }
 
     ///////////////////////////////////////////////////////////////////////////

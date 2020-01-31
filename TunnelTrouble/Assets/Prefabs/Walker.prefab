@@ -48,7 +48,7 @@ MonoBehaviour:
   DirectionChangeInterval: 0
   DirectionChangeDelta: 38.2
   Speed: 1
-  ReachTargetThreshold: 1
+  ReachTargetThreshold: 3
   ClampVelocity: 15.97
   m_CurrentTargetPointIndex: 0
 --- !u!54 &8759019178428789369

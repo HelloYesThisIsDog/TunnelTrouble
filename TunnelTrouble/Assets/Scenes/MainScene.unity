@@ -330,7 +330,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 47140d3a68c3edf478b087862401003e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -735,7 +735,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 47140d3a68c3edf478b087862401003e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1602,9 +1602,10 @@ MonoBehaviour:
   WalkerSpawnPrefab: {fileID: 8759019178428789368, guid: e64d25cdaf4a0de4f98d619c5d77aa45,
     type: 3}
   SpawnBurstInterval: 5
-  SpawnsPerBurst: 4
+  SpawnsPerBurst: 8
   MaxWalkerCount: 20
   MaxSpawnCount: 2147483647
+  SpawnRadius: 1
 --- !u!4 &1654105342
 Transform:
   m_ObjectHideFlags: 0
@@ -1762,7 +1763,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 47140d3a68c3edf478b087862401003e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
