@@ -9,20 +9,7 @@ TunnelTrouble/StandaloneWindows64/*
 
 # Binary and/or redundant Files 
 #############################
-TunnelTrouble/Assets/AddressableAssetsData/*
-TunnelTrouble/Assets/Art/*
-TunnelTrouble/Assets/Audio/*
-TunnelTrouble/Assets/StreamingAssets/com.unity.addressables/StandaloneWindows64/*
-TunnelTrouble/Assets/Text/_Generated/*
-TunnelTrouble/Assets/ThirdParty/*
 
-*.png
-*.jpg
-*.wav
-*.ogg
-*.mp3
-*.psd
-*.jar
 
 *.meta
 
