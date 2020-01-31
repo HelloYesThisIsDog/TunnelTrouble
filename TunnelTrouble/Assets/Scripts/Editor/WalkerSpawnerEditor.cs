@@ -24,7 +24,7 @@ public class WalkerSpawnerEditor : Editor
 
 		if (GUILayout.Button("Spawn Single"))
 		{
-			walkerSpawner.SpawnWalker();
+			walkerSpawner.SpawnWalker(0.0f);
 		}
 
 		if (GUILayout.Button(walkerSpawner.enabled ? "Stop Spawning" : "Resume Spawning"))

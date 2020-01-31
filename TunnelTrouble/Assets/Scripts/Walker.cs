@@ -10,8 +10,6 @@ public class Walker : MonoBehaviour
     public float    ReachTargetThreshold        = 0.2f;
 
     Rigidbody       m_Rigidbody;
-    float           m_CurAngle              = 0.0f;
-    float           m_NextDirectionChange   = 0;
     
     public int      m_CurrentTargetPointIndex = 0;
 

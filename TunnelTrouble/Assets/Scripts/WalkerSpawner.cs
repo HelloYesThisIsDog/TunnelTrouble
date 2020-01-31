@@ -7,8 +7,9 @@ public class WalkerSpawner : MonoBehaviour
     public Walker   WalkerSpawnPrefab;
     public float    SpawnBurstInterval;
     public int      SpawnsPerBurst;
-    public int      MaxWalkerCount = 20;
-    public int      MaxSpawnCount  = int.MaxValue;
+    public int      MaxWalkerCount  = 20;
+    public int      MaxSpawnCount   = int.MaxValue;
+    public float    SpawnRadius     = 1.0f;
 
     private float   m_LastSpawnTime = float.NegativeInfinity;
     private int     m_SpawnedCount = 0;
@@ -35,7 +36,10 @@ public class WalkerSpawner : MonoBehaviour
                 {
                     break;
                 }
-                SpawnWalker();
+
+                float relativeSpawnOfBurst = i / SpawnsPerBurst;
+
+                SpawnWalker(relativeSpawnOfBurst);
             }
         }
     }
@@ -48,10 +52,16 @@ public class WalkerSpawner : MonoBehaviour
         }
     }
 
-    public void SpawnWalker()
+    public void SpawnWalker(float relativeSpawnOfBurst)
     {
         Walker walker = GameObject.Instantiate(WalkerSpawnPrefab, transform);
         walker.gameObject.name = "Walker " + m_SpawnedCount;
+
+        Vector2 offset = Vector2.zero;
+        offset.x = Mathf.Cos(relativeSpawnOfBurst * 2.0f * Mathf.PI);
+        offset.y = Mathf.Sin(relativeSpawnOfBurst * 2.0f * Mathf.PI);
+
+        walker.transform.position += offset.To3D(0.0f);
 
         m_SpawnedCount++;
     }
