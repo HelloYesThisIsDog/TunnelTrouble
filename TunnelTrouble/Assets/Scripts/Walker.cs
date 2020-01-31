@@ -42,8 +42,14 @@ public class Walker : MonoBehaviour
     {
         Vector3 targetPos = GetTargetPoint();
 
-        Debug.DrawLine(transform.position, targetPos);
+        Color oldColor = Gizmos.color;
+
+        Debug.DrawLine(transform.position, targetPos, Color.cyan);
+
+        Gizmos.color = Color.cyan;
         Gizmos.DrawSphere(targetPos, ReachTargetThreshold);
+
+        Gizmos.color = oldColor;
     }
 
     ///////////////////////////////////////////////////////////////////////////

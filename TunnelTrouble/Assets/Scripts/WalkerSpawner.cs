@@ -37,7 +37,7 @@ public class WalkerSpawner : MonoBehaviour
                     break;
                 }
 
-                float relativeSpawnOfBurst = i / SpawnsPerBurst;
+                float relativeSpawnOfBurst = i / (float)SpawnsPerBurst;
 
                 SpawnWalker(relativeSpawnOfBurst);
             }
@@ -58,11 +58,21 @@ public class WalkerSpawner : MonoBehaviour
         walker.gameObject.name = "Walker " + m_SpawnedCount;
 
         Vector2 offset = Vector2.zero;
-        offset.x = Mathf.Cos(relativeSpawnOfBurst * 2.0f * Mathf.PI);
-        offset.y = Mathf.Sin(relativeSpawnOfBurst * 2.0f * Mathf.PI);
+        offset.x = Mathf.Cos(relativeSpawnOfBurst * 360.0f);
+        offset.y = Mathf.Sin(relativeSpawnOfBurst * 360.0f);
 
         walker.transform.position += offset.To3D(0.0f);
 
         m_SpawnedCount++;
     }
+
+	private void OnDrawGizmos()
+	{
+		Color oldColor = Gizmos.color;
+		Gizmos.color = Color.magenta;
+		Gizmos.DrawSphere(transform.position, SpawnRadius);
+
+		Gizmos.color = oldColor;
+	}
+
 }
