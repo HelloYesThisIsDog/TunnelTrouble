@@ -53,6 +53,7 @@ MonoBehaviour:
   GroundLayer:
     serializedVersion: 2
     m_Bits: 256
+  FailSound: {fileID: 8300000, guid: 0c6f40d7104c9c846bec7ff865392497, type: 3}
   EquippedTool: {fileID: 0}
 --- !u!54 &3917092994262404027
 Rigidbody:

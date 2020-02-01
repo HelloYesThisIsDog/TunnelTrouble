@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
 	public float		DashDistance		= 5f;
 	public PlayerSlot	Slot				= PlayerSlot.Player1;
 	public LayerMask	GroundLayer;
+	public AudioClip	FailSound;
 
 	[Header("Debug")]
 	private Rigidbody m_Rigidbody;
@@ -114,6 +115,7 @@ public class PlayerController : MonoBehaviour
 			
 			if (TrapManager.Get().GetNearestTrap(false, EquippedTool, selfPos, true, true, selfLookDir))
 			{
+				PlayFailSound();
 				WorldSpaceCanvas.Get().AddText("Wrong Tool", transform.position);
 				return;
 			}
@@ -125,7 +127,19 @@ public class PlayerController : MonoBehaviour
 				ToolTrolley.Get().SwitchTool(ref EquippedTool, nearestTool);
 				return;
 			}
+
+			PlayFailSound();
 		}
+	}
+
+	void PlayFailSound()
+	{
+		if (!GetComponent<AudioSource>())
+		{
+			gameObject.AddComponent<AudioSource>();
+		}
+
+		GetComponent<AudioSource>().PlayOneShot(FailSound);
 	}
 
 	void FixedUpdate()
