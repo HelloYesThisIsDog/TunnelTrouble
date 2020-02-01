@@ -11,6 +11,8 @@ public class PlayerManager : MonoBehaviour
 
 	private static PlayerManager s_Instance;
 
+	public PlayerController PlayerPrefab;
+
 	private Dictionary<PlayerSlot, PlayerController> m_Players = new Dictionary<PlayerSlot, PlayerController>();
 
 	public static PlayerManager Get()
@@ -38,7 +40,32 @@ public class PlayerManager : MonoBehaviour
 	}
 
 	///////////////////////////////////////////////////////////////////////////
-	
+
+	private void Update()
+	{
+		if (!m_Players.ContainsKey(PlayerSlot.Player1) && Input.GetButtonDown("P1 Interact")) { AddPlayer(PlayerSlot.Player1); }
+		if (!m_Players.ContainsKey(PlayerSlot.Player2) && Input.GetButtonDown("P2 Interact")) { AddPlayer(PlayerSlot.Player2); }
+		if (!m_Players.ContainsKey(PlayerSlot.Player3) && Input.GetButtonDown("P3 Interact")) { AddPlayer(PlayerSlot.Player3); }
+		if (!m_Players.ContainsKey(PlayerSlot.Player4) && Input.GetButtonDown("P4 Interact")) { AddPlayer(PlayerSlot.Player4); }
+	}
+
+	///////////////////////////////////////////////////////////////////////////
+
+	private void AddPlayer(PlayerSlot playerSlot)
+	{
+		GameObject newObject = GameObject.Instantiate(PlayerPrefab.gameObject, transform);
+		newObject.transform.position = transform.position;
+		newObject.name = "Player " + ((int)playerSlot + 1);
+
+		PlayerController controller = newObject.GetComponent<PlayerController>();
+
+		m_Players.Add(playerSlot, controller);
+
+		controller.Slot = playerSlot;
+	}
+
+	///////////////////////////////////////////////////////////////////////////
+
 	public PlayerController GetPlayer(PlayerSlot slot)
 	{
 		if (!m_Players.ContainsKey(slot))

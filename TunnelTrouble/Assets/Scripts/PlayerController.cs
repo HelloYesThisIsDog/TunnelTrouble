@@ -35,23 +35,40 @@ public class PlayerController : MonoBehaviour
 
 	///////////////////////////////////////////////////////////////////////////
 
+	string GetInputPrefix()
+	{
+		return "P" + (((int)Slot ) + 1).ToString("0") + " ";
+	}
+
+	///////////////////////////////////////////////////////////////////////////
+
 	void Update()
 	{
 		m_IsGrounded = Physics.CheckSphere(transform.position, GroundDistance, GroundLayer, QueryTriggerInteraction.Ignore);
 
 		m_Inputs = Vector3.zero;
-		m_Inputs.x = Input.GetAxis("Horizontal");
-		m_Inputs.z = Input.GetAxis("Vertical");
+		m_Inputs.x =   Input.GetAxis(GetInputPrefix() + "Horizontal");
+		m_Inputs.z = - Input.GetAxis(GetInputPrefix() + "Vertical");
+
+		if (Mathf.Abs(m_Inputs.x) < 0.1f)
+		{
+			m_Inputs.x = 0.0f;
+		}
+		if (Mathf.Abs(m_Inputs.y) < 0.1f)
+		{
+			m_Inputs.y = 0.0f;
+		}
+
 		if (m_Inputs != Vector3.zero)
 		{
 			transform.forward = m_Inputs;
 		}
 
-		if (Input.GetButtonDown("Jump") && m_IsGrounded)
+		/*if (Input.GetButtonDown("Jump") && m_IsGrounded)
 		{
 			m_Rigidbody.AddForce(Vector3.up * JumpHeight , ForceMode.VelocityChange);
-		}
-		if (Input.GetButtonDown("Dash"))
+		}*/
+		if (Input.GetButtonDown(GetInputPrefix() + "Dash"))
 		{
 			Vector3 dashVelocity = transform.forward * DashDistance;
 			m_Rigidbody.AddForce(dashVelocity, ForceMode.VelocityChange);
@@ -64,7 +81,7 @@ public class PlayerController : MonoBehaviour
 
 	void TryInteraction()
 	{
-		bool doInteract = Input.GetButtonDown("Interact");
+		bool doInteract = Input.GetButtonDown(GetInputPrefix() + "Interact");
 
 		if (doInteract)
 		{
@@ -99,7 +116,10 @@ public class PlayerController : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		m_Rigidbody.MovePosition(m_Rigidbody.position + m_Inputs * Speed * Time.fixedDeltaTime);
+		if (m_Inputs.magnitude > 0.1f)
+		{
+			m_Rigidbody.MovePosition(m_Rigidbody.position + m_Inputs * Speed * Time.fixedDeltaTime);
+		}
 	}
 
 }
