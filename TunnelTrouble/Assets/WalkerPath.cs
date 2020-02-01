@@ -27,6 +27,8 @@ public class WalkerPath : MonoBehaviour
         return s_Instance;
     }
 
+    ///////////////////////////////////////////////////////////////////////////
+
     void ReInit()
     {
 		PathLines = new PathLine[transform.childCount / 2];
@@ -43,5 +45,7 @@ public class WalkerPath : MonoBehaviour
 			}
 		}
 	}
+
+    ///////////////////////////////////////////////////////////////////////////
 
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public enum TrapState
 {
@@ -14,56 +12,112 @@ public class Trap : MonoBehaviour
     public float AttackCooldownMin      = 10.0f;
     public float AttackCooldownMax      = 15.0f;
     public float AttackWarningDuration  = 10.0f;
-    public bool  CanAttack              = true;
+    public float InteractRadius         =  2.0f;
+    public float AttackRadius           =  4.0f;
 
-    float       m_NextStateChange       = 0.0f;
+    public float m_TimeUntilNextStateChange       = 0.0f;
 
     public TrapState   m_State = TrapState.WaitingForAttack;
     
-    private void Awake()
-    {
-        
-    }
-
+    ///////////////////////////////////////////////////////////////////////////
+    
     private void Start()
     {
         ChangeToState(TrapState.WaitingForAttack);
     }
 
+    ///////////////////////////////////////////////////////////////////////////
+
     private void ChangeToState(TrapState forceSetState)
     {
-		switch (m_State)
+		switch (forceSetState)
 		{
 			case TrapState.WaitingForAttack:
-				m_NextStateChange = Random.Range(AttackCooldownMin, AttackCooldownMax); break;
+				m_TimeUntilNextStateChange = Random.Range(AttackCooldownMin, AttackCooldownMax); break;
 			case TrapState.Warning:
-                m_NextStateChange = AttackWarningDuration;                   			break;
+                m_TimeUntilNextStateChange = AttackWarningDuration;                   			break;
 			case TrapState.Broken_WaitForFix:                                   		break;
 			
                 default: Debug.Assert(false); break;
 		}
+
+        m_State = forceSetState;
 	}
+
+    ///////////////////////////////////////////////////////////////////////////
+
+    public bool CanBeInteractedWith()
+    {
+        return (m_State == TrapState.Broken_WaitForFix) || (m_State == TrapState.Warning);
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+
+    public void OnDrawGizmosSelected()
+    {
+        Color oldColor = Gizmos.color;
+        
+        bool drawAttackRadius   = false;;
+        bool drawInteractRadius = false;
+
+        Color newColor = Color.black;
+
+        switch (m_State)
+        {
+            case TrapState.WaitingForAttack:    newColor = Color.green;         drawInteractRadius = true; break;
+            case TrapState.Warning:             newColor = Color.yellow;        drawInteractRadius = true; drawAttackRadius = true; break;
+            case TrapState.Broken_WaitForFix:   newColor = Color.red;           drawInteractRadius = true; break;
+            default:
+                break;
+
+        }
+
+        Gizmos.color = newColor;
+
+        if (drawInteractRadius)
+        {
+            Gizmos.DrawWireSphere(transform.position, InteractRadius);
+        }
+        if (drawAttackRadius)
+        {
+            Gizmos.DrawWireSphere(transform.position, AttackRadius);
+        }
+
+        Gizmos.color = oldColor;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+
+    public void Interact()
+    {
+        if (m_State == TrapState.Broken_WaitForFix || m_State == TrapState.Warning)
+        {
+            ChangeToState(TrapState.WaitingForAttack);
+            Debug.Log("Fixed " + gameObject.name.AddBrackets());
+        }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
 
     private void Update()
     {
-        float timeUntilNextStateChange = Time.time - m_NextStateChange;
+        m_TimeUntilNextStateChange -= Time.deltaTime;       
 
         switch (m_State)
         {
             case TrapState.WaitingForAttack:
-                if (timeUntilNextStateChange <= 0)
+                if (m_TimeUntilNextStateChange <= 0)
                 {
+                    Debug.Log("Warn " + gameObject.name.AddBrackets());
                     ChangeToState(TrapState.Warning);
                 }
                 break;
 
             case TrapState.Warning:
-                if (timeUntilNextStateChange <= 0)
+                if (m_TimeUntilNextStateChange <= 0)
                 {
-                    if (CanAttack)
-                    {
-                        ChangeToState(TrapState.Broken_WaitForFix);
-                    }
+                    Debug.Log("Attack " + gameObject.name.AddBrackets());
+                    ChangeToState(TrapState.Broken_WaitForFix);
                 }
                 break;
 
@@ -72,4 +126,6 @@ public class Trap : MonoBehaviour
             default: Debug.Assert(false);                break;
         }
     }
+
+    ///////////////////////////////////////////////////////////////////////////
 }

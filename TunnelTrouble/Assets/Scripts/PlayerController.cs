@@ -14,10 +14,14 @@ public class PlayerController : MonoBehaviour
 	private Vector3 m_Inputs		= Vector3.zero;
 	private bool m_IsGrounded		= true;
 
+	///////////////////////////////////////////////////////////////////////////
+
 	void Start()
 	{
 		m_Rigidbody		= GetComponent<Rigidbody>();
 	}
+
+	///////////////////////////////////////////////////////////////////////////
 
 	void Update()
 	{
@@ -39,6 +43,33 @@ public class PlayerController : MonoBehaviour
 		{
 			Vector3 dashVelocity = transform.forward * DashDistance;
 			m_Rigidbody.AddForce(dashVelocity, ForceMode.VelocityChange);
+		}
+
+		TryInteraction();
+	}
+
+	///////////////////////////////////////////////////////////////////////////
+
+	void TryInteraction()
+	{
+		bool doInteract = Input.GetButtonDown("Interact");
+
+		if (doInteract)
+		{
+			Vector2 selfPos = transform.position.xz();
+			Trap nearestTrap = TrapManager.Get().GetNearestTrap(selfPos, true);
+
+			if (nearestTrap && nearestTrap.CanBeInteractedWith())
+			{
+				nearestTrap.Interact();
+			}
+			else
+			{
+				if (nearestTrap)
+				{
+					Debug.Log("Cannot interact with " + nearestTrap.name.AddBrackets());
+				}
+			}
 		}
 	}
 

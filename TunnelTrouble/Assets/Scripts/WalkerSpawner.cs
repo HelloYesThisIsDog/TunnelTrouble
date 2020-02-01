@@ -14,6 +14,8 @@ public class WalkerSpawner : MonoBehaviour
     private float   m_LastSpawnTime = float.NegativeInfinity;
     private int     m_SpawnedCount = 0;
 
+    ///////////////////////////////////////////////////////////////////////////
+
     bool NeedsMoreWalkers()
     {
 		bool enoughWalkersAlive = transform.childCount >= MaxWalkerCount;
@@ -21,6 +23,8 @@ public class WalkerSpawner : MonoBehaviour
 
         return !enoughWalkersAlive && !enoughWalkersSpawned;
 	}
+
+    ///////////////////////////////////////////////////////////////////////////
 
     private void Update()
     {
@@ -44,6 +48,8 @@ public class WalkerSpawner : MonoBehaviour
         }
     }
 
+    ///////////////////////////////////////////////////////////////////////////
+
     public void KillAllWalkers()
     {
 		for (int c = 0; c < transform.childCount; ++c)
@@ -51,6 +57,8 @@ public class WalkerSpawner : MonoBehaviour
 			GameObject.Destroy(transform.GetChild(c).gameObject);
         }
     }
+
+    ///////////////////////////////////////////////////////////////////////////
 
     public void SpawnWalker(float relativeSpawnOfBurst)
     {
@@ -67,11 +75,13 @@ public class WalkerSpawner : MonoBehaviour
         m_SpawnedCount++;
     }
 
+    ///////////////////////////////////////////////////////////////////////////
+
 	private void OnDrawGizmosSelected()
 	{
 		Color oldColor = Gizmos.color;
 		Gizmos.color = Color.magenta;
-		Gizmos.DrawSphere(transform.position, SpawnRadius);
+		Gizmos.DrawWireSphere(transform.position, SpawnRadius);
 
 		Gizmos.color = oldColor;
 	}
