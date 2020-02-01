@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 	[Header("Debug")]
 	public int		m_RescuedWalkers	= 0;
 	public float	m_RunningTime		= 0.0f;
+	public bool		m_GameEnded			= false;
 
 	public static GameManager Get()
 	{
@@ -40,7 +41,7 @@ public class GameManager : MonoBehaviour
 	void EndGame()
 	{
 		Time.timeScale = 0.0f;
-		WorldSpaceCanvas.Get().AddText("GAME OVER", Vector3.zero);
+		m_GameEnded = true;
 	}
 
 	///////////////////////////////////////////////////////////////////////////
