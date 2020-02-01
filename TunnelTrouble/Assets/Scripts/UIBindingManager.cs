@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIBindingManager : MonoBehaviour
 {
-	public Text ToolTextField;
+	public TextMeshProUGUI ToolTextField;
 
 	private void Update()
 	{
