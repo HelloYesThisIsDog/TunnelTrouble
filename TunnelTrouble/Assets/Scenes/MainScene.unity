@@ -2128,7 +2128,7 @@ PrefabInstance:
     - target: {fileID: 6202171195251782948, guid: d305d14375eb02841b51186bf5a9525c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.6
+      value: -9.95
       objectReference: {fileID: 0}
     - target: {fileID: 6202171195251782948, guid: d305d14375eb02841b51186bf5a9525c,
         type: 3}
@@ -2138,7 +2138,7 @@ PrefabInstance:
     - target: {fileID: 6202171195251782948, guid: d305d14375eb02841b51186bf5a9525c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 18.4
+      value: 19.92
       objectReference: {fileID: 0}
     - target: {fileID: 6202171195251782948, guid: d305d14375eb02841b51186bf5a9525c,
         type: 3}
@@ -2148,7 +2148,7 @@ PrefabInstance:
     - target: {fileID: 6202171195251782948, guid: d305d14375eb02841b51186bf5a9525c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.6998503
       objectReference: {fileID: 0}
     - target: {fileID: 6202171195251782948, guid: d305d14375eb02841b51186bf5a9525c,
         type: 3}
@@ -2158,7 +2158,7 @@ PrefabInstance:
     - target: {fileID: 6202171195251782948, guid: d305d14375eb02841b51186bf5a9525c,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.71428955
       objectReference: {fileID: 0}
     - target: {fileID: 6202171195251782948, guid: d305d14375eb02841b51186bf5a9525c,
         type: 3}
@@ -2173,7 +2173,7 @@ PrefabInstance:
     - target: {fileID: 6202171195251782948, guid: d305d14375eb02841b51186bf5a9525c,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -88.83
       objectReference: {fileID: 0}
     - target: {fileID: 6202171195251782948, guid: d305d14375eb02841b51186bf5a9525c,
         type: 3}
@@ -2536,7 +2536,6 @@ MonoBehaviour:
   TrolleySlotCount: 6
   TrolleyExtentsOS: {x: 2, y: 1}
   ToolPickupDistance: 1.6
-  VisualToolSitHeight: 1.5
 --- !u!54 &1240652007
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3431,13 +3430,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9733dec3c1738be49b4bc831b54a8c23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SmallWalkerSpawnPrefab: {fileID: 8759019178428789368, guid: f0f0d873d9d038f4f9df6ca26061a1a8,
-    type: 3}
-  BigWalkerSpawnPrefab: {fileID: 6052737078535739312, guid: b0b4fcb1395ea8441855501e5f428ff5,
-    type: 3}
+  WalkerSpawnPrefab: {fileID: 0}
   SpawnBurstInterval: 6
-  SmallWalkersPerBurst: 4
-  BigWalkersPerBurst: 1
+  SpawnsPerBurst: 0
   MaxSpawnCount: 2147483647
   SpawnRadius: 1
 --- !u!4 &1654105342
