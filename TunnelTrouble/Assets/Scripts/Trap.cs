@@ -14,7 +14,7 @@ public class Trap : MonoBehaviour
     public float AttackCooldownMax      = 15.0f;
     public float AttackWarningDuration  = 10.0f;
     public float InteractRadius         =  2.0f;
-
+    public Animator TrapAnim;
     [Header("Debug")]
     public float        m_TimeUntilNextStateChange       = 0.0f;
 
@@ -34,10 +34,20 @@ public class Trap : MonoBehaviour
 		switch (forceSetState)
 		{
 			case TrapState.WaitingForAttack:
-				m_TimeUntilNextStateChange = Random.Range(AttackCooldownMin, AttackCooldownMax); break;
+                TrapAnim.SetTrigger("Reset");
+                TrapAnim.ResetTrigger("Activate");
+
+                m_TimeUntilNextStateChange = Random.Range(AttackCooldownMin, AttackCooldownMax); break;
 			case TrapState.Warning:
+                TrapAnim.SetTrigger("Warn");
+                TrapAnim.ResetTrigger("Reset");
+
                 m_TimeUntilNextStateChange = AttackWarningDuration;                   			break;
-			case TrapState.Broken_WaitForFix:                                   		break;
+			case TrapState.Broken_WaitForFix:
+                TrapAnim.SetTrigger("Activate");
+                TrapAnim.ResetTrigger("Warn");
+
+                break;
 			
                 default: Debug.Assert(false); break;
 		}
