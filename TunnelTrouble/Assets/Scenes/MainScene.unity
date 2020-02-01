@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 99025238}
   - component: {fileID: 99025237}
   m_Layer: 0
-  m_Name: HammerVisuals
+  m_Name: DrillVisuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -216,7 +216,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: daba07eed4c70d8438bbe4c362776de0, type: 2}
+  - {fileID: 2100000, guid: 82ff078dbfa0be64380945595d747b1f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2536,6 +2536,7 @@ MonoBehaviour:
   TrolleySlotCount: 6
   TrolleyExtentsOS: {x: 2, y: 1}
   ToolPickupDistance: 1.6
+  VisualToolSitHeight: 1.5
 --- !u!54 &1240652007
 Rigidbody:
   m_ObjectHideFlags: 0

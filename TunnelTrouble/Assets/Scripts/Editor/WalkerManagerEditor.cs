@@ -44,7 +44,7 @@ public class WalkerManagerEditor : Editor
 
 			for (int s = 0; s < spawners.Length; ++s)
 			{
-				walkerManager.enabled = !walkerManager.enabled;
+				spawners[s].enabled = !spawners[s].enabled;
 			}	
 		}
 
