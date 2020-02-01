@@ -73,27 +73,28 @@ public class PlayerController : MonoBehaviour
 			selfLookDir.Normalize();
 
 			// 1) Traps
-			Trap nearestTrap = TrapManager.Get().GetNearestTrap(true, EquippedTool, selfPos, true, true, selfLookDir);
+			Trap nearestTrap = TrapManager.Get().GetNearestTrap(this, selfPos, true, true, selfLookDir);
 
 			if (nearestTrap)
 			{
 				nearestTrap.Interact();
-				return;
+			}
+			else
+			{
+				Tool nearestTool = ToolTrolley.Get().GetNearestTool(selfPos, true, selfLookDir);
+
+				if (nearestTool)
+				{
+					ToolTrolley.Get().SwitchTool(ref EquippedTool, nearestTool);
+				}
+				else
+				{
+					WorldSpaceCanvas.Get().AddText("Wrong Tool", transform.position);
+				}
 			}
 			
-			if (TrapManager.Get().GetNearestTrap(false, EquippedTool, selfPos, true, true, selfLookDir))
-			{
-				WorldSpaceCanvas.Get().AddText("Wrong Tool", transform.position);
-				return;
-			}
 
-			Tool nearestTool = ToolTrolley.Get().GetNearestTool(selfPos, true, selfLookDir);
-
-			if (nearestTool)
-			{
-				ToolTrolley.Get().SwitchTool(ref EquippedTool, nearestTool);
-				return;
-			}
+			// 2) 
 		}
 	}
 

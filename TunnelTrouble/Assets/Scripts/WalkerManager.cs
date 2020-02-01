@@ -96,7 +96,6 @@ public class WalkerManager : MonoBehaviour
 			if (withinAttackRange)
 			{
 				if (!withinAttackRange.IsWithinAttackRange(walkerPos))
-					if (!withinAttackRange.IsWithinAttackRange(walkerPos))
 				{
 					continue;
 				}
