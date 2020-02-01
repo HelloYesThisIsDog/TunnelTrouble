@@ -155,7 +155,7 @@ MonoBehaviour:
   AttackCooldownMax: 5
   AttackWarningDuration: 5
   BreakingProcessDuration: 1
-  InteractRadius: 2
+  InteractRadius: 3
   AttacksOnlyOnce: 1
   TrapAnim: {fileID: 5876043629152481524}
   ToolToFix: 1
@@ -172,8 +172,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 1, z: 17.149067}
-  m_Center: {x: 4.4525432e-14, y: 0, z: 8.574537}
+  m_Size: {x: 10.705753, y: 1, z: 17.149067}
+  m_Center: {x: -0.35287285, y: 0, z: 8.574537}
 --- !u!1 &6202171195251782971
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,8 @@ public enum ToolType
 {
     Hammer,
     Drill,
+    Mop,
+    Megaphone,
 }
 
 public class Tool : MonoBehaviour

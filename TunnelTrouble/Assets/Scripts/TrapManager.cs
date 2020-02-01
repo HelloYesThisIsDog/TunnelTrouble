@@ -25,6 +25,8 @@ public class TrapManager : MonoBehaviour
 
 	void ReInit()
 	{
+        m_Traps.Clear();
+
 		for (int c = 0; c < transform.childCount; ++c)
 		{
 			Transform child = transform.GetChild(c);
