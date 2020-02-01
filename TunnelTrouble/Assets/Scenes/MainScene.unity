@@ -326,7 +326,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 47140d3a68c3edf478b087862401003e, type: 2}
+  - {fileID: 2100000, guid: 03b5258932804414795229218302af44, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -440,7 +440,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 47140d3a68c3edf478b087862401003e, type: 2}
+  - {fileID: 2100000, guid: 03b5258932804414795229218302af44, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -921,7 +921,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 47140d3a68c3edf478b087862401003e, type: 2}
+  - {fileID: 2100000, guid: 03b5258932804414795229218302af44, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1142,7 +1142,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 53809b8648364e2438daa9aece51af97, type: 2}
+  - {fileID: 2100000, guid: f6addc69130721848b8f73a410d8a890, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1837,7 +1837,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 47140d3a68c3edf478b087862401003e, type: 2}
+  - {fileID: 2100000, guid: 03b5258932804414795229218302af44, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1916,7 +1916,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 47140d3a68c3edf478b087862401003e, type: 2}
+  - {fileID: 2100000, guid: 03b5258932804414795229218302af44, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1974,7 +1974,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9733dec3c1738be49b4bc831b54a8c23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WalkerSpawnPrefab: {fileID: 8759019178428789368, guid: e64d25cdaf4a0de4f98d619c5d77aa45,
+  WalkerSpawnPrefab: {fileID: 8759019178428789368, guid: f0f0d873d9d038f4f9df6ca26061a1a8,
     type: 3}
   SpawnBurstInterval: 3
   SpawnsPerBurst: 5
@@ -2169,7 +2169,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 47140d3a68c3edf478b087862401003e, type: 2}
+  - {fileID: 2100000, guid: 03b5258932804414795229218302af44, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
