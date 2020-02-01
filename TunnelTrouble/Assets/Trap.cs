@@ -12,22 +12,27 @@ public enum TrapState
 
 public class Trap : MonoBehaviour
 {
-    public float AttackCooldownMin      = 10.0f;
+ /*   public float AttackCooldownMin      = 10.0f;
     public float AttackCooldownMax      = 15.0f;
     public float AttackWarningDuration  = 10.0f;
 
     float       m_NextStateChange       = 0.0f;
 
     TrapState   m_State = TrapState.WaitingForAttack;
-    /*
+    
     private void Awake()
     {
         
     }
 
+    private void Start()
+    {
+        ChangeToState(TrapState.WaitingForAttack);
+    }
+
     private void ChangeToState(TrapState forceSetState)
     {
-
+        
     }
 
     private void Update()
@@ -45,8 +50,7 @@ public class Trap : MonoBehaviour
                 break;
             case TrapState.Broken_WaitForFix:
                 break;
-            default:
-                break;
+            default: Debug.Assert(false);                break;
 
         }
     }*/
