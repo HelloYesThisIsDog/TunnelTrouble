@@ -14,22 +14,32 @@ public class UIBindingManager : MonoBehaviour
 
 	private void Update()
 	{
-		PlayerController player1 = PlayerManager.Get().GetPlayer(PlayerSlot.Player1);
+		ToolTextField.text = "";
+
+		for (int i = 0; i < (int)PlayerSlot.PlayerCount; ++i)
+		{
+			PlayerController player = PlayerManager.Get().GetPlayer((PlayerSlot)i);
+
+			if (!player)
+			{
+				continue;
+			}
+
+			if (ToolTextField.text != "")
+			{
+				ToolTextField.text += "\n";
+			}
+
+			if (player.EquippedTool)
+			{
+				ToolTextField.text += "P" + (i + 1) + ": " + player.EquippedTool.name;
+			}
+			else
+			{
+				ToolTextField.text += "P" + (i + 1) + ": " + "No Tool";
+			}
+		}
 		
-		if (!player1)
-		{
-			return;
-		}
-
-		if (player1.EquippedTool)
-		{
-			ToolTextField.text = player1.EquippedTool.name;
-		}
-		else
-		{
-			ToolTextField.text = "No Tool";
-		}
-
 		int rescuedWalkers = GameManager.Get().m_RescuedWalkers;
 
 		ScoreTextField.text = "Rescued: " + rescuedWalkers;
