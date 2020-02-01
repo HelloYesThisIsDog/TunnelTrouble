@@ -143,6 +143,7 @@ MonoBehaviour:
   AttackWarningDuration: 5
   BreakingProcessDuration: 1
   InteractRadius: 2
+  AttacksOnlyOnce: 1
   TrapAnim: {fileID: 5876043629152481524}
   ToolToFix: 1
   m_TimeUntilNextStateChange: 0
