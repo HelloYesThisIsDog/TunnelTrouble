@@ -59,7 +59,7 @@ public class WalkerSpawner : MonoBehaviour
         offset.x = Mathf.Cos(relativeSpawnOfBurst * Mathf.PI * 2.0f);
         offset.y = Mathf.Sin(relativeSpawnOfBurst * Mathf.PI * 2.0f);
 
-        walker.transform.position += offset.To3D(0.0f);
+        walker.transform.position = transform.position + offset.To3D(0.0f);
 
         m_SpawnedCount++;
     }

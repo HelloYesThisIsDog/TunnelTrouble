@@ -24,7 +24,7 @@ public class WalkerManager : MonoBehaviour
 	void ReInit()
 	{
 	}
-
+	
 	///////////////////////////////////////////////////////////////////////////
 
 	int GetTotalWalkerCount()
@@ -83,7 +83,7 @@ public class WalkerManager : MonoBehaviour
 
 	///////////////////////////////////////////////////////////////////////////
 
-	public List<Walker> GetAllWalkers(Vector2 referencePos, float? forceWithinRange)
+	public List<Walker> GetAllWalkers(Vector2 referencePos, Trap withinAttackRange)
 	{
 		List<Walker> result = new List<Walker>();
 
@@ -91,13 +91,11 @@ public class WalkerManager : MonoBehaviour
 		{
 			Walker curWalker = transform.GetChild(c).gameObject.GetComponent<Walker>();
 
-			if (forceWithinRange.HasValue)
+			Vector2 walkerPos = curWalker.transform.position.xz();
+			
+			if (withinAttackRange)
 			{
-				Vector2 walkerPos = curWalker.transform.position.xz();
-
-				float dist = (referencePos - walkerPos).magnitude;
-
-				if (forceWithinRange.HasValue && dist > forceWithinRange.Value)
+				if (!withinAttackRange.IsWithinAttackRange(walkerPos))
 				{
 					continue;
 				}

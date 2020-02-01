@@ -14,8 +14,7 @@ public class Trap : MonoBehaviour
     public float AttackCooldownMax      = 15.0f;
     public float AttackWarningDuration  = 10.0f;
     public float InteractRadius         =  2.0f;
-    public float AttackRadius           =  4.0f;
-
+    public Animator TrapAnim;
     [Header("Debug")]
     public float        m_TimeUntilNextStateChange       = 0.0f;
 
@@ -35,15 +34,60 @@ public class Trap : MonoBehaviour
 		switch (forceSetState)
 		{
 			case TrapState.WaitingForAttack:
-				m_TimeUntilNextStateChange = Random.Range(AttackCooldownMin, AttackCooldownMax); break;
+                TrapAnim.SetTrigger("Reset");
+                TrapAnim.ResetTrigger("Activate");
+
+                m_TimeUntilNextStateChange = Random.Range(AttackCooldownMin, AttackCooldownMax); break;
 			case TrapState.Warning:
+                TrapAnim.SetTrigger("Warn");
+                TrapAnim.ResetTrigger("Reset");
+
                 m_TimeUntilNextStateChange = AttackWarningDuration;                   			break;
-			case TrapState.Broken_WaitForFix:                                   		break;
+			case TrapState.Broken_WaitForFix:
+                TrapAnim.SetTrigger("Activate");
+                TrapAnim.ResetTrigger("Warn");
+
+                break;
 			
                 default: Debug.Assert(false); break;
 		}
 
         m_State = forceSetState;
+	}
+
+    ///////////////////////////////////////////////////////////////////////////
+
+    public bool IsWithinAttackRange(Vector2 referencePos)
+    {
+        BoxCollider boxCollider         = GetComponent<BoxCollider>();
+        SphereCollider sphereCollider   = GetComponent<SphereCollider>();
+
+        float   y       = 0.0f;
+        Collider collider; 
+
+        if (boxCollider)
+        {
+            y = boxCollider.transform.position.y + boxCollider.center.y;
+            collider = boxCollider;
+        }
+        else if (sphereCollider)
+        {
+			y = sphereCollider.transform.position.y + sphereCollider.center.y;
+            collider = sphereCollider;
+		}
+        else
+        {
+            Debug.LogWarning(name.AddBrackets() + " does not have attack collider");
+            return false;
+        }
+
+        Vector3 referencePos3D = referencePos.To3D(y);
+
+        Vector3 closestPoint = collider.ClosestPoint(referencePos3D);
+        
+        bool isInside = (referencePos3D == closestPoint);
+
+        return isInside;
 	}
 
     ///////////////////////////////////////////////////////////////////////////
@@ -91,7 +135,16 @@ public class Trap : MonoBehaviour
         }
         if (drawAttackRadius)
         {
-            Gizmos.DrawWireSphere(transform.position, AttackRadius);
+            if (GetComponent<BoxCollider>())
+            {
+                BoxCollider boxCollider = GetComponent<BoxCollider>();
+                Gizmos.DrawCube(boxCollider.bounds.center, boxCollider.bounds.size);
+            }
+            else
+            {
+                SphereCollider sphereCollider = GetComponent<SphereCollider>();
+                Gizmos.DrawWireSphere(sphereCollider.bounds.center, sphereCollider.radius);
+            }
         }
 
         Gizmos.color = oldColor;
@@ -143,7 +196,7 @@ public class Trap : MonoBehaviour
     
     void Attack()
     {
-        List<Walker> walkersInRange = WalkerManager.Get().GetAllWalkers(transform.position.xz(), AttackRadius);
+        List<Walker> walkersInRange = WalkerManager.Get().GetAllWalkers(transform.position.xz(), this);
 
         foreach (Walker walker in walkersInRange)
         {
