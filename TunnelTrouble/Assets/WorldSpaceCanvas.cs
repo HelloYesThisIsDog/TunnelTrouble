@@ -10,6 +10,7 @@ public class WorldSpaceCanvas : MonoBehaviour
 	public float		Height			= 6.0f;
 	public float		RiseSpeed		= 2.0f;
 	public float		KillAtHeight	= 8.0f;
+	public int			MaxAllowedTexts = 2;
 
 	private static WorldSpaceCanvas s_Instance;
 
@@ -57,6 +58,12 @@ public class WorldSpaceCanvas : MonoBehaviour
 			{
 				GameObject.Destroy(childTransform.gameObject);
 			}
+		}
+
+		int childrenToDelete = transform.childCount - MaxAllowedTexts + 1;
+		for (int c = 0; c < childrenToDelete; ++c)
+		{
+			GameObject.Destroy(transform.GetChild(c).gameObject);
 		}
 	}
 

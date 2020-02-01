@@ -1040,7 +1040,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScreenSpaceTextPrefab: {fileID: 6150098105108061453, guid: e4ee18b3658c4b34ba93f716604b035b,
     type: 3}
-  HeightOffset: 6
+  Height: 6
+  RiseSpeed: 0.2
+  KillAtHeight: 8
+  MaxAllowedTexts: 3
 --- !u!1001 &529042369
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2945,8 +2948,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
-  m_CollisionDetection: 0
+  m_Constraints: 84
+  m_CollisionDetection: 1
 --- !u!4 &1381838664
 Transform:
   m_ObjectHideFlags: 0
