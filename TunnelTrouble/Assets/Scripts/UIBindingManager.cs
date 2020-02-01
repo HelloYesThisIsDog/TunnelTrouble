@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class UIBindingManager : MonoBehaviour
 {
 	public TextMeshProUGUI ToolTextField;
+	public TextMeshProUGUI ScoreTextField;
+	public TextMeshProUGUI CountDownTextfield;
 
 	private void Update()
 	{
@@ -20,5 +22,19 @@ public class UIBindingManager : MonoBehaviour
 		{
 			ToolTextField.text = "No Tool";
 		}
+
+		int rescuedWalkers = GameManager.Get().m_RescuedWalkers;
+
+		ScoreTextField.text = "Rescued: " + rescuedWalkers;
+
+		float runningTime	= GameManager.Get().m_RunningTime;
+		float gameDuration	= GameManager.Get().m_GameDuration;
+
+		float timeLeft = Mathf.Max(gameDuration - runningTime, 0);
+		
+		int minutes = ((int)timeLeft) / 60;
+		int seconds = ((int)timeLeft) - minutes * 60;
+
+		CountDownTextfield.text = minutes + ":" + seconds;
 	}
 }

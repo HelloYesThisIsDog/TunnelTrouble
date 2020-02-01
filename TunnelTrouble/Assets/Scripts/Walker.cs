@@ -78,6 +78,7 @@ public class Walker : MonoBehaviour
 
 			if (m_CurrentTargetPointIndex >= pathPointCount)
 			{
+                GameManager.Get().m_RescuedWalkers++;
 				m_CurrentTargetPointIndex--;
 				GameObject.Destroy(gameObject);
 				return false;
