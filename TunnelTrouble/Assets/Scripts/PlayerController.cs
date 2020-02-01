@@ -6,9 +6,10 @@ public enum PlayerSlot
 	Player1,
 	Player2,
 	Player3,
-	Player4
-}
+	Player4,
 
+	PlayerCount
+}
 
 
 public class PlayerController : MonoBehaviour
@@ -27,6 +28,19 @@ public class PlayerController : MonoBehaviour
 	public Tool	EquippedTool			= null;
 
 	///////////////////////////////////////////////////////////////////////////
+	
+	public static Color GetPlayerColor(PlayerSlot slot)
+	{
+		switch(slot)
+		{
+			case PlayerSlot.Player1:	return new Color(1,0,0);
+			case PlayerSlot.Player2:	return new Color(0,1,0);
+			case PlayerSlot.Player3:	return new Color(1,1,0);
+			case PlayerSlot.Player4:	return new Color(0,1,1);
+		}
+
+		return Color.white;
+	}
 
 	void Start()
 	{
