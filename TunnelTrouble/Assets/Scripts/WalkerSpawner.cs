@@ -7,20 +7,23 @@ public class WalkerSpawner : MonoBehaviour
     public Walker   WalkerSpawnPrefab;
     public float    SpawnBurstInterval;
     public int      SpawnsPerBurst;
-    public int      MaxWalkerCount  = 20;
     public int      MaxSpawnCount   = int.MaxValue;
     public float    SpawnRadius     = 1.0f;
 
     private float   m_LastSpawnTime = float.NegativeInfinity;
     private int     m_SpawnedCount = 0;
 
+    ///////////////////////////////////////////////////////////////////////////
+
     bool NeedsMoreWalkers()
     {
-		bool enoughWalkersAlive = transform.childCount >= MaxWalkerCount;
-		bool enoughWalkersSpawned = m_SpawnedCount >= MaxSpawnCount;
+		bool enoughWalkersAlive     = transform.childCount >= WalkerManager.Get().MaxWalkerCount;
+		bool enoughWalkersSpawned   = m_SpawnedCount >= MaxSpawnCount;
 
         return !enoughWalkersAlive && !enoughWalkersSpawned;
 	}
+
+    ///////////////////////////////////////////////////////////////////////////
 
     private void Update()
     {
@@ -44,17 +47,11 @@ public class WalkerSpawner : MonoBehaviour
         }
     }
 
-    public void KillAllWalkers()
-    {
-		for (int c = 0; c < transform.childCount; ++c)
-		{
-			GameObject.Destroy(transform.GetChild(c).gameObject);
-        }
-    }
+    ///////////////////////////////////////////////////////////////////////////
 
     public void SpawnWalker(float relativeSpawnOfBurst)
     {
-        Walker walker = GameObject.Instantiate(WalkerSpawnPrefab, transform);
+        Walker walker = GameObject.Instantiate(WalkerSpawnPrefab, WalkerManager.Get().transform);
         walker.ID = m_SpawnedCount;
         walker.gameObject.name = "Walker " + m_SpawnedCount;
 
@@ -67,13 +64,17 @@ public class WalkerSpawner : MonoBehaviour
         m_SpawnedCount++;
     }
 
+    ///////////////////////////////////////////////////////////////////////////
+
 	private void OnDrawGizmosSelected()
 	{
 		Color oldColor = Gizmos.color;
 		Gizmos.color = Color.magenta;
-		Gizmos.DrawSphere(transform.position, SpawnRadius);
+		Gizmos.DrawWireSphere(transform.position, SpawnRadius);
 
 		Gizmos.color = oldColor;
 	}
+
+    ///////////////////////////////////////////////////////////////////////////
 
 }

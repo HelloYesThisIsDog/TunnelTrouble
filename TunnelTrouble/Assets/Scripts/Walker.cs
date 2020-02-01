@@ -13,6 +13,7 @@ public class Walker : MonoBehaviour
 
     Rigidbody       m_Rigidbody;
     
+    [Header("Debug")]
     public int      m_CurrentTargetPointIndex = 0;
     Vector3         m_Direction = Vector3.right;
 
@@ -23,6 +24,10 @@ public class Walker : MonoBehaviour
 
 	///////////////////////////////////////////////////////////////////////////
 
+    public void Kill()
+    {
+        GameObject.Destroy(gameObject);
+    }
 
     ///////////////////////////////////////////////////////////////////////////
 
@@ -52,7 +57,7 @@ public class Walker : MonoBehaviour
         Debug.DrawLine(transform.position, targetPos, Color.cyan);
 
         Gizmos.color = Color.cyan;
-        Gizmos.DrawSphere(targetPos, ReachTargetThreshold);
+        Gizmos.DrawWireSphere(targetPos, ReachTargetThreshold);
 
         Gizmos.color = oldColor;
     }
