@@ -167,7 +167,7 @@ public class ToolTrolley : MonoBehaviour
 			Vector2 slotPosOS = m_AllSlots[i].PositionOS;
 			Vector3 positionWS = GetSlotPositionWS(slotPosOS);
 
-			Gizmos.DrawWireSphere(positionWS, 0.3f);
+			Gizmos.DrawWireSphere(positionWS, ToolPickupDistance);
 		}
 	}
 
