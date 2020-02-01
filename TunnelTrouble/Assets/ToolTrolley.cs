@@ -10,6 +10,7 @@ public class ToolTrolley : MonoBehaviour
 	
 	public int TrolleySlotCount		= 6;
 	public Vector2 TrolleyExtentsOS	= new Vector2(4.0f, 2.0f);
+	public float ToolPickupDistance	= 1.0f;
 
 	struct TrolleySlot
 	{
@@ -34,10 +35,58 @@ public class ToolTrolley : MonoBehaviour
 
 	///////////////////////////////////////////////////////////////////////////
 
+	public Tool GetNearestTool(Vector2 referencePos, bool forceWithinRange, Vector2? requireDirectionTowards)
+	{
+		Tool bestTool = null;
+		float bestDist = float.MaxValue;
+
+		for (int c = 0; c < m_AllSlots.Length; ++c)
+		{
+			TrolleySlot curSlot = m_AllSlots[c];
+
+			if (!curSlot.OccupiedWith)
+			{
+				continue;
+			}
+
+			Vector2 slotPos = GetSlotPositionWS(curSlot.PositionOS).xz();
+
+			float dist = (referencePos - slotPos).magnitude;
+
+			if (forceWithinRange && dist > ToolPickupDistance)
+			{
+				continue;
+			}
+
+			if (dist > bestDist)
+			{
+				continue;
+			}
+
+			if (requireDirectionTowards.HasValue)
+			{
+				float dot = Vector2.Dot(slotPos - referencePos, requireDirectionTowards.Value);
+				if (dot < 0)
+				{
+					continue;
+				}
+			}
+
+			bestTool = curSlot.OccupiedWith;
+			bestDist = dist;
+		}
+
+		return bestTool;
+	}
+
+	///////////////////////////////////////////////////////////////////////////
+
 	void ReInit()
 	{
+		// 1) Get Tools
 		Tool[] m_AllTools = GameObject.FindObjectsOfType<Tool>();
 
+		// 2) Calculate Slot Positions
 		if (TrolleySlotCount % 2 != 0)
 		{
 			TrolleySlotCount += 1;
@@ -77,6 +126,18 @@ public class ToolTrolley : MonoBehaviour
 
 				m_AllSlots[slotIndex].PositionOS = new Vector2(cellMinX + cellSizeX * 0.5f, cellMinY + cellSizeY * 0.5f);
 			}
+		}
+
+		// 3) Fill Slots
+		for (int s = 0; s < m_AllSlots.Length; ++s)
+		{
+			if (s >= m_AllTools.Length)
+			{
+				m_AllSlots[s].OccupiedWith = null;
+				continue;
+			}
+
+			m_AllSlots[s].OccupiedWith = m_AllTools[s];
 		}
 	}
 

@@ -57,19 +57,28 @@ public class PlayerController : MonoBehaviour
 		if (doInteract)
 		{
 			Vector2 selfPos = transform.position.xz();
-			Trap nearestTrap = TrapManager.Get().GetNearestTrap(selfPos, true);
+			Vector2 selfLookDir = transform.forward.xz();
+			selfLookDir.Normalize();
 
-			if (nearestTrap && nearestTrap.CanBeInteractedWith())
+			// 1) Traps
+			Trap nearestTrap = TrapManager.Get().GetNearestTrap(selfPos, true, true, selfLookDir);
+
+			if (nearestTrap)
 			{
 				nearestTrap.Interact();
 			}
 			else
 			{
-				if (nearestTrap)
+				Tool nearestTool = ToolTrolley.Get().GetNearestTool(selfPos, true, selfLookDir);
+
+				if (nearestTool)
 				{
-					Debug.Log("Cannot interact with " + nearestTrap.name.AddBrackets());
+					Debug.Log("Grabbed Tool " + nearestTool.name.AddBrackets());
 				}
 			}
+			
+
+			// 2) 
 		}
 	}
 

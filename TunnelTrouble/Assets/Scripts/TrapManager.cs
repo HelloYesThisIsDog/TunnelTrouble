@@ -39,7 +39,7 @@ public class TrapManager : MonoBehaviour
 
 	///////////////////////////////////////////////////////////////////////////
 	
-	public Trap GetNearestTrap(Vector2 referencePos, bool forceWithinRange)
+	public Trap GetNearestTrap(Vector2 referencePos, bool forceWithinRange, bool forceInteractable, Vector2? requireDirectionTowards)
 	{
 		Trap bestTrap = null;
 		float bestDist = float.MaxValue;
@@ -60,6 +60,20 @@ public class TrapManager : MonoBehaviour
 			if (dist > bestDist)
 			{
 				continue;
+			}
+
+			if (forceInteractable && !curTrap.CanBeInteractedWith())
+			{
+				continue;
+			}
+
+			if (requireDirectionTowards.HasValue)
+			{
+				float dot = Vector2.Dot(trapPos - referencePos, requireDirectionTowards.Value);
+				if (dot < 0)
+				{
+					continue;
+				}
 			}
 
 			bestTrap = curTrap;
