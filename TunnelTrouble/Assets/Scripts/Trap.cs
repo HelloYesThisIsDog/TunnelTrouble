@@ -16,7 +16,8 @@ public class Trap : MonoBehaviour
     public float InteractRadius         =  2.0f;
     public float AttackRadius           =  4.0f;
 
-    public float m_TimeUntilNextStateChange       = 0.0f;
+    [Header("Debug")]
+    public float        m_TimeUntilNextStateChange       = 0.0f;
 
     public TrapState   m_State = TrapState.WaitingForAttack;
     

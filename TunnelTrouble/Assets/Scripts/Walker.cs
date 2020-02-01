@@ -13,6 +13,7 @@ public class Walker : MonoBehaviour
 
     Rigidbody       m_Rigidbody;
     
+    [Header("Debug")]
     public int      m_CurrentTargetPointIndex = 0;
     Vector3         m_Direction = Vector3.right;
 
