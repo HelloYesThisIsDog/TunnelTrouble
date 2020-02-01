@@ -978,6 +978,7 @@ GameObject:
   m_Component:
   - component: {fileID: 459755269}
   - component: {fileID: 459755268}
+  - component: {fileID: 459755270}
   m_Layer: 0
   m_Name: WorldSpaceCanvas
   m_TagString: Untagged
@@ -1002,7 +1003,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -1025,6 +1026,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &459755270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459755267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7204cffd1a6fbaa459cd97e9fb0232bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScreenSpaceTextPrefab: {fileID: 6150098105108061453, guid: e4ee18b3658c4b34ba93f716604b035b,
+    type: 3}
+  HeightOffset: 6
 --- !u!1001 &529042369
 PrefabInstance:
   m_ObjectHideFlags: 0

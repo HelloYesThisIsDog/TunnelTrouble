@@ -87,6 +87,10 @@ public class PlayerController : MonoBehaviour
 				{
 					ToolTrolley.Get().SwitchTool(ref EquippedTool, nearestTool);
 				}
+				else
+				{
+					WorldSpaceCanvas.Get().AddText("Wrong Tool", transform.position);
+				}
 			}
 			
 
