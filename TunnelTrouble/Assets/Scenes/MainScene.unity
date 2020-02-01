@@ -503,7 +503,6 @@ MonoBehaviour:
   AttackCooldownMax: 5
   AttackWarningDuration: 5
   InteractRadius: 2
-  AttackRadius: 10
   m_TimeUntilNextStateChange: 0
   m_State: 0
 --- !u!65 &420055912
@@ -517,8 +516,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5, y: 1, z: 5}
-  m_Center: {x: 0, y: 0, z: 3}
+  m_Size: {x: 10, y: 1, z: 10}
+  m_Center: {x: 0, y: 0, z: 5}
 --- !u!1 &432857720
 GameObject:
   m_ObjectHideFlags: 0
