@@ -22,22 +22,15 @@ public class WalkerSpawnerEditor : Editor
 			WalkerManager.Get().KillAllWalkers();
 		}
 
-		if (GUILayout.Button("Spawn Smal"))
+		if (GUILayout.Button("Spawn Single"))
 		{
-			SpawnSingle(walkerSpawner, false);
-		}
-
-		if (GUILayout.Button("Spawn Big"))
-		{
-			SpawnSingle(walkerSpawner, true);
+			walkerSpawner.SpawnWalker(0.0f);
 		}
 
 		if (GUILayout.Button("Spawn Multiple"))
 		{
 			for (int i = 0; i < 20; ++i)
-			{
-				SpawnMulti(walkerSpawner);
-			}
+			walkerSpawner.SpawnWalker(i / 20.0f);
 		}
 
 		if (GUILayout.Button(walkerSpawner.enabled ? "Stop Spawning" : "Resume Spawning"))
@@ -50,9 +43,9 @@ public class WalkerSpawnerEditor : Editor
 
 	///////////////////////////////////////////////////////////////////////////
 
-	public static void SpawnSingle(WalkerSpawner spawner, bool isBig)
+	public static void SpawnSingle(WalkerSpawner spawner)
 	{
-		spawner.SpawnWalker(0.0f, isBig);
+		spawner.SpawnWalker(0.0f);
 	}
 
 	///////////////////////////////////////////////////////////////////////////
@@ -61,7 +54,7 @@ public class WalkerSpawnerEditor : Editor
 	{
 		for (int i = 0; i < 20; ++i)
 		{
-			spawner.SpawnWalker(i / 20.0f, (i == 0));
+			spawner.SpawnWalker(i / 20.0f);
 		}
 	}
 

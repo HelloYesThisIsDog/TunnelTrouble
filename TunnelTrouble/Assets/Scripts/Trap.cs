@@ -103,14 +103,12 @@ public class Trap : MonoBehaviour
 
     ///////////////////////////////////////////////////////////////////////////
 
-    public bool CanBeInteractedBy(bool checkToolRequirement, Tool tool)
+    public bool CanBeInteractedBy(PlayerController player)
     {
-        if (checkToolRequirement)
+        if (!player.EquippedTool || ToolToFix != player.EquippedTool._ToolType)
         {
-            if (!tool || ToolToFix != tool._ToolType)
-            {
-                return false;
-            }
+            Debug.LogWarning("Cannot fix " + name.AddBrackets() + " with " + (player.EquippedTool ? player.EquippedTool.name.AddBrackets() : " nothing in hand"));
+            return false;
         }
 
         return (m_State == TrapState.Broken_WaitForFix) || (m_State == TrapState.Warning);

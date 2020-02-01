@@ -39,7 +39,7 @@ public class TrapManager : MonoBehaviour
 
 	///////////////////////////////////////////////////////////////////////////
 	
-	public Trap GetNearestTrap(bool checkToolRequirement, Tool equippedTool, Vector2 referencePos, bool forceWithinRange, bool forceInteractable, Vector2? requireDirectionTowards)
+	public Trap GetNearestTrap(PlayerController playerController, Vector2 referencePos, bool forceWithinRange, bool forceInteractable, Vector2? requireDirectionTowards)
 	{
 		Trap bestTrap = null;
 		float bestDist = float.MaxValue;
@@ -62,7 +62,7 @@ public class TrapManager : MonoBehaviour
 				continue;
 			}
 
-			if (forceInteractable && !curTrap.CanBeInteractedBy(checkToolRequirement, equippedTool))
+			if (forceInteractable && !curTrap.CanBeInteractedBy(playerController))
 			{
 				continue;
 			}
