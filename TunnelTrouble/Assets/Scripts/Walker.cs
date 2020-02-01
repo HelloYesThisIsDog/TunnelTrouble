@@ -43,7 +43,7 @@ public class Walker : MonoBehaviour
 
     ///////////////////////////////////////////////////////////////////////////
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Vector3 targetPos = GetTargetPoint();
 

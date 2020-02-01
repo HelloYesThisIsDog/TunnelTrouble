@@ -18,33 +18,30 @@ public class WalkerPath : MonoBehaviour
 
     public static WalkerPath Get()
     {
-        if (s_Instance)
+        if (!s_Instance)
         {
-            return s_Instance;
+            s_Instance = GameObject.FindObjectOfType<WalkerPath>();
+            s_Instance.ReInit();
         }
-        else
-        {
-            return GameObject.FindObjectOfType<WalkerPath>();
-        }
+
+        return s_Instance;
     }
 
-    void Awake()
+    void ReInit()
     {
-        s_Instance = this;
+		PathLines = new PathLine[transform.childCount / 2];
 
-        PathLines = new PathLine[transform.childCount / 2];
-
-        for (int c = 0; c < transform.childCount; ++c)
-        {
-            if (c % 2 == 0)
-            {
-                PathLines[c/2].Left = transform.GetChild(c).transform.position;
-            }
-            else
-            {
-                PathLines[c/2].Right = transform.GetChild(c).transform.position;
-            }
-        }
-    }
+		for (int c = 0; c < transform.childCount; ++c)
+		{
+			if (c % 2 == 0)
+			{
+				PathLines[c / 2].Left = transform.GetChild(c).transform.position;
+			}
+			else
+			{
+				PathLines[c / 2].Right = transform.GetChild(c).transform.position;
+			}
+		}
+	}
 
 }

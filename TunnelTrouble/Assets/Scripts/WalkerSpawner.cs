@@ -67,7 +67,7 @@ public class WalkerSpawner : MonoBehaviour
         m_SpawnedCount++;
     }
 
-	private void OnDrawGizmos()
+	private void OnDrawGizmosSelected()
 	{
 		Color oldColor = Gizmos.color;
 		Gizmos.color = Color.magenta;
