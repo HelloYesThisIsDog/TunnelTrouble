@@ -19,7 +19,7 @@ public class WalkerSpawnerEditor : Editor
 
 		if (GUILayout.Button("KillAll"))
 		{
-			walkerSpawner.KillAllWalkers();
+			WalkerManager.Get().KillAllWalkers();
 		}
 
 		if (GUILayout.Button("Spawn Single"))
@@ -39,6 +39,23 @@ public class WalkerSpawnerEditor : Editor
 		}
 
 		GUI.enabled = true;
+	}
+
+	///////////////////////////////////////////////////////////////////////////
+
+	public static void SpawnSingle(WalkerSpawner spawner)
+	{
+		spawner.SpawnWalker(0.0f);
+	}
+
+	///////////////////////////////////////////////////////////////////////////
+
+	public static void SpawnMulti(WalkerSpawner spawner)
+	{
+		for (int i = 0; i < 20; ++i)
+		{
+			spawner.SpawnWalker(i / 20.0f);
+		}
 	}
 
 	///////////////////////////////////////////////////////////////////////////

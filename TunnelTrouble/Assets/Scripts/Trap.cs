@@ -117,6 +117,7 @@ public class Trap : MonoBehaviour
                 if (m_TimeUntilNextStateChange <= 0)
                 {
                     Debug.Log("Attack " + gameObject.name.AddBrackets());
+                    Attack();
                     ChangeToState(TrapState.Broken_WaitForFix);
                 }
                 break;
@@ -125,6 +126,13 @@ public class Trap : MonoBehaviour
                 break;
             default: Debug.Assert(false);                break;
         }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    
+    void Attack()
+    {
+        
     }
 
     ///////////////////////////////////////////////////////////////////////////
