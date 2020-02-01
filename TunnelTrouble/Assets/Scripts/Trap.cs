@@ -15,6 +15,8 @@ public class Trap : MonoBehaviour
     public float AttackWarningDuration  = 10.0f;
     public float InteractRadius         =  2.0f;
     public Animator TrapAnim;
+    public ToolType ToolToFix           = ToolType.Drill;
+
     [Header("Debug")]
     public float        m_TimeUntilNextStateChange       = 0.0f;
 
@@ -92,8 +94,14 @@ public class Trap : MonoBehaviour
 
     ///////////////////////////////////////////////////////////////////////////
 
-    public bool CanBeInteractedWith()
+    public bool CanBeInteractedBy(PlayerController player)
     {
+        if (!player.EquippedTool || ToolToFix != player.EquippedTool._ToolType)
+        {
+            Debug.LogWarning("Cannot fix " + name.AddBrackets() + " with " + (player.EquippedTool ? player.EquippedTool.name.AddBrackets() : " nothing in hand"));
+            return false;
+        }
+
         return (m_State == TrapState.Broken_WaitForFix) || (m_State == TrapState.Warning);
     }
 

@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
 			selfLookDir.Normalize();
 
 			// 1) Traps
-			Trap nearestTrap = TrapManager.Get().GetNearestTrap(selfPos, true, true, selfLookDir);
+			Trap nearestTrap = TrapManager.Get().GetNearestTrap(this, selfPos, true, true, selfLookDir);
 
 			if (nearestTrap)
 			{
