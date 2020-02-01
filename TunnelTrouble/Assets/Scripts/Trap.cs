@@ -5,17 +5,20 @@ public enum TrapState
 {
     WaitingForAttack,
     Warning,
+    BreakingProcess,
     Broken_WaitForFix,
 }
 
 public class Trap : MonoBehaviour
 {
-    public float AttackCooldownMin      = 10.0f;
-    public float AttackCooldownMax      = 15.0f;
-    public float AttackWarningDuration  = 10.0f;
-    public float InteractRadius         =  2.0f;
+    public float AttackCooldownMin          = 10.0f;
+    public float AttackCooldownMax          = 15.0f;
+    public float AttackWarningDuration      = 10.0f;
+    public float BreakingProcessDuration    =  1.0f;
+    public float InteractRadius             =  2.0f;
+    public bool  AttacksOnlyOnce            = false;
     public Animator TrapAnim;
-    public ToolType ToolToFix           = ToolType.Drill;
+    public ToolType ToolToFix               = ToolType.Drill;
 
     [Header("Debug")]
     public float        m_TimeUntilNextStateChange       = 0.0f;
@@ -39,19 +42,26 @@ public class Trap : MonoBehaviour
                 TrapAnim.SetTrigger("Reset");
                 TrapAnim.ResetTrigger("Activate");
 
-                m_TimeUntilNextStateChange = Random.Range(AttackCooldownMin, AttackCooldownMax); break;
+                m_TimeUntilNextStateChange = Random.Range(AttackCooldownMin, AttackCooldownMax); 
+                break;
+
 			case TrapState.Warning:
                 TrapAnim.SetTrigger("Warn");
                 TrapAnim.ResetTrigger("Reset");
+                m_TimeUntilNextStateChange = AttackWarningDuration;                   			
+                break;
 
-                m_TimeUntilNextStateChange = AttackWarningDuration;                   			break;
-			case TrapState.Broken_WaitForFix:
+            case TrapState.BreakingProcess:
                 TrapAnim.SetTrigger("Activate");
                 TrapAnim.ResetTrigger("Warn");
+                m_TimeUntilNextStateChange = BreakingProcessDuration;
+                break;
+                
 
+			case TrapState.Broken_WaitForFix:
                 break;
 			
-                default: Debug.Assert(false); break;
+            default: Debug.Assert(false); break;
 		}
 
         m_State = forceSetState;
@@ -94,12 +104,14 @@ public class Trap : MonoBehaviour
 
     ///////////////////////////////////////////////////////////////////////////
 
-    public bool CanBeInteractedBy(PlayerController player)
+    public bool CanBeInteractedBy(bool checkToolRequirement, Tool tool)
     {
-        if (!player.EquippedTool || ToolToFix != player.EquippedTool._ToolType)
+        if (checkToolRequirement)
         {
-            Debug.LogWarning("Cannot fix " + name.AddBrackets() + " with " + (player.EquippedTool ? player.EquippedTool.name.AddBrackets() : " nothing in hand"));
-            return false;
+            if (!tool || ToolToFix != tool._ToolType)
+            {
+                return false;
+            }
         }
 
         return (m_State == TrapState.Broken_WaitForFix) || (m_State == TrapState.Warning);
@@ -188,14 +200,27 @@ public class Trap : MonoBehaviour
             case TrapState.Warning:
                 if (m_TimeUntilNextStateChange <= 0)
                 {
-                    Debug.Log("Attack " + gameObject.name.AddBrackets());
-                    Attack();
-                    ChangeToState(TrapState.Broken_WaitForFix);
+                    Debug.Log("Start Breaking " + gameObject.name.AddBrackets());
+                    ChangeToState(TrapState.BreakingProcess);
                 }
                 break;
 
-            case TrapState.Broken_WaitForFix:
+			case TrapState.BreakingProcess:
+				if (m_TimeUntilNextStateChange <= 0)
+				{
+					Debug.Log("Attack " + gameObject.name.AddBrackets());
+					Attack();
+					ChangeToState(TrapState.Broken_WaitForFix);
+				}
+				break;
+
+			case TrapState.Broken_WaitForFix:
+                if (!AttacksOnlyOnce)
+                {
+                    Attack();
+                }
                 break;
+
             default: Debug.Assert(false);                break;
         }
     }

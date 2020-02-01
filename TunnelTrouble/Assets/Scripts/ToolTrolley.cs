@@ -8,9 +8,10 @@ public class ToolTrolley : MonoBehaviour
 	private Tool[]			m_AllTools	= new Tool[0];
 	private TrolleySlot[]	m_AllSlots	= new TrolleySlot[0];
 	
-	public int TrolleySlotCount		= 6;
-	public Vector2 TrolleyExtentsOS	= new Vector2(4.0f, 2.0f);
-	public float ToolPickupDistance	= 1.0f;
+	public int TrolleySlotCount			= 6;
+	public Vector2 TrolleyExtentsOS		= new Vector2(4.0f, 2.0f);
+	public float ToolPickupDistance		= 1.0f;
+	public float VisualToolSitHeight	= 1.5f;
 
 	struct TrolleySlot
 	{
@@ -35,13 +36,46 @@ public class ToolTrolley : MonoBehaviour
 
 	///////////////////////////////////////////////////////////////////////////
 
+	private void Awake()
+	{
+		Get();
+	}
+
+	///////////////////////////////////////////////////////////////////////////
+
+	private void Update()
+	{
+		for (int s = 0; s < m_AllSlots.Length; ++s)
+		{
+			if (!m_AllSlots[s].OccupiedWith)
+			{
+				continue;
+			}
+
+			Vector3 slotPosWS = GetSlotPositionWS(m_AllSlots[s].PositionOS);
+
+			m_AllSlots[s].OccupiedWith.transform.position = slotPosWS;
+			m_AllSlots[s].OccupiedWith.transform.forward = transform.forward;
+
+		}
+
+		for (int t = 0; t < m_AllTools.Length; ++t)
+		{
+			bool isOnTrolley = (GetOccupiedSlotIfAny(m_AllTools[t]).HasValue);
+
+			m_AllTools[t].gameObject.GetComponentInChildren<MeshRenderer>().enabled = isOnTrolley;
+		}
+	}
+
+	///////////////////////////////////////////////////////////////////////////
+
 	public void SwitchTool(ref Tool returnedTool, Tool grabbedTool)
 	{
 		Debug.Assert(grabbedTool);
 
-		for (int c = 0; c < m_AllSlots.Length; ++c)
+		for (int s = 0; s < m_AllSlots.Length; ++s)
 		{
-			TrolleySlot curSlot = m_AllSlots[c];
+			TrolleySlot curSlot = m_AllSlots[s];
 
 			if (curSlot.OccupiedWith != grabbedTool)
 			{
@@ -50,6 +84,8 @@ public class ToolTrolley : MonoBehaviour
 
 			curSlot.OccupiedWith = returnedTool;
 			returnedTool = grabbedTool;
+
+			m_AllSlots[s] = curSlot;
 			return;
 		}
 
@@ -107,7 +143,7 @@ public class ToolTrolley : MonoBehaviour
 	void ReInit()
 	{
 		// 1) Get Tools
-		Tool[] m_AllTools = GameObject.FindObjectsOfType<Tool>();
+		m_AllTools = GameObject.FindObjectsOfType<Tool>();
 
 		// 2) Calculate Slot Positions
 		if (TrolleySlotCount % 2 != 0)
@@ -198,7 +234,7 @@ public class ToolTrolley : MonoBehaviour
 
 	Vector3 GetSlotPositionWS(Vector2 posOS)
 	{
-		Vector3 posWS = transform.TransformPoint(posOS.To3D(0.0f));
+		Vector3 posWS = transform.TransformPoint(posOS.To3D(VisualToolSitHeight));
 
 		return posWS;
 	}

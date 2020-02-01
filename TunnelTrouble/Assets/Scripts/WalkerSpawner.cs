@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class WalkerSpawner : MonoBehaviour
 {
-    public Walker   WalkerSpawnPrefab;
+    public Walker   SmallWalkerSpawnPrefab;
+    public Walker   BigWalkerSpawnPrefab;
     public float    SpawnBurstInterval;
-    public int      SpawnsPerBurst;
+    public int      SmallWalkersPerBurst;
+    public int      BigWalkersPerBurst;
     public int      MaxSpawnCount   = int.MaxValue;
     public float    SpawnRadius     = 1.0f;
 
@@ -33,25 +35,29 @@ public class WalkerSpawner : MonoBehaviour
         {
             m_LastSpawnTime = Time.time;
 
-            for (int i = 0; i < SpawnsPerBurst; ++i)
+            int totalSpawnCount = SmallWalkersPerBurst + BigWalkersPerBurst;
+
+            for (int i = 0; i < totalSpawnCount; ++i)
             {
                 if (!NeedsMoreWalkers())
                 {
                     break;
                 }
 
-                float relativeSpawnOfBurst = i / (float)SpawnsPerBurst;
+                bool spawnBigWalker = (i >= SmallWalkersPerBurst);
 
-                SpawnWalker(relativeSpawnOfBurst);
+                float relativeSpawnOfBurst = i / (float)totalSpawnCount;
+
+                SpawnWalker(relativeSpawnOfBurst, spawnBigWalker);
             }
         }
     }
 
     ///////////////////////////////////////////////////////////////////////////
 
-    public void SpawnWalker(float relativeSpawnOfBurst)
+    public void SpawnWalker(float relativeSpawnOfBurst, bool isBigWalker)
     {
-        Walker walker = GameObject.Instantiate(WalkerSpawnPrefab, WalkerManager.Get().transform);
+        Walker walker = GameObject.Instantiate(isBigWalker ? BigWalkerSpawnPrefab : SmallWalkerSpawnPrefab, WalkerManager.Get().transform);
         walker.ID = m_SpawnedCount;
         walker.gameObject.name = "Walker " + m_SpawnedCount;
 

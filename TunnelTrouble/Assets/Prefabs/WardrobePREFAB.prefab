@@ -119,7 +119,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6202171195025566545}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -19.08, y: -0.07, z: 0.66}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.19511, y: 0.19511, z: 0.19511}
   m_Children:
   - {fileID: 6202171193884828066}
@@ -141,8 +141,11 @@ MonoBehaviour:
   AttackCooldownMin: 5
   AttackCooldownMax: 5
   AttackWarningDuration: 5
+  BreakingProcessDuration: 1
   InteractRadius: 2
+  AttacksOnlyOnce: 1
   TrapAnim: {fileID: 5876043629152481524}
+  ToolToFix: 1
   m_TimeUntilNextStateChange: 0
   m_State: 0
 --- !u!65 &6202171195025566556
@@ -167,7 +170,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6202171195251782948}
-  - component: {fileID: 6202171195251782949}
   m_Layer: 0
   m_Name: WardrobePREFAB
   m_TagString: Untagged
@@ -191,18 +193,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6202171195251782949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6202171195251782971}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4e76a46ed1f7794a93be99f312f7cc7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &3375076567029061748
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -231,17 +221,17 @@ PrefabInstance:
     - target: {fileID: 4182013636478659213, guid: 1b685c32e5260c447aec8f0ced252ba2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -19.951
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4182013636478659213, guid: 1b685c32e5260c447aec8f0ced252ba2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.18142
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4182013636478659213, guid: 1b685c32e5260c447aec8f0ced252ba2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.69438
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4182013636478659213, guid: 1b685c32e5260c447aec8f0ced252ba2,
         type: 3}
