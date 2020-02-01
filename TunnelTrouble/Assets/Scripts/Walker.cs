@@ -28,9 +28,9 @@ public class Walker : MonoBehaviour
 
 	Vector3 GetTargetPoint()
     {
-        int pathPointCount = WalkerPath.Get().PathLines.Length;
+		int pathPointCount = WalkerPath.Get().PathLines.Length;
 
-        if (pathPointCount == 0 || m_CurrentTargetPointIndex >= pathPointCount)
+		if (pathPointCount == 0 || m_CurrentTargetPointIndex >= pathPointCount)
         {
             Debug.Assert(false);
             return Vector3.zero;
@@ -109,9 +109,9 @@ public class Walker : MonoBehaviour
         Vector3 directionVector = selfToTarget2D_Norm.To3D(0.0f);
         m_Direction = directionVector;
 
-        Vector3 smoothForwardDir = Vector3.Lerp(transform.forward, directionVector, 0.2f);
-        smoothForwardDir.Normalize();
-        transform.forward = smoothForwardDir;
+        /*Vector3 smoothForwardDir = Vector3.Lerp(transform.forward, directionVector, 0.2f);
+        smoothForwardDir.Normalize();*/
+        transform.forward = directionVector;
     }
 
     ///////////////////////////////////////////////////////////////////////////

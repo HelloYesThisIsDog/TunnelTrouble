@@ -1979,8 +1979,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WalkerSpawnPrefab: {fileID: 8759019178428789368, guid: e64d25cdaf4a0de4f98d619c5d77aa45,
     type: 3}
-  SpawnBurstInterval: 5
-  SpawnsPerBurst: 8
+  SpawnBurstInterval: 3
+  SpawnsPerBurst: 5
   MaxWalkerCount: 20
   MaxSpawnCount: 2147483647
   SpawnRadius: 2
