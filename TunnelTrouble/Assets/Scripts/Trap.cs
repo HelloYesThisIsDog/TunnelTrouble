@@ -11,13 +11,14 @@ public enum TrapState
 
 public class Trap : MonoBehaviour
 {
-    public float AttackCooldownMin      = 10.0f;
-    public float AttackCooldownMax      = 15.0f;
-    public float AttackWarningDuration  = 10.0f;
-    public float BreakingProcessDuration      =  1.0f;
-    public float InteractRadius         =  2.0f;
+    public float AttackCooldownMin          = 10.0f;
+    public float AttackCooldownMax          = 15.0f;
+    public float AttackWarningDuration      = 10.0f;
+    public float BreakingProcessDuration    =  1.0f;
+    public float InteractRadius             =  2.0f;
+    public bool  AttacksOnlyOnce            = false;
     public Animator TrapAnim;
-    public ToolType ToolToFix           = ToolType.Drill;
+    public ToolType ToolToFix               = ToolType.Drill;
 
     [Header("Debug")]
     public float        m_TimeUntilNextStateChange       = 0.0f;
@@ -214,6 +215,10 @@ public class Trap : MonoBehaviour
 				break;
 
 			case TrapState.Broken_WaitForFix:
+                if (!AttacksOnlyOnce)
+                {
+                    Attack();
+                }
                 break;
 
             default: Debug.Assert(false);                break;
