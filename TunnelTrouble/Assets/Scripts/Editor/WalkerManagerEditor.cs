@@ -22,10 +22,16 @@ public class WalkerManagerEditor : Editor
 			walkerManager.KillAllWalkers();
 		}
 
-		if (GUILayout.Button("Spawn Single"))
+		if (GUILayout.Button("Spawn Small"))
 		{
 			WalkerSpawner spawner = GameObject.FindObjectOfType<WalkerSpawner>();
-			WalkerSpawnerEditor.SpawnSingle(spawner);
+			WalkerSpawnerEditor.SpawnSingle(spawner, false);
+		}
+
+		if (GUILayout.Button("Spawn Big"))
+		{
+			WalkerSpawner spawner = GameObject.FindObjectOfType<WalkerSpawner>();
+			WalkerSpawnerEditor.SpawnSingle(spawner, true);
 		}
 
 		if (GUILayout.Button("Spawn Multiple"))

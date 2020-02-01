@@ -3431,10 +3431,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9733dec3c1738be49b4bc831b54a8c23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WalkerSpawnPrefab: {fileID: 8759019178428789368, guid: f0f0d873d9d038f4f9df6ca26061a1a8,
+  SmallWalkerSpawnPrefab: {fileID: 8759019178428789368, guid: f0f0d873d9d038f4f9df6ca26061a1a8,
+    type: 3}
+  BigWalkerSpawnPrefab: {fileID: 6052737078535739312, guid: b0b4fcb1395ea8441855501e5f428ff5,
     type: 3}
   SpawnBurstInterval: 6
-  SpawnsPerBurst: 3
+  SmallWalkersPerBurst: 4
+  BigWalkersPerBurst: 1
   MaxSpawnCount: 2147483647
   SpawnRadius: 1
 --- !u!4 &1654105342
