@@ -14,7 +14,7 @@ public class WalkerPath : MonoBehaviour
 {
     private static WalkerPath s_Instance;
     
-    public PathLine[] PathLines;
+    public PathLine[] PathLines = new PathLine[0];
 
     public static WalkerPath Get()
     {
