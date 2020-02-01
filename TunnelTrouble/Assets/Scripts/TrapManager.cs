@@ -28,7 +28,7 @@ public class TrapManager : MonoBehaviour
 		for (int c = 0; c < transform.childCount; ++c)
 		{
 			Transform child = transform.GetChild(c);
-			Trap trap = child.gameObject.GetComponent<Trap>();
+			Trap trap = child.gameObject.GetComponentInChildren<Trap>();
 
 			if (trap)
 			{
@@ -38,7 +38,14 @@ public class TrapManager : MonoBehaviour
 	}
 
 	///////////////////////////////////////////////////////////////////////////
-	
+
+	private void Awake()
+	{
+		ReInit();
+	}
+
+	///////////////////////////////////////////////////////////////////////////
+
 	public Trap GetNearestTrap(bool checkToolRequirement, Tool equippedTool, Vector2 referencePos, bool forceWithinRange, bool forceInteractable, Vector2? requireDirectionTowards)
 	{
 		Trap bestTrap = null;
