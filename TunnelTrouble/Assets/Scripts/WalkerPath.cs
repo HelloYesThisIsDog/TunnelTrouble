@@ -48,4 +48,17 @@ public class WalkerPath : MonoBehaviour
 
     ///////////////////////////////////////////////////////////////////////////
 
+    private void OnDrawGizmosSelected()
+    {
+		ReInit();
+
+        for (int l = 1; l < PathLines.Length; ++l)
+        {
+            Debug.DrawLine(PathLines[l-1].Left,     PathLines[l].Left);
+            Debug.DrawLine(PathLines[l-1].Right,    PathLines[l].Right);
+        }
+	}
+
+    ///////////////////////////////////////////////////////////////////////////
+
 }
