@@ -22,10 +22,16 @@ public class WalkerManagerEditor : Editor
 			walkerManager.KillAllWalkers();
 		}
 
-		if (GUILayout.Button("Spawn Single"))
+		if (GUILayout.Button("Spawn Small"))
 		{
 			WalkerSpawner spawner = GameObject.FindObjectOfType<WalkerSpawner>();
-			WalkerSpawnerEditor.SpawnSingle(spawner);
+			WalkerSpawnerEditor.SpawnSingle(spawner, false);
+		}
+
+		if (GUILayout.Button("Spawn Big"))
+		{
+			WalkerSpawner spawner = GameObject.FindObjectOfType<WalkerSpawner>();
+			WalkerSpawnerEditor.SpawnSingle(spawner, true);
 		}
 
 		if (GUILayout.Button("Spawn Multiple"))
@@ -44,7 +50,7 @@ public class WalkerManagerEditor : Editor
 
 			for (int s = 0; s < spawners.Length; ++s)
 			{
-				walkerManager.enabled = !walkerManager.enabled;
+				spawners[s].enabled = !spawners[s].enabled;
 			}	
 		}
 
