@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 6202171195251782948}
   - component: {fileID: 6202171195251782949}
   m_Layer: 0
-  m_Name: Traps
+  m_Name: WardrobePREFAB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -203,6 +203,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4e76a46ed1f7794a93be99f312f7cc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &3375076567029061748
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6762647878004058214}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.023834808, y: 0.0504557, z: 0.041582048}
+  m_Center: {x: 0.010352595, y: 0.024772272, z: -0.0018486447}
 --- !u!1001 &5876043628120092920
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -272,6 +285,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b685c32e5260c447aec8f0ced252ba2, type: 3}
+--- !u!1 &6762647878004058214 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 887814846629845150, guid: 1b685c32e5260c447aec8f0ced252ba2,
+    type: 3}
+  m_PrefabInstance: {fileID: 5876043628120092920}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7746923302352706165 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4182013636478659213, guid: 1b685c32e5260c447aec8f0ced252ba2,
