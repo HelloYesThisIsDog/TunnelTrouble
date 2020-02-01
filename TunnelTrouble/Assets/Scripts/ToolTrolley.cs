@@ -35,6 +35,29 @@ public class ToolTrolley : MonoBehaviour
 
 	///////////////////////////////////////////////////////////////////////////
 
+	public void SwitchTool(ref Tool returnedTool, Tool grabbedTool)
+	{
+		Debug.Assert(grabbedTool);
+
+		for (int c = 0; c < m_AllSlots.Length; ++c)
+		{
+			TrolleySlot curSlot = m_AllSlots[c];
+
+			if (curSlot.OccupiedWith != grabbedTool)
+			{
+				continue;
+			}
+
+			curSlot.OccupiedWith = returnedTool;
+			returnedTool = grabbedTool;
+			return;
+		}
+
+		Debug.LogWarning("Could not grab " + grabbedTool.name.AddBrackets());
+	}
+
+	///////////////////////////////////////////////////////////////////////////
+
 	public Tool GetNearestTool(Vector2 referencePos, bool forceWithinRange, Vector2? requireDirectionTowards)
 	{
 		Tool bestTool = null;

@@ -1,18 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum PlayerSlot
+{
+	Player1,
+	Player2,
+	Player3,
+	Player4
+}
+
+
+
 public class PlayerController : MonoBehaviour
 {
+	public float		Speed				= 5f;
+	public float		JumpHeight			= 2f;
+	public float		GroundDistance		= 0.2f;
+	public float		DashDistance		= 5f;
+	public PlayerSlot	Slot				= PlayerSlot.Player1;
+	public LayerMask	GroundLayer;
 
-	public float Speed				= 5f;
-	public float JumpHeight			= 2f;
-	public float GroundDistance		= 0.2f;
-	public float DashDistance		= 5f;
-	public LayerMask GroundLayer;
-
+	[Header("Debug")]
 	private Rigidbody m_Rigidbody;
 	private Vector3 m_Inputs		= Vector3.zero;
 	private bool m_IsGrounded		= true;
+	public Tool	EquippedTool			= null;
 
 	///////////////////////////////////////////////////////////////////////////
 
@@ -73,7 +85,7 @@ public class PlayerController : MonoBehaviour
 
 				if (nearestTool)
 				{
-					Debug.Log("Grabbed Tool " + nearestTool.name.AddBrackets());
+					ToolTrolley.Get().SwitchTool(ref EquippedTool, nearestTool);
 				}
 			}
 			
