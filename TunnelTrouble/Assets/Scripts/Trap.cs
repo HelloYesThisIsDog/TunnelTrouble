@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public enum TrapState
 {
@@ -62,14 +63,23 @@ public class Trap : MonoBehaviour
 
         Color newColor = Color.black;
 
-        switch (m_State)
+        if (Application.isPlaying)
         {
-            case TrapState.WaitingForAttack:    newColor = Color.green;         drawInteractRadius = true; break;
-            case TrapState.Warning:             newColor = Color.yellow;        drawInteractRadius = true; drawAttackRadius = true; break;
-            case TrapState.Broken_WaitForFix:   newColor = Color.red;           drawInteractRadius = true; break;
-            default:
-                break;
+            switch (m_State)
+            {
+                case TrapState.WaitingForAttack:    newColor = Color.green;         drawInteractRadius = true; break;
+                case TrapState.Warning:             newColor = Color.yellow;        drawInteractRadius = true; drawAttackRadius = true; break;
+                case TrapState.Broken_WaitForFix:   newColor = Color.red;           drawInteractRadius = true; break;
+                default:
+                    break;
 
+            }
+        }
+        else
+        {
+            newColor = Color.yellow;
+            drawAttackRadius = true;
+            drawInteractRadius = true;
         }
 
         Gizmos.color = newColor;
@@ -132,7 +142,12 @@ public class Trap : MonoBehaviour
     
     void Attack()
     {
-        
+        List<Walker> walkersInRange = WalkerManager.Get().GetAllWalkers(transform.position.xz(), AttackRadius);
+
+        foreach (Walker walker in walkersInRange)
+        {
+            walker.Kill();
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////
