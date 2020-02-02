@@ -10,13 +10,14 @@ public class Trapspawner : MonoBehaviour
     public Transform[] SpawnPoints;
 
     public float SpawnIntervallTime=2;
-    public TrapManager TM;
-    public float TimeToIncreaseSpawnrate;
+    private TrapManager TM;
+    public float TimeToIncreaseSpawnrate =30;
     // Start is called before the first frame update
     void Start()
     {
         InvokeRepeating("spawnATrap",SpawnIntervallTime, SpawnIntervallTime);
-        
+        TM = TrapManager.Get();
+        InvokeRepeating("invokeMoreSpawns", TimeToIncreaseSpawnrate, TimeToIncreaseSpawnrate);
 
     }
 
@@ -27,5 +28,11 @@ public class Trapspawner : MonoBehaviour
         int TrapID = Random.Range(0,SpawnableTraps.Length);
         TM.m_Traps.Add(Instantiate(SpawnableTraps[TrapID], SpawnPoints[PointID].position, Quaternion.identity, TrapsContainer).GetComponent<Trap>());
        
+    }
+    public void invokeMoreSpawns()
+    {
+        InvokeRepeating("spawnATrap", Random.Range(0,3), SpawnIntervallTime+ Random.Range(0, 2));
+
+
     }
 }

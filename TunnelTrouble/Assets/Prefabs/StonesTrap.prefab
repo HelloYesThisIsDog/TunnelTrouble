@@ -225,13 +225,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16030cfa7e313a43be9b3ef10c2814f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackCooldownMin: 10
-  AttackCooldownMax: 15
-  AttackWarningDuration: 10
-  BreakingProcessDuration: 2
-  InteractRadius: 3.46
+  AttackCooldownMin: 0
+  AttackCooldownMax: 0.5
+  AttackWarningDuration: 0.1
+  BreakingProcessDuration: 1
+  InteractRadius: 4
   AttacksOnlyOnce: 1
   AttacksOnInit: 1
+  AttackSound: []
+  AttackSoundVolume: 1
   TrapAnim: {fileID: 0}
   ToolToFix: 0
   DestroyOnFix: 1
