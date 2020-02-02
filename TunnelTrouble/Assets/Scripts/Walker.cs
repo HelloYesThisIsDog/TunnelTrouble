@@ -26,7 +26,7 @@ public class Walker : MonoBehaviour
 
     public void Kill()
     {
-        AudioManager.Get().PlayRandomOneShot(WalkerManager.Get().gameObject, WalkerManager.Get().KillSound, WalkerManager.Get().KillSoundVolume));
+        AudioManager.Get().PlayRandomOneShot(WalkerManager.Get().gameObject, WalkerManager.Get().KillSound, WalkerManager.Get().KillSoundVolume);
         GameObject.Destroy(gameObject);
     }
 
