@@ -14,6 +14,9 @@ public class Walker : MonoBehaviour
     public AudioClip[]  NoergelSound;
     public float        NoergelSoundVolume;
 
+	public ParticleSystem bloodPS;
+	public GameObject model;
+
     Rigidbody       m_Rigidbody;
     
     [Header("Debug")]
@@ -30,7 +33,10 @@ public class Walker : MonoBehaviour
     public void Kill()
     {
         AudioManager.Get().PlayRandomOneShot(WalkerManager.Get().gameObject, WalkerManager.Get().KillSound, WalkerManager.Get().KillSoundVolume);
-        GameObject.Destroy(gameObject);
+		bloodPS.Play();
+		Speed = 0;
+		model.SetActive(false);
+        GameObject.Destroy(gameObject, 2f);
     }
 
     ///////////////////////////////////////////////////////////////////////////
