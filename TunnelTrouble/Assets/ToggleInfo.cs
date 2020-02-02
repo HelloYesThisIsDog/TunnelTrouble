@@ -1,24 +1,39 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ToggleInfo : MonoBehaviour
 {
-    public Transform Infographic;
+    public Image Infographic1;
+    public Image Infographic2;
 
-    // Update is called once per frame
+    private void Start()
+    {
+        // start paused because of infographic
+        Time.timeScale = 0.0f;
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.F1))
         {
-            if (Infographic.gameObject.activeSelf)
+            if (Infographic1.enabled)
             {
-                Infographic.gameObject.SetActive(false);
+                Infographic1.enabled = false;
+                Infographic2.enabled = false;
+
+                if (!GameManager.Get().m_GameEnded)
+                {
+                    Time.timeScale = 1.0f;
+                }
             }
             else
             {
-                Infographic.gameObject.SetActive(true);
+				Infographic1.enabled = true;
+				Infographic2.enabled = true;
 
+				Time.timeScale = 0.0f;
             }
 
         }

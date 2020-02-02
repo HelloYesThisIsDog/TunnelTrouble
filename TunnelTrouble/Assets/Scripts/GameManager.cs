@@ -52,6 +52,12 @@ public class GameManager : MonoBehaviour
 				SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 			}
 		}
+
+		if (Input.GetKeyDown(KeyCode.F5))
+		{
+			Time.timeScale = 1.0f;
+			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		}
 	}
 
 	///////////////////////////////////////////////////////////////////////////
