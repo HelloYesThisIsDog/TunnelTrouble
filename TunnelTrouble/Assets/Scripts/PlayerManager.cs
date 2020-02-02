@@ -12,7 +12,7 @@ public class PlayerManager : MonoBehaviour
 	private static PlayerManager s_Instance;
 
 	public PlayerController PlayerPrefab;
-	public AudioClip		PlayerSpawnSound;
+	public AudioClip[]		PlayerSpawnSound;
 
 	private Dictionary<PlayerSlot, PlayerController> m_Players = new Dictionary<PlayerSlot, PlayerController>();
 
@@ -64,12 +64,7 @@ public class PlayerManager : MonoBehaviour
 
 		controller.Slot = playerSlot;
 
-		if (!GetComponent<AudioSource>())
-		{
-			gameObject.AddComponent<AudioSource>();
-		}
-
-		GetComponent<AudioSource>().PlayOneShot(PlayerSpawnSound);
+		AudioManager.Get().PlayRandomOneShot(gameObject, PlayerSpawnSound, 1.0f, false);
 	}
 
 	///////////////////////////////////////////////////////////////////////////

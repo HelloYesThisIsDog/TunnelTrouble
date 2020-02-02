@@ -38,13 +38,13 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -281,7 +281,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerPrefab: {fileID: 3917092994262404021, guid: 21fd8aaa170fab0459c33850b5d2f5d9,
     type: 3}
-  PlayerSpawnSound: {fileID: 8300000, guid: 02b65fa1c0bb95349a80311ce7e46e8d, type: 3}
+  PlayerSpawnSound:
+  - {fileID: 8300000, guid: 02b65fa1c0bb95349a80311ce7e46e8d, type: 3}
 --- !u!4 &99564494
 Transform:
   m_ObjectHideFlags: 0
@@ -2341,6 +2342,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3917092994262404021, guid: 21fd8aaa170fab0459c33850b5d2f5d9,
+        type: 3}
+      propertyPath: DashSounds.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3917092994262404021, guid: 21fd8aaa170fab0459c33850b5d2f5d9,
+        type: 3}
+      propertyPath: DashSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 439cb9c62af2fe045baf4a7643dbf910, type: 3}
     - target: {fileID: 3917092994262404026, guid: 21fd8aaa170fab0459c33850b5d2f5d9,
         type: 3}
       propertyPath: m_Name

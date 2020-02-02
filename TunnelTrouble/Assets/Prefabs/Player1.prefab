@@ -169,11 +169,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f17e9e6d44d173f47aae5df6141abd16, type: 3}
   DashVolume: 1
   DashNoergelRadius: 2
+  DashNoergelDot: 0.2
   Slot: 0
   GroundLayer:
     serializedVersion: 2
     m_Bits: 256
-  FailSound: {fileID: 8300000, guid: 0c6f40d7104c9c846bec7ff865392497, type: 3}
+  FailSound:
+  - {fileID: 8300000, guid: 0c6f40d7104c9c846bec7ff865392497, type: 3}
   CharAnim: {fileID: 2097794253077941978}
   EquippedTool: {fileID: 0}
   m_LastDash: 0

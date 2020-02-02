@@ -47,13 +47,22 @@ public class AudioManager : MonoBehaviour
 		source.Play();
 	}
 
-	public void PlayRandomOneShot(GameObject obj, AudioClip[] audioClips, float volume)
+	public void PlayRandomOneShot(GameObject obj, AudioClip[] audioClips, float volume, bool allowRandomPitch = true)
 	{
-		if (!obj.GetComponent<AudioSource>())
+		/*if (obj.GetComponent<AudioSource>())
 		{
-			obj.AddComponent<AudioSource>();
+			Behaviour.Destroy(obj.GetComponent<AudioSource>());
 		}
+		AudioSource audioSource = obj.AddComponent<AudioSource>();
+		*/
 
+		AudioSource audioSource = obj.GetComponent<AudioSource>();
+
+		if (!audioSource)
+		{ 
+			audioSource = obj.AddComponent<AudioSource>();
+		}
+		
 		if (audioClips == null ||audioClips.Length == 0)
 		{
 			return;
@@ -61,9 +70,12 @@ public class AudioManager : MonoBehaviour
 
 		AudioClip rndClip = audioClips[Random.Range(0, audioClips.Length)];
 
-		AudioSource audioSource = obj.GetComponent<AudioSource>();
-		audioSource.PlayOneShot(rndClip);
-		audioSource.pitch = Random.Range(0.9f, 1.1f);
+		audioSource.clip = rndClip;
+		audioSource.time = 0;
+		audioSource.pitch = allowRandomPitch ? Random.Range(0.9f, 1.1f) : 1.0f;
 		audioSource.volume = volume;
+		audioSource.spatialBlend = 1.0f;
+		audioSource.spread = 360.0f;
+		audioSource.Play();
 	}
 }

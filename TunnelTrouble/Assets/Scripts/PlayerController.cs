@@ -22,17 +22,18 @@ public class PlayerController : MonoBehaviour
 	public float		DashCooldown		= 0.5f;
 	public AudioClip[]	DashSounds;
 	public float		DashVolume			= 1.0f;
-	public float		DashNoergelRadius	= 2.0f;
+	public float		DashNoergelRadius	= 2.5f;
+	public float		DashNoergelDot		= 0.2f;
 	public PlayerSlot	Slot				= PlayerSlot.Player1;
 	public LayerMask	GroundLayer;
-	public AudioClip	FailSound;
+	public AudioClip[]	FailSound;
     public Animator		CharAnim;
 
 	[Header("Debug")]
 	private Rigidbody m_Rigidbody;
 	private Vector3 m_Inputs		= Vector3.zero;
 	private bool m_IsGrounded		= true;
-	public Tool	EquippedTool			= null;
+	public Tool	EquippedTool		= null;
 	public float m_LastDash			= 0.0f;
 
     public Transform[] ToolVisuals = null ;
@@ -103,6 +104,8 @@ public class PlayerController : MonoBehaviour
 				m_Rigidbody.AddForce(dashVelocity, ForceMode.VelocityChange);
 				m_LastDash = Time.time;
 
+				AudioManager.Get().PlayRandomOneShot(gameObject, DashSounds, DashVolume);
+
 				PlayNoergelSound();
 			}
 		}
@@ -114,7 +117,7 @@ public class PlayerController : MonoBehaviour
 
 	void PlayNoergelSound()
 	{
-		Walker nearestWalker = WalkerManager.Get().GetNearestWalker(transform.position.xz(), DashNoergelRadius, transform.forward.xz(), 0.4f);
+		Walker nearestWalker = WalkerManager.Get().GetNearestWalker(transform.position.xz(), DashNoergelRadius, transform.forward.xz(), DashNoergelDot);
 
 		if (!nearestWalker)
 		{
@@ -232,12 +235,7 @@ public class PlayerController : MonoBehaviour
 
 	void PlayFailSound()
 	{
-		if (!GetComponent<AudioSource>())
-		{
-			gameObject.AddComponent<AudioSource>();
-		}
-
-		GetComponent<AudioSource>().PlayOneShot(FailSound);
+		AudioManager.Get().PlayRandomOneShot(gameObject, FailSound, 1.0f);
 	}
 
 	void FixedUpdate()
