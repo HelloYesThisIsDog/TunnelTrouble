@@ -31,13 +31,23 @@ public class UIBindingManager : MonoBehaviour
 				ToolTextField.text += "\n";
 			}
 
+			// rot, gruen, gelb, cyan
+			string colorStr = "";
+			switch (i)
+			{
+				case 0:	colorStr = "<color=#FF5555>";	break;
+				case 1:	colorStr = "<color=#55FF55>";	break;
+				case 2:	colorStr = "<color=#FFFF55>";	break;
+				case 3:	colorStr = "<color=#55FFFF>";	break;
+			}
+
 			if (player.EquippedTool)
 			{
-				ToolTextField.text += "P" + (i + 1) + ": " + player.EquippedTool.name;
+				ToolTextField.text += colorStr + "P" + (i + 1) + ": " + player.EquippedTool.name;
 			}
 			else
 			{
-				ToolTextField.text += "P" + (i + 1) + ": " + "No Tool";
+				ToolTextField.text += colorStr + "P" + (i + 1) + ": " + "No Tool";
 			}
 		}
 		
