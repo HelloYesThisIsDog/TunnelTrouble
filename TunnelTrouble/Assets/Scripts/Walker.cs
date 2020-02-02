@@ -18,6 +18,7 @@ public class Walker : MonoBehaviour
     public AudioClip[]  NoergelSound;
     public float        NoergelSoundVolume;
 
+    public ParticleSystem stuckPS;
 	public ParticleSystem bloodPS;
 	public GameObject model;
 
@@ -119,6 +120,28 @@ public class Walker : MonoBehaviour
 	}
 
     ///////////////////////////////////////////////////////////////////////////
+    
+    void SetStuckParticlesEnabled(bool enable)
+    {
+		if (stuckPS)
+		{
+            if (enable)
+            {
+			    stuckPS.Play();
+            }
+            else
+            {
+                stuckPS.Stop();
+            }
+        }
+        else
+        {
+            WorldSpaceCanvas.Get().AddText("I'm Angry!", transform.position);
+        }
+	}
+
+
+    ///////////////////////////////////////////////////////////////////////////
 
     void TickStuckCheck()
     {
@@ -141,14 +164,11 @@ public class Walker : MonoBehaviour
                         Kill();
                         return;
                     }
-                    else
-                    {
-                        WorldSpaceCanvas.Get().AddText("Angry", transform.position);
-                        // ...
-                    }
                 }
                 else
                 {
+                    // become stuck
+                    SetStuckParticlesEnabled(true);
                     IsStuckSince = Time.time;
                 }
             }
@@ -156,6 +176,7 @@ public class Walker : MonoBehaviour
             {
                 if (IsStuckSince.HasValue)
                 {
+                    SetStuckParticlesEnabled(false);
                     IsStuckSince = null;
                 }
                 else
