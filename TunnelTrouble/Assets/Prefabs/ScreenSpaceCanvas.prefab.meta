@@ -1,13 +1,7 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:TunnelTrouble/Assets/VFX/Angry/angry_mat.mat.meta
 guid: 9df9a7ed3edd46c4aaa9d5b6219ebe0e
-NativeFormatImporter:
-=======
-guid: d9b753eb25961af4fa46615ee2f50317
 PrefabImporter:
->>>>>>> 0c8f4f024edd42bacb3cc866b0bf3a173c152399:TunnelTrouble/Assets/Prefabs/ScreenSpaceCanvas.prefab.meta
   externalObjects: {}
-  mainObjectFileID: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
