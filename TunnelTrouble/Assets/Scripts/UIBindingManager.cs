@@ -11,6 +11,7 @@ public class UIBindingManager : MonoBehaviour
 	public TextMeshProUGUI	CountDownTextfield;
 	public GameObject		GameOverScreen;
 	public TextMeshProUGUI	GameOverTextfield;
+	public TextMeshProUGUI	TimeBonusTextfield;
 
 	private void Update()
 	{
@@ -56,5 +57,15 @@ public class UIBindingManager : MonoBehaviour
 		CountDownTextfield.text = minutes + ":" + seconds.ToString("00");
 
 		GameOverScreen.SetActive(GameManager.Get().m_GameEnded);
+
+		if (Time.time - GameManager.Get().LastGameDurationBonusTimestamp > GameManager.BONUS_COLLECTING_TIME || GameManager.Get().LastGameDurationBonus <= 0.0f)
+		{
+			TimeBonusTextfield.text = "";
+		}
+		else
+		{
+			int scnds = (int)GameManager.Get().LastGameDurationBonus;
+			TimeBonusTextfield.text = "0:" + scnds.ToString("00");
+		}
 	}
 }
