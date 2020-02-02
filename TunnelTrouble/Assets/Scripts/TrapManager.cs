@@ -6,7 +6,7 @@ public class TrapManager : MonoBehaviour
 {
 
 	private static TrapManager s_Instance;
-	private List<Trap> m_Traps = new List<Trap>();
+	public List<Trap> m_Traps = new List<Trap>();
 
 	///////////////////////////////////////////////////////////////////////////
 

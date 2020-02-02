@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 918449660883709696}
+  - component: {fileID: 8684703880963941512}
+  - component: {fileID: 1681664492190312468}
   m_Layer: 0
   m_Name: Puddle
   m_TagString: Untagged
@@ -32,19 +34,43 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90.00001, z: 0}
---- !u!135 &8652152883739196595
+--- !u!114 &8684703880963941512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 918449660883709699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a16030cfa7e313a43be9b3ef10c2814f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackCooldownMin: 0
+  AttackCooldownMax: 1
+  AttackWarningDuration: 10
+  BreakingProcessDuration: 1
+  InteractRadius: 2.13
+  AttacksOnlyOnce: 0
+  AttacksOnInit: 0
+  TrapAnim: {fileID: 5481888062269214273}
+  ToolToFix: 2
+  DestroyOnFix: 1
+  m_TimeUntilNextStateChange: 0
+  m_State: 0
+--- !u!135 &1681664492190312468
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9196086624625221969}
+  m_GameObject: {fileID: 918449660883709699}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
-  m_Center: {x: -0.059474476, y: -0.3544066, z: 0.022871403}
+  m_Radius: 1.7302995
+  m_Center: {x: -0.059474554, y: 0.37589324, z: 0.022871451}
 --- !u!95 &5481888062269214273
 Animator:
   serializedVersion: 3
@@ -64,28 +90,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1369641532631300697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9196086624625221969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a16030cfa7e313a43be9b3ef10c2814f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AttackCooldownMin: 10
-  AttackCooldownMax: 15
-  AttackWarningDuration: 10
-  BreakingProcessDuration: 1
-  InteractRadius: 2
-  AttacksOnlyOnce: 0
-  TrapAnim: {fileID: 5481888062269214273}
-  ToolToFix: 2
-  m_TimeUntilNextStateChange: 0
-  m_State: 0
 --- !u!114 &4383791154855869469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drops: {fileID: 3689621310736237535}
-  trap: {fileID: 1369641532631300697}
+  trap: {fileID: 8684703880963941512}
 --- !u!1001 &918449660103669848
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -115,7 +119,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 8569de9343a22ad43b00020b3481ebaf,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 8569de9343a22ad43b00020b3481ebaf,
         type: 3}
