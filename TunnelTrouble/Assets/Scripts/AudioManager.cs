@@ -76,6 +76,9 @@ public class AudioManager : MonoBehaviour
 		audioSource.volume = volume;
 		audioSource.spatialBlend = 1.0f;
 		audioSource.spread = 360.0f;
+		audioSource.rolloffMode = AudioRolloffMode.Custom;
+		audioSource.minDistance = 500.0f;
+		audioSource.maxDistance = 500.0f;
 		audioSource.Play();
 	}
 }
