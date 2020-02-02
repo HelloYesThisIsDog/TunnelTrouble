@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
     public float MegaphonePower=50;
 	public float MegaphoneCooldown = 1.0f;
 	private float m_LastMegaphoneUsage = 0.0f;
+    public Transform MegaphoneForceCenter;
 
     ///////////////////////////////////////////////////////////////////////////
 
@@ -239,7 +240,7 @@ public class PlayerController : MonoBehaviour
 							if (col.GetComponent<Rigidbody>())
 							{
 								Rigidbody rb = col.GetComponent<Rigidbody>();
-								rb.AddForce((col.transform.position - MegaphoneCollider.position).normalized * MegaphonePower, ForceMode.Impulse);
+								rb.AddForce((col.transform.position - MegaphoneForceCenter.position).normalized * MegaphonePower, ForceMode.Impulse);
 							}
 						}
 					}
