@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
 			EndGame();
 		}
 
-		if (m_GameEnded && m_RunningTime > m_GameDuration + 2.0f)
+		if (m_GameEnded && m_RunningTime > m_GameDuration + 1.0f)
 		{
 			bool needrestart  = Input.GetButtonDown("P1 Interact");
 				 needrestart |= Input.GetButtonDown("P2 Interact");

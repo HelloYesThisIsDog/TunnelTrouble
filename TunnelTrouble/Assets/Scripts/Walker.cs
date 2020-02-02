@@ -11,10 +11,14 @@ public class Walker : MonoBehaviour
     public float    ClampVelocity               = 1.0f;
     public int      ID                          = -1;
     public float    TimeBonusWhenRescued        = 1.0f;
+    public float    StuckThreshold              = 0.7f;
+    public float    DieAfterStuck               = 20.0f;
+    public float    PositionSnapshotInterval    = 2.0f;
 
     public AudioClip[]  NoergelSound;
     public float        NoergelSoundVolume;
 
+    public ParticleSystem stuckPS;
 	public ParticleSystem bloodPS;
 	public GameObject model;
 
@@ -22,11 +26,16 @@ public class Walker : MonoBehaviour
     
     [Header("Debug")]
     public int      m_CurrentTargetPointIndex = 0;
-    Vector3         m_Direction = Vector3.right;
+    Vector3         m_Direction                 = Vector3.right;
+    public Vector2  LastPositionSnapshot        = Vector2.zero;
+    float           LastPositionSnapshotTime    = 0.0f;
+    float?          IsStuckSince                = null;
 
     private void Awake()
     {
         m_Rigidbody = GetComponent<Rigidbody>();    
+        LastPositionSnapshotTime    = Time.time;
+        LastPositionSnapshot          = transform.position.xz() + new Vector2(100, 100);
     }
 
 	///////////////////////////////////////////////////////////////////////////
@@ -111,6 +120,74 @@ public class Walker : MonoBehaviour
 	}
 
     ///////////////////////////////////////////////////////////////////////////
+    
+    void SetStuckParticlesEnabled(bool enable)
+    {
+		if (stuckPS)
+		{
+            if (enable)
+            {
+			    stuckPS.Play();
+            }
+            else
+            {
+                stuckPS.Stop();
+            }
+        }
+        else
+        {
+            WorldSpaceCanvas.Get().AddText("I'm Angry!", transform.position);
+        }
+	}
+
+
+    ///////////////////////////////////////////////////////////////////////////
+
+    void TickStuckCheck()
+    {
+		if (Time.time - LastPositionSnapshotTime > PositionSnapshotInterval)
+		{
+            Vector2 lastSnapshot = LastPositionSnapshot;
+
+			LastPositionSnapshotTime    = Time.time;
+		    LastPositionSnapshot        = transform.position.xz();
+
+            bool stuckThisTick = (lastSnapshot - transform.position.xz()).magnitude < StuckThreshold;
+            
+            if (stuckThisTick)
+            {
+                if (IsStuckSince.HasValue)
+                {
+                    // still stuck
+                    if (Time.time - IsStuckSince.Value > DieAfterStuck)
+                    {
+                        Kill();
+                        return;
+                    }
+                }
+                else
+                {
+                    // become stuck
+                    SetStuckParticlesEnabled(true);
+                    IsStuckSince = Time.time;
+                }
+            }
+            else
+            {
+                if (IsStuckSince.HasValue)
+                {
+                    SetStuckParticlesEnabled(false);
+                    IsStuckSince = null;
+                }
+                else
+                {
+                    // stay unstucked
+                }
+            }
+        }
+	}
+
+    ///////////////////////////////////////////////////////////////////////////
 
     void Update()
     {
@@ -131,6 +208,8 @@ public class Walker : MonoBehaviour
         /*Vector3 smoothForwardDir = Vector3.Lerp(transform.forward, directionVector, 0.2f);
         smoothForwardDir.Normalize();*/
         transform.forward = directionVector;
+
+        TickStuckCheck();
     }
 
     ///////////////////////////////////////////////////////////////////////////
