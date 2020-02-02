@@ -17,6 +17,8 @@ public class Trap : MonoBehaviour
     public float BreakingProcessDuration    =  1.0f;
     public float InteractRadius             =  2.0f;
     public bool  AttacksOnlyOnce            = false;
+    public bool AttacksOnInit = false;
+
     public Animator TrapAnim;
     public ToolType ToolToFix               = ToolType.Drill;
     public bool DestroyOnFix = false;
@@ -29,6 +31,10 @@ public class Trap : MonoBehaviour
     
     private void Start()
     {
+        if (AttacksOnInit)
+        {
+            ChangeToState(TrapState.Broken_WaitForFix);
+        }
         ChangeToState(TrapState.WaitingForAttack);
     }
 

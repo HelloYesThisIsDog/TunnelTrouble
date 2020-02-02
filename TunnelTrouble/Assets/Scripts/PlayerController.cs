@@ -29,9 +29,12 @@ public class PlayerController : MonoBehaviour
 	private bool m_IsGrounded		= true;
 	public Tool	EquippedTool			= null;
 
-	///////////////////////////////////////////////////////////////////////////
-	
-	public static Color GetPlayerColor(PlayerSlot slot)
+    public Transform[] ToolVisuals = null ;
+
+
+    ///////////////////////////////////////////////////////////////////////////
+
+    public static Color GetPlayerColor(PlayerSlot slot)
 	{
 		switch(slot)
 		{
@@ -127,7 +130,43 @@ public class PlayerController : MonoBehaviour
 			if (nearestTool)
 			{
 				ToolTrolley.Get().SwitchTool(ref EquippedTool, nearestTool);
-				return;
+                if ( EquippedTool._ToolType == ToolType.Drill)
+                {
+                    ToolVisuals[0].gameObject.SetActive(true);
+                    ToolVisuals[1].gameObject.SetActive(false);
+
+                    ToolVisuals[2].gameObject.SetActive(false);
+                    ToolVisuals[3].gameObject.SetActive(false);
+
+                }
+                else if (EquippedTool._ToolType == ToolType.Hammer)
+                {
+                    ToolVisuals[0].gameObject.SetActive(false);
+                    ToolVisuals[1].gameObject.SetActive(true);
+
+                    ToolVisuals[2].gameObject.SetActive(false);
+                    ToolVisuals[3].gameObject.SetActive(false);
+
+                }
+                else if (EquippedTool._ToolType == ToolType.Megaphone)
+                {
+                    ToolVisuals[0].gameObject.SetActive(false);
+                    ToolVisuals[1].gameObject.SetActive(false);
+
+                    ToolVisuals[2].gameObject.SetActive(true);
+                    ToolVisuals[3].gameObject.SetActive(false);
+
+                }
+                else if (EquippedTool._ToolType == ToolType.Mop)
+                {
+                    ToolVisuals[0].gameObject.SetActive(false);
+                    ToolVisuals[1].gameObject.SetActive(false);
+
+                    ToolVisuals[2].gameObject.SetActive(false);
+                    ToolVisuals[3].gameObject.SetActive(true);
+
+                }
+                return;
 			}
 
 			PlayFailSound();
