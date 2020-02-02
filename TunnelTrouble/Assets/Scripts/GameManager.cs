@@ -70,10 +70,21 @@ public class GameManager : MonoBehaviour
 	}
 
 	///////////////////////////////////////////////////////////////////////////
+	public static float BONUS_COLLECTING_TIME = 0.5f;
 
 	public void AddTimeBonus(float time)
 	{
 		m_GameDuration += time;
+
+		if (Time.time - LastGameDurationBonusTimestamp > BONUS_COLLECTING_TIME)
+		{
+			LastGameDurationBonus  = 0.0f;
+		}
+
+		LastGameDurationBonus += time;
+
+		LastGameDurationBonusTimestamp = Time.time;
+
 	}
 
 	///////////////////////////////////////////////////////////////////////////

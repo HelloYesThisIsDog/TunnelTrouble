@@ -1,5 +1,77 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &801404785
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 801404786}
+  - component: {fileID: 801404788}
+  - component: {fileID: 801404787}
+  m_Layer: 5
+  m_Name: TMP SubMeshUI [comic_andy SDF Material + LiberationSans SDF Atlas]
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &801404786
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801404785}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1576646546887122029}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 1, y: 0}
+--- !u!222 &801404788
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801404785}
+  m_CullTransparentMesh: 0
+--- !u!114 &801404787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801404785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 058cba836c1846c3aa1c5fd2e28aea77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_spriteAsset: {fileID: 0}
+  m_material: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
+  m_isDefaultMaterial: 0
+  m_padding: 8.5625
+  m_canvasRenderer: {fileID: 801404788}
+  m_TextComponent: {fileID: 6781764816694164081}
+  m_materialReferenceIndex: 1
 --- !u!1 &7400486897141468197
 GameObject:
   m_ObjectHideFlags: 0
@@ -855,6 +927,7 @@ MonoBehaviour:
   CountDownTextfield: {fileID: 7400486897513200950}
   GameOverScreen: {fileID: 7400486897141468197}
   GameOverTextfield: {fileID: 7400486897895694588}
+  TimeBonusTextfield: {fileID: 6781764816694164081}
 --- !u!1 &8242906103069374695
 GameObject:
   m_ObjectHideFlags: 0
@@ -867,7 +940,7 @@ GameObject:
   - component: {fileID: 343767491247247497}
   - component: {fileID: 6781764816694164081}
   m_Layer: 5
-  m_Name: CountdownText (1)
+  m_Name: TimeBonusText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -883,13 +956,14 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 801404786}
   m_Father: {fileID: 7400486898180752582}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: -49.6}
+  m_AnchoredPosition: {x: 0, y: 25}
   m_SizeDelta: {x: 81.5, y: 50}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &343767491247247497
@@ -918,7 +992,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1:00
+  m_text: 0:05
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ba53fc71d88549144b3e4454f76d7b2a, type: 2}
   m_sharedMaterial: {fileID: -4633414236096747778, guid: ba53fc71d88549144b3e4454f76d7b2a,
@@ -928,8 +1002,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4285971455
-  m_fontColor: {r: 1, g: 0.73367053, b: 0.46099997, a: 1}
+    rgba: 4285988757
+  m_fontColor: {r: 0.5824174, g: 1, b: 0.46274507, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1002,7 +1076,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 801404787}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
