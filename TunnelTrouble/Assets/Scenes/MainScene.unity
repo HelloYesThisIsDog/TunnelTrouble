@@ -2169,13 +2169,23 @@ PrefabInstance:
     - target: {fileID: 3994073070591586728, guid: 4451b3341840af0499fe086c478fc502,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3994073070591586774, guid: 4451b3341840af0499fe086c478fc502,
         type: 3}
       propertyPath: Infographic
       value: 
       objectReference: {fileID: 654845420}
+    - target: {fileID: 3994073070591586774, guid: 4451b3341840af0499fe086c478fc502,
+        type: 3}
+      propertyPath: Infographic1
+      value: 
+      objectReference: {fileID: 654845420}
+    - target: {fileID: 3994073070591586774, guid: 4451b3341840af0499fe086c478fc502,
+        type: 3}
+      propertyPath: Infographic2
+      value: 
+      objectReference: {fileID: 207103700}
     - target: {fileID: 3994073070591586775, guid: 4451b3341840af0499fe086c478fc502,
         type: 3}
       propertyPath: m_AnchoredPosition.x
