@@ -42,6 +42,9 @@ public class PlayerController : MonoBehaviour
 
     public Transform MegaphoneCollider;
     public float MegaphonePower=50;
+	public float MegaphoneCooldown = 1.0f;
+	private float m_LastMegaphoneUsage = 0.0f;
+
     ///////////////////////////////////////////////////////////////////////////
 
     public static Color GetPlayerColor(PlayerSlot slot)
@@ -222,18 +225,22 @@ public class PlayerController : MonoBehaviour
 			// 3) Megaphone
 			if (EquippedTool && EquippedTool._ToolType == ToolType.Megaphone)
 			{
-				AudioManager.Get().PlayRandomOneShot(EquippedTool.gameObject, EquippedTool.RepairSound, EquippedTool.RepairSoundVolume);
-
-				Collider[] walkers = Physics.OverlapBox(MegaphoneCollider.position, MegaphoneCollider.lossyScale / 2);
-
-				foreach (Collider col in walkers)
+				if (Time.time - m_LastMegaphoneUsage > MegaphoneCooldown)
 				{
-					if (col.GetComponent<Walker>())
+					AudioManager.Get().PlayRandomOneShot(EquippedTool.gameObject, EquippedTool.RepairSound, EquippedTool.RepairSoundVolume);
+					m_LastMegaphoneUsage = Time.time;
+
+					Collider[] walkers = Physics.OverlapBox(MegaphoneCollider.position, MegaphoneCollider.lossyScale / 2);
+
+					foreach (Collider col in walkers)
 					{
-						if (col.GetComponent<Rigidbody>())
+						if (col.GetComponent<Walker>())
 						{
-							Rigidbody rb = col.GetComponent<Rigidbody>();
-							rb.AddForce((col.transform.position - MegaphoneCollider.position).normalized * MegaphonePower, ForceMode.Impulse);
+							if (col.GetComponent<Rigidbody>())
+							{
+								Rigidbody rb = col.GetComponent<Rigidbody>();
+								rb.AddForce((col.transform.position - MegaphoneCollider.position).normalized * MegaphonePower, ForceMode.Impulse);
+							}
 						}
 					}
 				}
