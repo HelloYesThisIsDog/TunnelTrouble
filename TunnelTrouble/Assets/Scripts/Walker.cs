@@ -11,6 +11,9 @@ public class Walker : MonoBehaviour
     public float    ClampVelocity               = 1.0f;
     public int      ID                          = -1;
 
+    public AudioClip[]  NoergelSound;
+    public float        NoergelSoundVolume;
+
     Rigidbody       m_Rigidbody;
     
     [Header("Debug")]

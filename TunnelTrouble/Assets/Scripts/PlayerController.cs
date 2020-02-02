@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public enum PlayerSlot
 {
@@ -100,10 +101,26 @@ public class PlayerController : MonoBehaviour
 				Vector3 dashVelocity = transform.forward * DashDistance;
 				m_Rigidbody.AddForce(dashVelocity, ForceMode.VelocityChange);
 				m_LastDash = Time.time;
+
+				PlayNoergelSound();
 			}
 		}
 
 		TryInteraction();
+	}
+
+	///////////////////////////////////////////////////////////////////////////
+
+	void PlayNoergelSound()
+	{
+		Walker nearestWalker = WalkerManager.Get().GetNearestWalker(transform.position.xz(), 1.0f, transform.forward.xz(), 0.7f);
+
+		if (!nearestWalker)
+		{
+			return;
+		}
+
+		AudioManager.Get().PlayRandomOneShot(nearestWalker.gameObject, nearestWalker.NoergelSound, nearestWalker.NoergelSoundVolume);
 	}
 
 	///////////////////////////////////////////////////////////////////////////
