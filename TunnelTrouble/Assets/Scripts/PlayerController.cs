@@ -143,49 +143,31 @@ public class PlayerController : MonoBehaviour
 
 
 			// 1) Traps
-			Trap nearestTrap = TrapManager.Get().GetNearestTrap(true, EquippedTool, selfPos, true, true, selfLookDir);
-
-			if (nearestTrap)
+			if (EquippedTool && EquippedTool._ToolType != ToolType.Megaphone)
 			{
-				if (EquippedTool)
+				Trap nearestTrap = TrapManager.Get().GetNearestTrap(true, EquippedTool, selfPos, true, true, selfLookDir);
+
+				if (nearestTrap)
 				{
-					AudioManager.Get().PlayRandomOneShot(gameObject, EquippedTool.RepairSound, EquippedTool.RepairSoundVolume);
+					if (EquippedTool)
+					{
+						AudioManager.Get().PlayRandomOneShot(gameObject, EquippedTool.RepairSound, EquippedTool.RepairSoundVolume);
+					}
+
+					nearestTrap.Interact();
+					return;
 				}
-
-				nearestTrap.Interact();
-				return;
-			}
 			
-			if (TrapManager.Get().GetNearestTrap(false, EquippedTool, selfPos, true, true, selfLookDir))
-			{
-				PlayFailSound();
-				WorldSpaceCanvas.Get().AddText("Wrong Tool", transform.position);
-				return;
+				if (TrapManager.Get().GetNearestTrap(false, EquippedTool, selfPos, true, true, selfLookDir))
+				{
+					PlayFailSound();
+					WorldSpaceCanvas.Get().AddText("Wrong Tool", transform.position);
+					return;
+				}
 			}
-           if (EquippedTool &&  EquippedTool._ToolType==ToolType.Megaphone)
-            {
-              Collider[] walkers =   Physics.OverlapBox(MegaphoneCollider.position, MegaphoneCollider.lossyScale / 2);
-                
-                foreach ( Collider col in walkers)
-                {
-                    if (col.GetComponent<Walker>())
-                    {
 
-                        if (col.GetComponent<Rigidbody>())
-                        {
-                            Rigidbody rb = col.GetComponent<Rigidbody>();
-                            rb.AddForce((col.transform.position - MegaphoneCollider.position).normalized * MegaphonePower,ForceMode.Impulse);
-
-                        }
-
-                        
-                    }
-                }
-            }
-            
-
-
-            Tool nearestTool = ToolTrolley.Get().GetNearestTool(selfPos, true, selfLookDir);
+			// 2) Trolley
+			Tool nearestTool = ToolTrolley.Get().GetNearestTool(selfPos, true, selfLookDir);
 
 			if (nearestTool)
 			{
@@ -229,6 +211,29 @@ public class PlayerController : MonoBehaviour
                 return;
 			}
 
+			// 3) Megaphone
+			if (EquippedTool && EquippedTool._ToolType == ToolType.Megaphone)
+			{
+				AudioManager.Get().PlayRandomOneShot(EquippedTool.gameObject, EquippedTool.RepairSound, EquippedTool.RepairSoundVolume);
+
+				Collider[] walkers = Physics.OverlapBox(MegaphoneCollider.position, MegaphoneCollider.lossyScale / 2);
+
+				foreach (Collider col in walkers)
+				{
+					if (col.GetComponent<Walker>())
+					{
+						if (col.GetComponent<Rigidbody>())
+						{
+							Rigidbody rb = col.GetComponent<Rigidbody>();
+							rb.AddForce((col.transform.position - MegaphoneCollider.position).normalized * MegaphonePower, ForceMode.Impulse);
+						}
+					}
+				}
+
+				return;
+			}
+
+			// 4) Error
 			PlayFailSound();
 		}
 	}

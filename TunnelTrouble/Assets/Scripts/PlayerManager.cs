@@ -64,7 +64,7 @@ public class PlayerManager : MonoBehaviour
 
 		controller.Slot = playerSlot;
 
-		AudioManager.Get().PlayRandomOneShot(gameObject, PlayerSpawnSound, 1.0f, false);
+		AudioManager.Get().PlayRandomOneShot(gameObject, PlayerSpawnSound, 0.7f, false);
 	}
 
 	///////////////////////////////////////////////////////////////////////////
