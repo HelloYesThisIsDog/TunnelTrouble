@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
 	[Header("Debug")]
 	private Rigidbody m_Rigidbody;
 	private Vector3 m_Inputs		= Vector3.zero;
+	public Vector3 m_LastForward    = Vector3.right;
 	private bool m_IsGrounded		= true;
 	public Tool	EquippedTool		= null;
 	public float m_LastDash			= 0.0f;
@@ -89,7 +90,14 @@ public class PlayerController : MonoBehaviour
 
 		if (m_Inputs != Vector3.zero)
 		{
-			transform.forward = m_Inputs;
+			Vector3 forward = m_Inputs;
+			forward.Normalize();
+			transform.forward = forward;
+			m_LastForward = forward;
+		}
+		else
+		{
+			transform.forward = m_LastForward;
 		}
 
 		/*if (Input.GetButtonDown("Jump") && m_IsGrounded)
