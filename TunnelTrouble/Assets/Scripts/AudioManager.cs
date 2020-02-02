@@ -63,7 +63,7 @@ public class AudioManager : MonoBehaviour
 
 		AudioSource audioSource = obj.GetComponent<AudioSource>();
 		audioSource.PlayOneShot(rndClip);
-		audioSource.pitch = Random.Range(-0.1f, 1.0f);
+		audioSource.pitch = Random.Range(0.9f, 1.1f);
 		audioSource.volume = volume;
 	}
 }
