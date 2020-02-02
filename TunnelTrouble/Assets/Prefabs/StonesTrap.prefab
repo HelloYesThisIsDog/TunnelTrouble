@@ -226,13 +226,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AttackCooldownMin: 0
-  AttackCooldownMax: 0.5
-  AttackWarningDuration: 0.1
+  AttackCooldownMax: 0
+  AttackWarningDuration: 0
   BreakingProcessDuration: 1
   InteractRadius: 4
   AttacksOnlyOnce: 1
   AttacksOnInit: 1
-  AttackSound: []
+  AttackSound:
+  - {fileID: 8300000, guid: daaf37f4bd31f324f8305759941dc8ac, type: 3}
+  - {fileID: 8300000, guid: deb44ed6ee1cabb428b92c4fbc1ef485, type: 3}
   AttackSoundVolume: 1
   TrapAnim: {fileID: 0}
   ToolToFix: 0
