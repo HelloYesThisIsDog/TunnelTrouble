@@ -48,23 +48,31 @@ public class Trap : MonoBehaviour
 		switch (forceSetState)
 		{
 			case TrapState.WaitingForAttack:
+                if (TrapAnim) { 
                 TrapAnim.SetTrigger("Reset");
                 TrapAnim.ResetTrigger("Activate");
-
+                }
                 m_TimeUntilNextStateChange = Random.Range(AttackCooldownMin, AttackCooldownMax); 
                 break;
 
 			case TrapState.Warning:
+                if (TrapAnim)
+                {
+
                 TrapAnim.SetTrigger("Warn");
                 TrapAnim.ResetTrigger("Reset");
+                }
                 m_TimeUntilNextStateChange = AttackWarningDuration;                   			
                 break;
 
             case TrapState.BreakingProcess:
                 AudioManager.Get().PlayRandomOneShot(gameObject, AttackSound, AttackSoundVolume);
+                if (TrapAnim)
+                {
 
                 TrapAnim.SetTrigger("Activate");
                 TrapAnim.ResetTrigger("Warn");
+                }
                 m_TimeUntilNextStateChange = BreakingProcessDuration;
                 break;
                 
@@ -191,6 +199,7 @@ public class Trap : MonoBehaviour
             Debug.Log("Fixed " + gameObject.name.AddBrackets());
             if (DestroyOnFix)
             {
+                TrapManager.Get().m_Traps.Remove(this);
                 Destroy(this.gameObject,1);
             }
         }
