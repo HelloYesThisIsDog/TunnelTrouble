@@ -29,6 +29,9 @@ public class PlayerController : MonoBehaviour
 	public AudioClip[]	FailSound;
     public Animator		CharAnim;
 
+	public GameObject	HighlightedObject		= null;
+	public GameObject	HighlightedObjectIcon	= null;
+
 	[Header("Debug")]
 	private Rigidbody m_Rigidbody;
 	private Vector3 m_Inputs		= Vector3.zero;
@@ -123,7 +126,59 @@ public class PlayerController : MonoBehaviour
 		}
 
 		TryInteraction();
+
+		UpdateHighlightedObject();
 	}
+
+	///////////////////////////////////////////////////////////////////////////
+
+	public void UpdateHighlightedObject()
+	{
+		GameObject newHighlightObject = null;
+
+		Vector2 selfPos = transform.position.xz();
+		Vector2 lookDir = transform.forward.xz();
+		lookDir.Normalize();
+		Trap nearestTrap = TrapManager.Get().GetNearestTrap(true, EquippedTool, selfPos, true, true, lookDir);
+
+		if (nearestTrap)
+		{
+			newHighlightObject = nearestTrap.gameObject;
+		}
+		else
+		{
+			Tool nearestTool = ToolTrolley.Get().GetNearestTool(selfPos, true, lookDir);
+			if (nearestTool)
+			{
+				newHighlightObject = nearestTool.gameObject;
+			}
+		}
+
+		if (newHighlightObject != HighlightedObject)
+		{
+			if (HighlightedObjectIcon)
+			{
+				GameObject.Destroy(HighlightedObjectIcon);
+			}
+
+			if (newHighlightObject)
+			{
+				// highlight new
+				HighlightedObjectIcon = WorldSpaceCanvas.Get().CreateInteractIcon();
+			}
+
+			HighlightedObject = newHighlightObject;
+		}
+		
+		if (HighlightedObject && HighlightedObjectIcon)
+		{
+			if (!EquippedTool || HighlightedObject != EquippedTool.gameObject)
+			{
+				HighlightedObjectIcon.transform.position = HighlightedObject.transform.position + Vector3.up * 0.5f;
+			}
+		}
+	}
+
 
 	///////////////////////////////////////////////////////////////////////////
 
@@ -151,8 +206,6 @@ public class PlayerController : MonoBehaviour
 			Vector2 selfPos = transform.position.xz();
 			Vector2 selfLookDir = transform.forward.xz();
 			selfLookDir.Normalize();
-
-
 
 			// 1) Traps
 			if (EquippedTool && EquippedTool._ToolType != ToolType.Megaphone)
@@ -218,7 +271,6 @@ public class PlayerController : MonoBehaviour
 
                     ToolVisuals[2].gameObject.SetActive(false);
                     ToolVisuals[3].gameObject.SetActive(true);
-
                 }
                 return;
 			}
