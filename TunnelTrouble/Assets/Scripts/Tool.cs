@@ -12,7 +12,9 @@ public enum ToolType
 
 public class Tool : MonoBehaviour
 {
-    public ToolType _ToolType;
+    public ToolType     _ToolType;
+    public AudioClip[]  RepairSound;
+    public float        RepairSoundVolume  = 1.0f;
     
     bool IsOnTrolley()
     {

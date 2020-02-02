@@ -45,4 +45,24 @@ public class AudioManager : MonoBehaviour
 		source.loop = false;
 		source.Play();
 	}
+
+	public void PlayRandomOneShot(GameObject obj, AudioClip[] audioClips, float volume)
+	{
+		if (!obj.GetComponent<AudioSource>())
+		{
+			obj.AddComponent<AudioSource>();
+		}
+
+		if (audioClips == null ||audioClips.Length == 0)
+		{
+			return;
+		}
+
+		AudioClip rndClip = audioClips[Random.Range(0, audioClips.Length)];
+
+		AudioSource audioSource = obj.GetComponent<AudioSource>();
+		audioSource.PlayOneShot(rndClip);
+		audioSource.pitch = Random.Range(-0.1f, 1.0f);
+		audioSource.volume = volume;
+	}
 }
