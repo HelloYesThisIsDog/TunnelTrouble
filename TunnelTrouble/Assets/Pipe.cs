@@ -7,10 +7,6 @@ public class Pipe : MonoBehaviour
 	public ParticleSystem steam;
 	public Trap trap;
 
-    void Start()
-    {
-    }
-
     void Update()
     {
 		if (trap.m_State == TrapState.Broken_WaitForFix)
