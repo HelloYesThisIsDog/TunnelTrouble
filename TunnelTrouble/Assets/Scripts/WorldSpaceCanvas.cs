@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class WorldSpaceCanvas : MonoBehaviour
 {
 	public GameObject	ScreenSpaceTextPrefab;
+	public GameObject	InteractIconPrefab;
 	public float		Height			= 6.0f;
 	public float		RiseSpeed		= 2.0f;
 	public float		KillAtHeight	= 8.0f;
@@ -31,6 +32,14 @@ public class WorldSpaceCanvas : MonoBehaviour
 		{
 			GameObject.Destroy(transform.GetChild(c));
 		}
+	}
+
+	///////////////////////////////////////////////////////////////////////////
+
+	public GameObject CreateInteractIcon()
+	{
+		GameObject newObj = GameObject.Instantiate(InteractIconPrefab, transform);
+		return newObj;
 	}
 
 	///////////////////////////////////////////////////////////////////////////

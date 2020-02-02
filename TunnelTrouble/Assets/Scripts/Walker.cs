@@ -34,8 +34,8 @@ public class Walker : MonoBehaviour
     private void Awake()
     {
         m_Rigidbody = GetComponent<Rigidbody>();    
-        LastPositionSnapshotTime    = Time.time;
-        LastPositionSnapshot          = transform.position.xz() + new Vector2(100, 100);
+        LastPositionSnapshotTime        = Time.time;
+        LastPositionSnapshot            = transform.position.xz() + new Vector2(100, 100);
     }
 
 	///////////////////////////////////////////////////////////////////////////
