@@ -38,13 +38,13 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -166,8 +166,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ToolType: 2
-  RepairSound: []
-  RepairSoundVolume: 1
+  RepairSound:
+  - {fileID: 8300000, guid: a096d432c10231d488b518104c6a8635, type: 3}
+  RepairSoundVolume: 0.7
 --- !u!1 &78640511
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,43 +214,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ToolType: 1
-  RepairSound: []
-  RepairSoundVolume: 1
---- !u!1 &86658768
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 86658769}
-  m_Layer: 5
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &86658769
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 86658768}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 15
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 549.5, y: 309}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  RepairSound:
+  - {fileID: 8300000, guid: 9b42449c2b53c5f4eb2e9f6ffc1c0c13, type: 3}
+  - {fileID: 8300000, guid: 61110aa9111131044b469790f72e3805, type: 3}
+  - {fileID: 8300000, guid: 56760539fa98ee94981c24ba1f55e50a, type: 3}
+  RepairSoundVolume: 0.15
 --- !u!1 &99564492
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,7 +250,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerPrefab: {fileID: 3917092994262404021, guid: 21fd8aaa170fab0459c33850b5d2f5d9,
     type: 3}
-  PlayerSpawnSound: {fileID: 8300000, guid: 02b65fa1c0bb95349a80311ce7e46e8d, type: 3}
+  PlayerSpawnSound:
+  - {fileID: 8300000, guid: 02b65fa1c0bb95349a80311ce7e46e8d, type: 3}
 --- !u!4 &99564494
 Transform:
   m_ObjectHideFlags: 0
@@ -1438,8 +1408,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ToolType: 3
-  RepairSound: []
-  RepairSoundVolume: 1
+  RepairSound:
+  - {fileID: 8300000, guid: f87feaff10380a94e97b7a68a18dcd6d, type: 3}
+  - {fileID: 8300000, guid: 873264c0bc521eb44beb9e71b628c659, type: 3}
+  - {fileID: 8300000, guid: 622f0ecc0c195cd45b93b162ad0c42a3, type: 3}
+  - {fileID: 8300000, guid: 7ee715efedb66d24cab9a34d3100f376, type: 3}
+  - {fileID: 8300000, guid: 14deefe3a956aed45b1ec2078acaf6e9, type: 3}
+  RepairSoundVolume: 0.5
 --- !u!1 &594069133
 GameObject:
   m_ObjectHideFlags: 0
@@ -2341,6 +2316,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3917092994262404021, guid: 21fd8aaa170fab0459c33850b5d2f5d9,
+        type: 3}
+      propertyPath: DashSounds.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3917092994262404021, guid: 21fd8aaa170fab0459c33850b5d2f5d9,
+        type: 3}
+      propertyPath: DashSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 439cb9c62af2fe045baf4a7643dbf910, type: 3}
     - target: {fileID: 3917092994262404026, guid: 21fd8aaa170fab0459c33850b5d2f5d9,
         type: 3}
       propertyPath: m_Name
@@ -3249,8 +3234,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ToolType: 0
-  RepairSound: []
-  RepairSoundVolume: 1
+  RepairSound:
+  - {fileID: 8300000, guid: 3535cbd6f5a2f76479e78be3e84a6b10, type: 3}
+  RepairSoundVolume: 0.5
 --- !u!4 &1262859684 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6202171195251782948, guid: d305d14375eb02841b51186bf5a9525c,

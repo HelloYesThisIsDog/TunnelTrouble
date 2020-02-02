@@ -169,7 +169,7 @@ MonoBehaviour:
   NoergelSound:
   - {fileID: 8300000, guid: 2209627edd351e240a10f06d609ed8c5, type: 3}
   - {fileID: 8300000, guid: 4261740016be44648ae6067c3f8291ac, type: 3}
-  NoergelSoundVolume: 1
+  NoergelSoundVolume: 0.3
   bloodPS: {fileID: 5518898939935250955}
   model: {fileID: 827936179291486452}
   m_CurrentTargetPointIndex: 0

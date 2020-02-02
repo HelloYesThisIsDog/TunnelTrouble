@@ -165,16 +165,17 @@ MonoBehaviour:
   DashDistance: 20
   DashCooldown: 0.5
   DashSounds:
-  - {fileID: 8300000, guid: 4783b107eac535947ac8d8391080fd87, type: 3}
+  - {fileID: 8300000, guid: 439cb9c62af2fe045baf4a7643dbf910, type: 3}
   - {fileID: 8300000, guid: ffcf91af929970445ae8aa4184f8a402, type: 3}
-  - {fileID: 8300000, guid: f17e9e6d44d173f47aae5df6141abd16, type: 3}
-  DashVolume: 1
+  DashVolume: 0.1
   DashNoergelRadius: 2
+  DashNoergelDot: 0.2
   Slot: 0
   GroundLayer:
     serializedVersion: 2
     m_Bits: 256
-  FailSound: {fileID: 8300000, guid: 0c6f40d7104c9c846bec7ff865392497, type: 3}
+  FailSound:
+  - {fileID: 8300000, guid: 0c6f40d7104c9c846bec7ff865392497, type: 3}
   CharAnim: {fileID: 2097794253077941978}
   EquippedTool: {fileID: 0}
   m_LastDash: 0
