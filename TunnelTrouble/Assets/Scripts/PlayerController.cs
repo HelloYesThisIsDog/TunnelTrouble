@@ -29,7 +29,8 @@ public class PlayerController : MonoBehaviour
 	public AudioClip[]	FailSound;
     public Animator		CharAnim;
 
-	public GameObject	HighlightedObject	= null;
+	public GameObject	HighlightedObject		= null;
+	public GameObject	HighlightedObjectIcon	= null;
 
 	[Header("Debug")]
 	private Rigidbody m_Rigidbody;
@@ -155,16 +156,25 @@ public class PlayerController : MonoBehaviour
 
 		if (newHighlightObject != HighlightedObject)
 		{
-			if (HighlightedObject)
+			if (HighlightedObjectIcon)
 			{
-				// unhighlight old
-				WorldSpaceCanvas.Get().AddText("Un", HighlightedObject.transform.position);
+				GameObject.Destroy(HighlightedObjectIcon);
 			}
 
 			if (newHighlightObject)
 			{
 				// highlight new
-				WorldSpaceCanvas.Get().AddText("Hi", HighlightedObject.transform.position);
+				HighlightedObjectIcon = WorldSpaceCanvas.Get().CreateInteractIcon();
+			}
+
+			HighlightedObject = newHighlightObject;
+		}
+		
+		if (HighlightedObject && HighlightedObjectIcon)
+		{
+			if (!EquippedTool || HighlightedObject != EquippedTool.gameObject)
+			{
+				HighlightedObjectIcon.transform.position = HighlightedObject.transform.position + Vector3.up * 0.5f;
 			}
 		}
 	}
@@ -261,7 +271,6 @@ public class PlayerController : MonoBehaviour
 
                     ToolVisuals[2].gameObject.SetActive(false);
                     ToolVisuals[3].gameObject.SetActive(true);
-
                 }
                 return;
 			}
