@@ -19,7 +19,7 @@ public class Trap : MonoBehaviour
     public bool  AttacksOnlyOnce            = false;
     public Animator TrapAnim;
     public ToolType ToolToFix               = ToolType.Drill;
-
+    public bool DestroyOnFix = false;
     [Header("Debug")]
     public float        m_TimeUntilNextStateChange       = 0.0f;
 
@@ -178,6 +178,11 @@ public class Trap : MonoBehaviour
         {
             ChangeToState(TrapState.WaitingForAttack);
             Debug.Log("Fixed " + gameObject.name.AddBrackets());
+            if (DestroyOnFix)
+            {
+                Destroy(this.gameObject,1);
+
+            }
         }
     }
 

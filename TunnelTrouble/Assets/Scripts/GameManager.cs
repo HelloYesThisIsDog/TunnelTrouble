@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
 	{
 		m_RunningTime += Time.deltaTime;
 
-		if (m_RunningTime >= m_GameDuration)
+		if (!m_GameEnded && m_RunningTime >= m_GameDuration)
 		{
 			EndGame();
 		}
@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
 	{
 		Time.timeScale = 0.0f;
 		m_GameEnded = true;
+		AudioManager.Get().PlayGameOverMusic();
 	}
 
 	///////////////////////////////////////////////////////////////////////////
