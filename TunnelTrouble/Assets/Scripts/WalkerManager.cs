@@ -8,6 +8,11 @@ public class WalkerManager : MonoBehaviour
 
 	static WalkerManager s_Instance;
 
+	public AudioClip[]	RescueSound;
+	public float		RescueSoundVolume = 1.0f;
+	public AudioClip[]	KillSound;
+	public float		KillSoundVolume = 1.0f;
+
 	public static WalkerManager Get()
 	{
 		if (!s_Instance)

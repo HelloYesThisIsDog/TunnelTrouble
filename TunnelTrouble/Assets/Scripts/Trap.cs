@@ -19,6 +19,9 @@ public class Trap : MonoBehaviour
     public bool  AttacksOnlyOnce            = false;
     public bool AttacksOnInit = false;
 
+    public AudioClip[]  AttackSound;
+    public float        AttackSoundVolume  = 1.0f;
+
     public Animator TrapAnim;
     public ToolType ToolToFix               = ToolType.Drill;
     public bool DestroyOnFix = false;
@@ -58,6 +61,8 @@ public class Trap : MonoBehaviour
                 break;
 
             case TrapState.BreakingProcess:
+                AudioManager.Get().PlayRandomOneShot(gameObject, AttackSound, AttackSoundVolume);
+
                 TrapAnim.SetTrigger("Activate");
                 TrapAnim.ResetTrigger("Warn");
                 m_TimeUntilNextStateChange = BreakingProcessDuration;
@@ -187,7 +192,6 @@ public class Trap : MonoBehaviour
             if (DestroyOnFix)
             {
                 Destroy(this.gameObject,1);
-
             }
         }
     }

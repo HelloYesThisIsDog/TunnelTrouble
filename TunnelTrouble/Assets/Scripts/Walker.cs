@@ -26,6 +26,7 @@ public class Walker : MonoBehaviour
 
     public void Kill()
     {
+        AudioManager.Get().PlayRandomOneShot(WalkerManager.Get().gameObject, WalkerManager.Get().KillSound, WalkerManager.Get().KillSoundVolume);
         GameObject.Destroy(gameObject);
     }
 
@@ -79,6 +80,7 @@ public class Walker : MonoBehaviour
 			if (m_CurrentTargetPointIndex >= pathPointCount)
 			{
                 GameManager.Get().m_RescuedWalkers++;
+                AudioManager.Get().PlayRandomOneShot(WalkerManager.Get().gameObject, WalkerManager.Get().RescueSound, WalkerManager.Get().RescueSoundVolume);
 				m_CurrentTargetPointIndex--;
 				GameObject.Destroy(gameObject);
 				return false;

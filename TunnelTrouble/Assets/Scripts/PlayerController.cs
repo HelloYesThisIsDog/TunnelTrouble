@@ -18,16 +18,20 @@ public class PlayerController : MonoBehaviour
 	public float		JumpHeight			= 2f;
 	public float		GroundDistance		= 0.2f;
 	public float		DashDistance		= 5f;
+	public float		DashCooldown		= 0.5f;
+	public AudioClip[]	DashSounds;
+	public float		DashVolume = 1.0f;
 	public PlayerSlot	Slot				= PlayerSlot.Player1;
 	public LayerMask	GroundLayer;
 	public AudioClip	FailSound;
-    public Animator CharAnim;
+    public Animator		CharAnim;
 
 	[Header("Debug")]
 	private Rigidbody m_Rigidbody;
 	private Vector3 m_Inputs		= Vector3.zero;
 	private bool m_IsGrounded		= true;
 	public Tool	EquippedTool			= null;
+	public float m_LastDash			= 0.0f;
 
     public Transform[] ToolVisuals = null ;
 
@@ -91,8 +95,12 @@ public class PlayerController : MonoBehaviour
 		}*/
 		if (Input.GetButtonDown(GetInputPrefix() + "Dash"))
 		{
-			Vector3 dashVelocity = transform.forward * DashDistance;
-			m_Rigidbody.AddForce(dashVelocity, ForceMode.VelocityChange);
+			if (Time.time - m_LastDash > DashCooldown)
+			{
+				Vector3 dashVelocity = transform.forward * DashDistance;
+				m_Rigidbody.AddForce(dashVelocity, ForceMode.VelocityChange);
+				m_LastDash = Time.time;
+			}
 		}
 
 		TryInteraction();
@@ -118,6 +126,11 @@ public class PlayerController : MonoBehaviour
 
 			if (nearestTrap)
 			{
+				if (EquippedTool)
+				{
+					AudioManager.Get().PlayRandomOneShot(gameObject, EquippedTool.RepairSound, EquippedTool.RepairSoundVolume);
+				}
+
 				nearestTrap.Interact();
 				return;
 			}
