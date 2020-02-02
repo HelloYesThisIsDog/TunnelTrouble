@@ -53,6 +53,9 @@ MonoBehaviour:
   InteractRadius: 2.13
   AttacksOnlyOnce: 0
   AttacksOnInit: 0
+  AttackSound:
+  - {fileID: 8300000, guid: 2347a2378f398c64c8d333896ad476e9, type: 3}
+  AttackSoundVolume: 0.8
   TrapAnim: {fileID: 5481888062269214273}
   ToolToFix: 2
   DestroyOnFix: 1

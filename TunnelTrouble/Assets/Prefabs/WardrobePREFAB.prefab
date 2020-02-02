@@ -159,8 +159,13 @@ MonoBehaviour:
   BreakingProcessDuration: 1
   InteractRadius: 3
   AttacksOnlyOnce: 1
+  AttacksOnInit: 0
+  AttackSound:
+  - {fileID: 8300000, guid: 851d02b253ca14e49b4970e807a98e4f, type: 3}
+  AttackSoundVolume: 0.6
   TrapAnim: {fileID: 5876043629152481524}
   ToolToFix: 1
+  DestroyOnFix: 0
   m_TimeUntilNextStateChange: 0
   m_State: 0
 --- !u!65 &6202171195025566556

@@ -5450,10 +5450,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxWalkerCount: 20
-  RescueSound: []
-  RescueSoundVolume: 1
-  KillSound: []
-  KillSoundVolume: 1
+  RescueSound:
+  - {fileID: 8300000, guid: 5d00afc29c92b8b478599a613b0a8e3d, type: 3}
+  - {fileID: 8300000, guid: 1b4b3229641b4d04a8d6367bcc5784db, type: 3}
+  - {fileID: 8300000, guid: 410077f32a0c6744babaa727ff6b9156, type: 3}
+  - {fileID: 8300000, guid: d3e5b3dee4515e347bd37ba8fc3ee20e, type: 3}
+  - {fileID: 8300000, guid: 1a70aa4f722089a46a3d6278d87657bf, type: 3}
+  RescueSoundVolume: 0.7
+  KillSound:
+  - {fileID: 8300000, guid: 152f31590a83ae047aacf9c02fe7dd4b, type: 3}
+  - {fileID: 8300000, guid: 7d8466ccd204b144e84036b9f4244c60, type: 3}
+  KillSoundVolume: 0.7
 --- !u!4 &1857029216
 Transform:
   m_ObjectHideFlags: 0
