@@ -21,7 +21,8 @@ public class PlayerController : MonoBehaviour
 	public float		DashDistance		= 5f;
 	public float		DashCooldown		= 0.5f;
 	public AudioClip[]	DashSounds;
-	public float		DashVolume = 1.0f;
+	public float		DashVolume			= 1.0f;
+	public float		DashNoergelRadius	= 2.0f;
 	public PlayerSlot	Slot				= PlayerSlot.Player1;
 	public LayerMask	GroundLayer;
 	public AudioClip	FailSound;
@@ -113,7 +114,7 @@ public class PlayerController : MonoBehaviour
 
 	void PlayNoergelSound()
 	{
-		Walker nearestWalker = WalkerManager.Get().GetNearestWalker(transform.position.xz(), 1.0f, transform.forward.xz(), 0.7f);
+		Walker nearestWalker = WalkerManager.Get().GetNearestWalker(transform.position.xz(), DashNoergelRadius, transform.forward.xz(), 0.4f);
 
 		if (!nearestWalker)
 		{

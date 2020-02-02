@@ -165,6 +165,10 @@ MonoBehaviour:
   ReachTargetThreshold: 5
   ClampVelocity: 1.5
   ID: -1
+  NoergelSound:
+  - {fileID: 8300000, guid: 2209627edd351e240a10f06d609ed8c5, type: 3}
+  - {fileID: 8300000, guid: 4261740016be44648ae6067c3f8291ac, type: 3}
+  NoergelSoundVolume: 1
   m_CurrentTargetPointIndex: 0
 --- !u!54 &6052737078535739313
 Rigidbody:
