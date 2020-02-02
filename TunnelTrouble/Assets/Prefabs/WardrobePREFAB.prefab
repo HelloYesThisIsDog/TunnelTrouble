@@ -153,8 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16030cfa7e313a43be9b3ef10c2814f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackCooldownMin: 5
-  AttackCooldownMax: 5
+  AttackCooldownMin: 20
+  AttackCooldownMax: 40
   AttackWarningDuration: 5
   BreakingProcessDuration: 1
   InteractRadius: 3

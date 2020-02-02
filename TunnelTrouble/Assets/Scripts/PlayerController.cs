@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
 	public AudioClip[]	FailSound;
     public Animator		CharAnim;
 
+	public GameObject	HighlightedObject	= null;
+
 	[Header("Debug")]
 	private Rigidbody m_Rigidbody;
 	private Vector3 m_Inputs		= Vector3.zero;
@@ -123,7 +125,50 @@ public class PlayerController : MonoBehaviour
 		}
 
 		TryInteraction();
+
+		UpdateHighlightedObject();
 	}
+
+	///////////////////////////////////////////////////////////////////////////
+
+	public void UpdateHighlightedObject()
+	{
+		GameObject newHighlightObject = null;
+
+		Vector2 selfPos = transform.position.xz();
+		Vector2 lookDir = transform.forward.xz();
+		lookDir.Normalize();
+		Trap nearestTrap = TrapManager.Get().GetNearestTrap(true, EquippedTool, selfPos, true, true, lookDir);
+
+		if (nearestTrap)
+		{
+			newHighlightObject = nearestTrap.gameObject;
+		}
+		else
+		{
+			Tool nearestTool = ToolTrolley.Get().GetNearestTool(selfPos, true, lookDir);
+			if (nearestTool)
+			{
+				newHighlightObject = nearestTool.gameObject;
+			}
+		}
+
+		if (newHighlightObject != HighlightedObject)
+		{
+			if (HighlightedObject)
+			{
+				// unhighlight old
+				WorldSpaceCanvas.Get().AddText("Un", HighlightedObject.transform.position);
+			}
+
+			if (newHighlightObject)
+			{
+				// highlight new
+				WorldSpaceCanvas.Get().AddText("Hi", HighlightedObject.transform.position);
+			}
+		}
+	}
+
 
 	///////////////////////////////////////////////////////////////////////////
 
@@ -151,8 +196,6 @@ public class PlayerController : MonoBehaviour
 			Vector2 selfPos = transform.position.xz();
 			Vector2 selfLookDir = transform.forward.xz();
 			selfLookDir.Normalize();
-
-
 
 			// 1) Traps
 			if (EquippedTool && EquippedTool._ToolType != ToolType.Megaphone)
