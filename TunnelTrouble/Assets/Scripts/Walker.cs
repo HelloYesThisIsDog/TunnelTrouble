@@ -10,6 +10,7 @@ public class Walker : MonoBehaviour
     public float    ReachTargetThreshold        = 0.8f;
     public float    ClampVelocity               = 1.0f;
     public int      ID                          = -1;
+    public float    TimeBonusWhenRescued        = 1.0f;
 
     public AudioClip[]  NoergelSound;
     public float        NoergelSoundVolume;
@@ -89,6 +90,7 @@ public class Walker : MonoBehaviour
 			if (m_CurrentTargetPointIndex >= pathPointCount)
 			{
                 GameManager.Get().m_RescuedWalkers++;
+                GameManager.Get().AddTimeBonus(TimeBonusWhenRescued);
                 AudioManager.Get().PlayRandomOneShot(WalkerManager.Get().gameObject, WalkerManager.Get().RescueSound, WalkerManager.Get().RescueSoundVolume);
 				m_CurrentTargetPointIndex--;
 				GameObject.Destroy(gameObject);

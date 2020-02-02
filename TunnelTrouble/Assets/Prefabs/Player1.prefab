@@ -177,6 +177,7 @@ MonoBehaviour:
   FailSound:
   - {fileID: 8300000, guid: 0c6f40d7104c9c846bec7ff865392497, type: 3}
   CharAnim: {fileID: 2097794253077941978}
+  m_LastForward: {x: 1, y: 0, z: 0}
   EquippedTool: {fileID: 0}
   m_LastDash: 0
   ToolVisuals:
@@ -185,7 +186,8 @@ MonoBehaviour:
   - {fileID: 4245242379568230546}
   - {fileID: 1285896184324551735}
   MegaphoneCollider: {fileID: 3485694737614445231}
-  MegaphonePower: 50
+  MegaphonePower: 100
+  MegaphoneCooldown: 1
 --- !u!54 &3917092994262404027
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
 	public float	m_RunningTime		= 0.0f;
 	public bool		m_GameEnded			= false;
 
+	public float	LastGameDurationBonusTimestamp  = 0.0f;
+	public float	LastGameDurationBonus			= 0.0f;
+
 	public static GameManager Get()
 	{
 		if (!s_Instance)
@@ -64,6 +67,24 @@ public class GameManager : MonoBehaviour
 
 	void ReInit()
 	{
+	}
+
+	///////////////////////////////////////////////////////////////////////////
+	public static float BONUS_COLLECTING_TIME = 0.5f;
+
+	public void AddTimeBonus(float time)
+	{
+		m_GameDuration += time;
+
+		if (Time.time - LastGameDurationBonusTimestamp > BONUS_COLLECTING_TIME)
+		{
+			LastGameDurationBonus  = 0.0f;
+		}
+
+		LastGameDurationBonus += time;
+
+		LastGameDurationBonusTimestamp = Time.time;
+
 	}
 
 	///////////////////////////////////////////////////////////////////////////
