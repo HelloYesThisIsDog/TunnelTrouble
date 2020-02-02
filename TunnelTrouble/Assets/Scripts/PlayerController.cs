@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
     public Transform[] ToolVisuals = null ;
 
 
+    public Transform MegaphoneCollider;
+    public float MegaphonePower=50;
     ///////////////////////////////////////////////////////////////////////////
 
     public static Color GetPlayerColor(PlayerSlot slot)
@@ -109,6 +111,8 @@ public class PlayerController : MonoBehaviour
 			Vector2 selfLookDir = transform.forward.xz();
 			selfLookDir.Normalize();
 
+
+
 			// 1) Traps
 			Trap nearestTrap = TrapManager.Get().GetNearestTrap(true, EquippedTool, selfPos, true, true, selfLookDir);
 
@@ -124,8 +128,30 @@ public class PlayerController : MonoBehaviour
 				WorldSpaceCanvas.Get().AddText("Wrong Tool", transform.position);
 				return;
 			}
+           if (EquippedTool &&  EquippedTool._ToolType==ToolType.Megaphone)
+            {
+              Collider[] walkers =   Physics.OverlapBox(MegaphoneCollider.position, MegaphoneCollider.lossyScale / 2);
+                
+                foreach ( Collider col in walkers)
+                {
+                    if (col.GetComponent<Walker>())
+                    {
 
-			Tool nearestTool = ToolTrolley.Get().GetNearestTool(selfPos, true, selfLookDir);
+                        if (col.GetComponent<Rigidbody>())
+                        {
+                            Rigidbody rb = col.GetComponent<Rigidbody>();
+                            rb.AddForce((col.transform.position - MegaphoneCollider.position).normalized * MegaphonePower,ForceMode.Impulse);
+
+                        }
+
+                        
+                    }
+                }
+            }
+            
+
+
+            Tool nearestTool = ToolTrolley.Get().GetNearestTool(selfPos, true, selfLookDir);
 
 			if (nearestTool)
 			{

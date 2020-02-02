@@ -30,6 +30,7 @@ GameObject:
   - component: {fileID: 8759019178428789370}
   - component: {fileID: 8759019178428789368}
   - component: {fileID: 8759019178428789369}
+  - component: {fileID: 6149800919028197552}
   m_Layer: 0
   m_Name: Walker
   m_TagString: Untagged
@@ -88,6 +89,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
+--- !u!136 &6149800919028197552
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8759019178428789371}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2.349504
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.03, z: 0}
 --- !u!1 &8759019179525674084
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,7 +114,6 @@ GameObject:
   - component: {fileID: 8759019179525674075}
   - component: {fileID: 8759019179525674072}
   - component: {fileID: 8759019179525674073}
-  - component: {fileID: 1405213017161894085}
   m_Layer: 0
   m_Name: WalkerDummyCube
   m_TagString: Untagged
@@ -168,20 +182,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &1405213017161894085
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8759019179525674084}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &6376652593386136389
 PrefabInstance:
   m_ObjectHideFlags: 0
