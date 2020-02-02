@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
 	public PlayerSlot	Slot				= PlayerSlot.Player1;
 	public LayerMask	GroundLayer;
 	public AudioClip	FailSound;
+    public Animator CharAnim;
 
 	[Header("Debug")]
 	private Rigidbody m_Rigidbody;
@@ -100,6 +101,7 @@ public class PlayerController : MonoBehaviour
 
 		if (doInteract)
 		{
+            CharAnim.SetTrigger("Work");
 			Vector2 selfPos = transform.position.xz();
 			Vector2 selfLookDir = transform.forward.xz();
 			selfLookDir.Normalize();
@@ -146,6 +148,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if (m_Inputs.magnitude > 0.1f)
 		{
+            CharAnim.SetTrigger("Walk");
 			m_Rigidbody.MovePosition(m_Rigidbody.position + m_Inputs * Speed * Time.fixedDeltaTime);
 		}
 	}
