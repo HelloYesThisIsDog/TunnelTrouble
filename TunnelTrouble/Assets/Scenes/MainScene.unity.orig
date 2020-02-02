@@ -1418,6 +1418,7 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3800229147769062816}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 --- !u!1 &459755267
 GameObject:
   m_ObjectHideFlags: 0
@@ -1495,6 +1496,8 @@ MonoBehaviour:
   RiseSpeed: 0.2
   KillAtHeight: 8
   MaxAllowedTexts: 3
+=======
+>>>>>>> 1954ac2a07c720e588ce87853ee58391fec77b86
 --- !u!4 &471189311 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1085220026640148812, guid: 57a6de8c023205241bffadcb0698cdcc,
