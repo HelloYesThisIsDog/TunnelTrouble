@@ -1,6 +1,16 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<< HEAD:TunnelTrouble/Assets/Prefabs/FettSack.prefab.orig.meta
+guid: 61f0540c59abcd04abe871232b4cc4db
+DefaultImporter:
+=======
+guid: 52df208f1a47a9b4993d8ceb6080f0f1
+PrefabImporter:
+>>>>>>> 0c8f4f024edd42bacb3cc866b0bf3a173c152399:TunnelTrouble/Assets/Prefabs/IlyaMerge/StonesTrapIlyaMerge.prefab.meta
+=======
 guid: 2a91221288641d746ba7e00f35e94711
 DefaultImporter:
+>>>>>>> 0c8f4f024edd42bacb3cc866b0bf3a173c152399
   externalObjects: {}
   userData: 
   assetBundleName: 
