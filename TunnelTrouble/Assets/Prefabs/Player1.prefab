@@ -178,6 +178,8 @@ MonoBehaviour:
   FailSound:
   - {fileID: 8300000, guid: 0c6f40d7104c9c846bec7ff865392497, type: 3}
   CharAnim: {fileID: 2097794253077941978}
+  HighlightedObject: {fileID: 0}
+  HighlightedObjectIcon: {fileID: 0}
   m_LastForward: {x: 1, y: 0, z: 0}
   EquippedTool: {fileID: 0}
   m_LastDash: 0
@@ -190,6 +192,7 @@ MonoBehaviour:
   MegaphonePower: 100
   MegaphoneCooldown: 1
   MegaphoneForceCenter: {fileID: 6636002357169180864}
+  dash_ps: {fileID: 1932547012650172849}
 --- !u!54 &3917092994262404027
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -924,6 +927,12 @@ PrefabInstance:
 --- !u!4 &1932547011233497440 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7831158992760323027, guid: a019c7cf41a092448b60810ed39b71cf,
+    type: 3}
+  m_PrefabInstance: {fileID: 8537721912930171571}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1932547012650172849 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7831158991492545282, guid: a019c7cf41a092448b60810ed39b71cf,
     type: 3}
   m_PrefabInstance: {fileID: 8537721912930171571}
   m_PrefabAsset: {fileID: 0}

@@ -1490,6 +1490,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScreenSpaceTextPrefab: {fileID: 6150098105108061453, guid: e4ee18b3658c4b34ba93f716604b035b,
     type: 3}
+  InteractIconPrefab: {fileID: 0}
   Height: 6
   RiseSpeed: 0.2
   KillAtHeight: 8
@@ -2191,7 +2192,7 @@ PrefabInstance:
     - target: {fileID: 3994073070591586728, guid: 4451b3341840af0499fe086c478fc502,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3994073070591586775, guid: 4451b3341840af0499fe086c478fc502,
         type: 3}
@@ -6895,7 +6896,7 @@ Transform:
   - {fileID: 2074088908}
   - {fileID: 886952198}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3800229148942003434
 PrefabInstance:

@@ -49,6 +49,8 @@ public class PlayerController : MonoBehaviour
 	private float m_LastMegaphoneUsage = 0.0f;
     public Transform MegaphoneForceCenter;
 
+	public ParticleSystem dash_ps;
+
     ///////////////////////////////////////////////////////////////////////////
 
     public static Color GetPlayerColor(PlayerSlot slot)
@@ -122,6 +124,7 @@ public class PlayerController : MonoBehaviour
 				AudioManager.Get().PlayRandomOneShot(gameObject, DashSounds, DashVolume);
 
 				PlayNoergelSound();
+				dash_ps.Play();
 			}
 		}
 
