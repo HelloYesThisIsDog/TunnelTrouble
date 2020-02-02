@@ -8,6 +8,11 @@ public class WalkerManager : MonoBehaviour
 
 	static WalkerManager s_Instance;
 
+	public AudioClip[]	RescueSound;
+	public float		RescueSoundVolume = 1.0f;
+	public AudioClip[]	KillSound;
+	public float		KillSoundVolume = 1.0f;
+
 	public static WalkerManager Get()
 	{
 		if (!s_Instance)
@@ -51,7 +56,7 @@ public class WalkerManager : MonoBehaviour
 
 	///////////////////////////////////////////////////////////////////////////
 
-	public Walker GetNearestWalker(Vector2 referencePos, float? forceWithinRange)
+	public Walker GetNearestWalker(Vector2 referencePos, float? forceWithinRange, Vector2? forceInLookingDir, float lookingDirThreshold = 0.7f)
 	{
 		Walker bestWalker = null;
 		float bestDist = float.MaxValue;
@@ -72,6 +77,19 @@ public class WalkerManager : MonoBehaviour
 			if (dist > bestDist)
 			{
 				continue;
+			}
+
+			if (forceInLookingDir.HasValue)
+			{
+				Vector2 vec1 = forceInLookingDir.Value;
+				Vector2 vec2 = walkerPos - referencePos;
+				vec1.Normalize();
+				vec2.Normalize();
+
+				if (Vector2.Dot(vec1, vec2) < lookingDirThreshold)
+				{
+					continue;
+				}
 			}
 
 			bestWalker = curWalker;

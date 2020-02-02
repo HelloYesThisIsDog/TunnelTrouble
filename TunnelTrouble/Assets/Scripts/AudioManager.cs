@@ -27,6 +27,7 @@ public class AudioManager : MonoBehaviour
 
 	private void Awake()
 	{
+		Get();
 		ReInit();
 	}
 
@@ -44,5 +45,25 @@ public class AudioManager : MonoBehaviour
 		source.clip = WinMusic;
 		source.loop = false;
 		source.Play();
+	}
+
+	public void PlayRandomOneShot(GameObject obj, AudioClip[] audioClips, float volume)
+	{
+		if (!obj.GetComponent<AudioSource>())
+		{
+			obj.AddComponent<AudioSource>();
+		}
+
+		if (audioClips == null ||audioClips.Length == 0)
+		{
+			return;
+		}
+
+		AudioClip rndClip = audioClips[Random.Range(0, audioClips.Length)];
+
+		AudioSource audioSource = obj.GetComponent<AudioSource>();
+		audioSource.PlayOneShot(rndClip);
+		audioSource.pitch = Random.Range(0.9f, 1.1f);
+		audioSource.volume = volume;
 	}
 }

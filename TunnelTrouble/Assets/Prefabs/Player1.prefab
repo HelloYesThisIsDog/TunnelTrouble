@@ -163,6 +163,13 @@ MonoBehaviour:
   JumpHeight: 15
   GroundDistance: 1
   DashDistance: 20
+  DashCooldown: 0.5
+  DashSounds:
+  - {fileID: 8300000, guid: 4783b107eac535947ac8d8391080fd87, type: 3}
+  - {fileID: 8300000, guid: ffcf91af929970445ae8aa4184f8a402, type: 3}
+  - {fileID: 8300000, guid: f17e9e6d44d173f47aae5df6141abd16, type: 3}
+  DashVolume: 1
+  DashNoergelRadius: 2
   Slot: 0
   GroundLayer:
     serializedVersion: 2
@@ -170,6 +177,7 @@ MonoBehaviour:
   FailSound: {fileID: 8300000, guid: 0c6f40d7104c9c846bec7ff865392497, type: 3}
   CharAnim: {fileID: 2097794253077941978}
   EquippedTool: {fileID: 0}
+  m_LastDash: 0
   ToolVisuals:
   - {fileID: 3327654948287016372}
   - {fileID: 4111596570442183183}
