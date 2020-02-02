@@ -125,9 +125,9 @@ public class PlayerController : MonoBehaviour
 			}
 		}
 
-		TryInteraction();
-
 		UpdateHighlightedObject();
+
+		TryInteraction();
 	}
 
 	///////////////////////////////////////////////////////////////////////////
@@ -164,7 +164,7 @@ public class PlayerController : MonoBehaviour
 			if (newHighlightObject)
 			{
 				// highlight new
-				HighlightedObjectIcon = WorldSpaceCanvas.Get().CreateInteractIcon();
+				HighlightedObjectIcon = WorldSpaceCanvas.Get().CreateInteractIcon(GetPlayerColor(Slot));
 			}
 
 			HighlightedObject = newHighlightObject;
@@ -174,7 +174,13 @@ public class PlayerController : MonoBehaviour
 		{
 			if (!EquippedTool || HighlightedObject != EquippedTool.gameObject)
 			{
-				HighlightedObjectIcon.transform.position = HighlightedObject.transform.position + Vector3.up * 0.5f;
+				float offset = HighlightedObject.gameObject.GetComponent<Tool>() ? 0.8f : 2.0f;
+				HighlightedObjectIcon.transform.position = HighlightedObject.transform.position + Vector3.up * offset;
+
+				Vector3 offsetTowardsCamera = (Camera.main.transform.position - HighlightedObject.transform.position);
+				offsetTowardsCamera.Normalize();
+
+				HighlightedObjectIcon.transform.position += offsetTowardsCamera * 2.0f;
 			}
 		}
 	}

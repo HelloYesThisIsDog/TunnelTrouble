@@ -36,9 +36,12 @@ public class WorldSpaceCanvas : MonoBehaviour
 
 	///////////////////////////////////////////////////////////////////////////
 
-	public GameObject CreateInteractIcon()
+	public GameObject CreateInteractIcon(Color col)
 	{
 		GameObject newObj = GameObject.Instantiate(InteractIconPrefab, transform);
+
+		newObj.GetComponent<Image>().color = col;
+
 		return newObj;
 	}
 
@@ -61,12 +64,17 @@ public class WorldSpaceCanvas : MonoBehaviour
 		for (int c = 0; c < transform.childCount; ++c)
 		{
 			Transform childTransform = transform.GetChild(c).transform;
-			childTransform.SetPositionY(childTransform.position.y + RiseSpeed * Time.deltaTime);
 
-			if (childTransform.position.y > KillAtHeight)
+			if (childTransform.gameObject.GetComponent<TextMeshProUGUI>())
 			{
-				GameObject.Destroy(childTransform.gameObject);
+				childTransform.SetPositionY(childTransform.position.y + RiseSpeed * Time.deltaTime);
+
+				if (childTransform.position.y > KillAtHeight)
+				{
+					GameObject.Destroy(childTransform.gameObject);
+				}
 			}
+
 		}
 
 		int childrenToDelete = transform.childCount - MaxAllowedTexts + 1;
