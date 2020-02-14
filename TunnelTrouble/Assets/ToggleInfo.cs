@@ -14,9 +14,13 @@ public class ToggleInfo : MonoBehaviour
         Time.timeScale = 0.0f;
     }
 
+	public static bool s_HackCloseOnceAfterRestart = false;
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F1))
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Pause) || Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape) || 
+			Input.GetKeyDown(KeyCode.Joystick1Button7) || Input.GetKeyDown(KeyCode.Joystick2Button7) ||Input.GetKeyDown(KeyCode.Joystick3Button7) ||
+			s_HackCloseOnceAfterRestart)
         {
             if (Infographic1.enabled)
             {
@@ -36,6 +40,7 @@ public class ToggleInfo : MonoBehaviour
 				Time.timeScale = 0.0f;
             }
 
+			s_HackCloseOnceAfterRestart = false;
         }
     }
 }

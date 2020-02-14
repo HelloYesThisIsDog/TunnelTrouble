@@ -53,10 +53,13 @@ public class GameManager : MonoBehaviour
 			}
 		}
 
-		if (Input.GetKeyDown(KeyCode.F5))
+		if (Input.GetKeyDown(KeyCode.F5) || 
+			Input.GetKeyDown(KeyCode.Joystick1Button4) || Input.GetKeyDown(KeyCode.Joystick2Button4) || Input.GetKeyDown(KeyCode.Joystick3Button4))
 		{
 			Time.timeScale = 1.0f;
 			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+			ToggleInfo.s_HackCloseOnceAfterRestart = true;
 		}
 	}
 
