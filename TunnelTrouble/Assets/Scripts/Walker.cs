@@ -14,6 +14,7 @@ public class Walker : MonoBehaviour
     public float    StuckThreshold              = 0.7f;
     public float    DieAfterStuck               = 20.0f;
     public float    PositionSnapshotInterval    = 2.0f;
+	public bool		IsKilled					= false;
 
     public AudioClip[]  NoergelSound;
     public float        NoergelSoundVolume;
@@ -49,6 +50,12 @@ public class Walker : MonoBehaviour
 
     public void Kill()
     {
+		if (IsKilled)
+		{
+			return;
+		}
+
+		IsKilled = true;
         AudioManager.Get().PlayRandomOneShot(WalkerManager.Get().gameObject, WalkerManager.Get().KillSound, WalkerManager.Get().KillSoundVolume);
 		bloodPS.Play();
 		Speed = 0;

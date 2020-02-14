@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 	public int		m_RescuedWalkers	= 0;
 	public float	m_RunningTime		= 0.0f;
 	public bool		m_GameEnded			= false;
+	public float	m_GameEndedRealtime	= 0.0f;
 
 	public float	LastGameDurationBonusTimestamp  = 0.0f;
 	public float	LastGameDurationBonus			= 0.0f;
@@ -39,23 +40,24 @@ public class GameManager : MonoBehaviour
 			EndGame();
 		}
 
-		if (m_GameEnded && m_RunningTime > m_GameDuration + 1.0f)
-		{
-			bool needrestart  = Input.GetButtonDown("P1 Interact");
-				 needrestart |= Input.GetButtonDown("P2 Interact");
-				 needrestart |= Input.GetButtonDown("P3 Interact");
-				 needrestart |= Input.GetButtonDown("P4 Interact");
+		bool doRestart = false;
 
-			if (needrestart)
-			{
-				Time.timeScale = 1.0f;
-				SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-			}
+		if (m_GameEnded && Time.realtimeSinceStartup > m_GameEndedRealtime + 1.0f)
+		{
+			doRestart  = Input.GetButtonDown("P1 Interact");
+			doRestart |= Input.GetButtonDown("P2 Interact");
+			doRestart |= Input.GetButtonDown("P3 Interact");
+			doRestart |= Input.GetButtonDown("P4 Interact");
 		}
 
 		if (Input.GetKeyDown(KeyCode.F5) || 
 			Input.GetKeyDown(KeyCode.Joystick1Button4) || Input.GetKeyDown(KeyCode.Joystick2Button4) || Input.GetKeyDown(KeyCode.Joystick3Button4))
 		{
+			doRestart = true;
+		}
+
+		if (doRestart)
+		{ 
 			Time.timeScale = 1.0f;
 			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
@@ -69,6 +71,7 @@ public class GameManager : MonoBehaviour
 	{
 		Time.timeScale = 0.0f;
 		m_GameEnded = true;
+		m_GameEndedRealtime = Time.realtimeSinceStartup;
 		AudioManager.Get().PlayGameOverMusic();
 	}
 

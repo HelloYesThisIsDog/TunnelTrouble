@@ -56,12 +56,15 @@ public class AudioManager : MonoBehaviour
 		AudioSource audioSource = obj.AddComponent<AudioSource>();
 		*/
 
-		AudioSource audioSource = obj.GetComponent<AudioSource>();
+		AudioSource[] audioSources = obj.GetComponents<AudioSource>();
+		AudioSource audioSource = null;
 
-		if (!audioSource)
-		{ 
-			audioSource = obj.AddComponent<AudioSource>();
+		if (audioSources.Length > 4)
+		{
+			GameObject.Destroy(audioSources[0]);
 		}
+
+		audioSource = obj.AddComponent<AudioSource>();
 		
 		if (audioClips == null ||audioClips.Length == 0)
 		{
