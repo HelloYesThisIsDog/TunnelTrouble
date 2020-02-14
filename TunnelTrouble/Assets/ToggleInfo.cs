@@ -18,7 +18,7 @@ public class ToggleInfo : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Pause) || Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape) || 
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Pause) || Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape) || 
 			Input.GetKeyDown(KeyCode.Joystick1Button7) || Input.GetKeyDown(KeyCode.Joystick2Button7) ||Input.GetKeyDown(KeyCode.Joystick3Button7) ||
 			s_HackCloseOnceAfterRestart)
         {

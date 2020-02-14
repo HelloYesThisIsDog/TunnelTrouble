@@ -88,6 +88,11 @@ MonoBehaviour:
   model: {fileID: 3125364730094811724}
   m_CurrentTargetPointIndex: 0
   LastPositionSnapshot: {x: 0, y: 0}
+  MegaphoneForceDirection: {x: 1, y: 1}
+  MegaphoneForceAmountNorm: 0
+  MegaphoneForceImpact: 24
+  MegaphoneMaxVelocityImpact: 10
+  MegaphoneFalloff: 0.9
 --- !u!54 &8759019178428789369
 Rigidbody:
   m_ObjectHideFlags: 0

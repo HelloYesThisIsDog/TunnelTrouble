@@ -31,6 +31,13 @@ public class Walker : MonoBehaviour
     float           LastPositionSnapshotTime    = 0.0f;
     float?          IsStuckSince                = null;
 
+	[Header("Megaphone")]
+	public Vector2  MegaphoneForceDirection		= Vector2.one;
+	public float	MegaphoneForceAmountNorm	= 0.0f;
+	public float	MegaphoneForceImpact		= 24.0f;
+	public float	MegaphoneMaxVelocityImpact	= 10.0f;
+	public float	MegaphoneFalloff			= 0.9f;
+
     private void Awake()
     {
         m_Rigidbody = GetComponent<Rigidbody>();    
@@ -114,9 +121,26 @@ public class Walker : MonoBehaviour
 
     private void FixedUpdate()
     {
-		m_Rigidbody.AddForce(Speed * m_Direction, ForceMode.VelocityChange);
+		MegaphoneForceAmountNorm *= MegaphoneFalloff;
 
-		m_Rigidbody.velocity = Vector3.ClampMagnitude(m_Rigidbody.velocity, ClampVelocity);
+		if (MegaphoneForceAmountNorm < 0.01f)
+		{
+			MegaphoneForceAmountNorm = 0.0f;
+		}
+
+		Vector2 forceVector = Speed * m_Direction;
+		float clampVelocity = ClampVelocity;
+
+		if (MegaphoneForceAmountNorm != 0.0f)
+		{
+			forceVector = MegaphoneForceAmountNorm * MegaphoneForceDirection * MegaphoneForceImpact;
+			clampVelocity = Mathf.Lerp(1.0f, MegaphoneMaxVelocityImpact, MegaphoneForceAmountNorm);
+		}
+
+
+		m_Rigidbody.AddForce(forceVector, ForceMode.VelocityChange);
+
+		m_Rigidbody.velocity = Vector3.ClampMagnitude(m_Rigidbody.velocity, clampVelocity);
 	}
 
     ///////////////////////////////////////////////////////////////////////////

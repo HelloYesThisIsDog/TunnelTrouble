@@ -43,11 +43,11 @@ public class PlayerController : MonoBehaviour
     public Transform[] ToolVisuals = null ;
 
 
-    public Transform MegaphoneCollider;
-    public float MegaphonePower=50;
-	public float MegaphoneCooldown = 1.0f;
-	private float m_LastMegaphoneUsage = 0.0f;
-    public Transform MegaphoneForceCenter;
+	public float MegaphoneCooldown			= 1.0f;
+	private float m_LastMegaphoneUsage		= 0.0f;
+    public float MegaphoneImpactDistance	= 2.0f;
+	public float MegaphoneInnerRadius		= 5.0f;
+	public float MegaphoneOuterRadius		= 10.0f;
 
 	public ParticleSystem dash_ps;
 
@@ -292,18 +292,29 @@ public class PlayerController : MonoBehaviour
 					AudioManager.Get().PlayRandomOneShot(EquippedTool.gameObject, EquippedTool.RepairSound, EquippedTool.RepairSoundVolume);
 					m_LastMegaphoneUsage = Time.time;
 
-					Collider[] walkers = Physics.OverlapBox(MegaphoneCollider.position, MegaphoneCollider.lossyScale / 2);
+					Vector2 MegaphoneImpactCenter = transform.position.xz() + transform.forward.xz() * MegaphoneImpactDistance;
 
-					foreach (Collider col in walkers)
+					List<Walker> walkers = WalkerManager.Get().GetAllWalkers(Vector2.zero, null);
+
+					foreach (Walker walker in walkers)
 					{
-						if (col.GetComponent<Walker>())
+						float dist = Vector2.Distance(walker.transform.position.xz(), MegaphoneImpactCenter);
+
+						float impactAmount = 1.0f - Mathf.InverseLerp(MegaphoneInnerRadius, MegaphoneOuterRadius, dist);
+						impactAmount = Mathf.Clamp01(impactAmount);
+
+						if (impactAmount <= 0.0f)
 						{
-							if (col.GetComponent<Rigidbody>())
-							{
-								Rigidbody rb = col.GetComponent<Rigidbody>();
-								rb.AddForce((col.transform.position - MegaphoneForceCenter.position).normalized * MegaphonePower, ForceMode.Impulse);
-							}
+							continue;
 						}
+
+						float debugHeight = transform.position.y + 0.1f;
+						Debug.DrawLine(MegaphoneImpactCenter.To3D(debugHeight), walker.transform.position.xz().To3D(debugHeight));
+
+						Vector2 pushDir = walker.transform.position.xz() - MegaphoneImpactCenter;
+						
+						walker.MegaphoneForceAmountNorm = impactAmount;
+						walker.MegaphoneForceDirection = pushDir.normalized;
 					}
 				}
 
