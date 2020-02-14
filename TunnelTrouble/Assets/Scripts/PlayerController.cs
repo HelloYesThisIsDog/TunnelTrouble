@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
     public float MegaphoneImpactDistance	= 2.0f;
 	public float MegaphoneInnerRadius		= 5.0f;
 	public float MegaphoneOuterRadius		= 10.0f;
+	public float MegaphoneOrthogonalPush	= 0.5f;
 
 	public ParticleSystem dash_ps;
 
@@ -292,13 +293,16 @@ public class PlayerController : MonoBehaviour
 					AudioManager.Get().PlayRandomOneShot(EquippedTool.gameObject, EquippedTool.RepairSound, EquippedTool.RepairSoundVolume);
 					m_LastMegaphoneUsage = Time.time;
 
-					Vector2 MegaphoneImpactCenter = transform.position.xz() + transform.forward.xz() * MegaphoneImpactDistance;
+					Vector2 ownPos		= transform.position.xz();
+					Vector2 ownForward	= transform.forward.xz();
+					Vector2 MegaphoneImpactCenter = ownPos + ownForward * MegaphoneImpactDistance;
 
 					List<Walker> walkers = WalkerManager.Get().GetAllWalkers(Vector2.zero, null);
 
 					foreach (Walker walker in walkers)
 					{
-						float dist = Vector2.Distance(walker.transform.position.xz(), MegaphoneImpactCenter);
+						Vector2 walkerPos = walker.transform.position.xz();
+						float dist = Vector2.Distance(walkerPos, MegaphoneImpactCenter);
 
 						float impactAmount = 1.0f - Mathf.InverseLerp(MegaphoneInnerRadius, MegaphoneOuterRadius, dist);
 						impactAmount = Mathf.Clamp01(impactAmount);
@@ -309,10 +313,23 @@ public class PlayerController : MonoBehaviour
 						}
 
 						float debugHeight = transform.position.y + 0.1f;
-						Debug.DrawLine(MegaphoneImpactCenter.To3D(debugHeight), walker.transform.position.xz().To3D(debugHeight));
+						Debug.DrawLine(MegaphoneImpactCenter.To3D(debugHeight), walkerPos.To3D(debugHeight));
 
-						Vector2 pushDir = walker.transform.position.xz() - MegaphoneImpactCenter;
+						Vector2 pushDir = (walkerPos - MegaphoneImpactCenter).normalized;
 						
+						/*
+						Vector2 orthogonalVector = new Vector2(ownForward.y, -ownForward.x);
+
+						if (Vector2.Dot(orthogonalVector, pushDir) < 0.0f)
+						{
+							orthogonalVector *= -1.0f;
+						}
+
+						pushDir = Vector2.Lerp(pushDir, orthogonalVector, MegaphoneOrthogonalPush).normalized;
+						*/
+
+						Debug.DrawLine(walkerPos.To3D(debugHeight), (walkerPos+pushDir*3.0f).To3D(debugHeight), Color.red);
+
 						walker.MegaphoneForceAmountNorm = impactAmount;
 						walker.MegaphoneForceDirection = pushDir.normalized;
 					}

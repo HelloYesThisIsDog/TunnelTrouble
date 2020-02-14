@@ -144,6 +144,12 @@ public class Walker : MonoBehaviour
 			clampVelocity = Mathf.Lerp(1.0f, MegaphoneMaxVelocityImpact, MegaphoneForceAmountNorm);
 		}
 
+		if (MegaphoneForceAmountNorm == 1.0f)
+		{
+			m_Rigidbody.velocity = Vector3.zero;
+			m_Rigidbody.MovePosition(transform.position + MegaphoneForceDirection.To3D(transform.position.y));
+		}
+
 
 		m_Rigidbody.AddForce(forceVector, ForceMode.VelocityChange);
 

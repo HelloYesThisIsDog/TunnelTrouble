@@ -18,9 +18,15 @@ public class ToggleInfo : MonoBehaviour
 
     void Update()
     {
+		bool interactPressed	 = Input.GetButtonDown("P1 Interact");
+		interactPressed			|= Input.GetButtonDown("P2 Interact");
+		interactPressed			|= Input.GetButtonDown("P3 Interact");
+		interactPressed			|= Input.GetButtonDown("P4 Interact");
+
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Pause) || Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape) || 
 			Input.GetKeyDown(KeyCode.Joystick1Button7) || Input.GetKeyDown(KeyCode.Joystick2Button7) ||Input.GetKeyDown(KeyCode.Joystick3Button7) ||
-			s_HackCloseOnceAfterRestart)
+			(s_HackCloseOnceAfterRestart && Infographic1.enabled) ||
+			(interactPressed && Infographic1.enabled))
         {
             if (Infographic1.enabled)
             {
