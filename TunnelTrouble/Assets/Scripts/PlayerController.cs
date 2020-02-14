@@ -322,7 +322,7 @@ public class PlayerController : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		if (m_Inputs.magnitude > 0.1f)
+		if (m_Inputs.magnitude > 0.3f)
 		{
             CharAnim.SetTrigger("Walk");
 			m_Rigidbody.MovePosition(m_Rigidbody.position + m_Inputs * Speed * Time.fixedDeltaTime);
