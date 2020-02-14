@@ -332,6 +332,7 @@ public class PlayerController : MonoBehaviour
 
 						walker.MegaphoneForceAmountNorm = impactAmount;
 						walker.MegaphoneForceDirection = pushDir.normalized;
+						walker.Reorient();
 					}
 				}
 

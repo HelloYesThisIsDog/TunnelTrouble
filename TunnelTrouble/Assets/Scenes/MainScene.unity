@@ -1074,7 +1074,7 @@ PrefabInstance:
     - target: {fileID: 6371537797804391989, guid: 9df9a7ed3edd46c4aaa9d5b6219ebe0e,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 255.2
+      value: 381.34
       objectReference: {fileID: 0}
     - target: {fileID: 6371537797804391989, guid: 9df9a7ed3edd46c4aaa9d5b6219ebe0e,
         type: 3}
@@ -3881,6 +3881,7 @@ MonoBehaviour:
   m_RescuedWalkers: 0
   m_RunningTime: 0
   m_GameEnded: 0
+  m_GameEndedRealtime: 0
   LastGameDurationBonusTimestamp: 0
   LastGameDurationBonus: 0
 --- !u!4 &1325851241

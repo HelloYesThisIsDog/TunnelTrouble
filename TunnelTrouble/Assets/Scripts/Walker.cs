@@ -126,6 +126,47 @@ public class Walker : MonoBehaviour
 
     ///////////////////////////////////////////////////////////////////////////
 
+	public void Reorient()
+	{
+		int bestIndex				= 0;
+		float bestDistance			= float.MaxValue;
+		bool bestLiesInFrontOfUs	= false;
+
+		Vector2 ownPos = transform.position.xz();
+
+		for (int i = 0; i < WalkerPath.Get().PathLines.Length; ++i)
+		{
+			Vector2 curPoint = WalkerPath.Get().PathLines[i].GetLerped(0.5f).xz();
+			float distance = Vector2.Distance(ownPos, curPoint);
+
+			if (distance < bestDistance)
+			{
+				bestDistance		= distance;
+				bestIndex			= i;
+
+				if (i == WalkerPath.Get().PathLines.Length - 1)
+				{
+					bestLiesInFrontOfUs = true;
+				}
+				else
+				{ 
+					Vector2 nextPoint = WalkerPath.Get().PathLines[i + 1].GetLerped(0.5f).xz();
+
+					bestLiesInFrontOfUs = Vector2.Dot(nextPoint - curPoint, curPoint - ownPos) > 0;
+				}
+			}
+		}
+		
+		if (!bestLiesInFrontOfUs && bestIndex < WalkerPath.Get().PathLines.Length -1)
+		{
+			bestIndex++;
+		}
+
+		m_CurrentTargetPointIndex = bestIndex;
+	}
+
+	///////////////////////////////////////////////////////////////////////////
+
     private void FixedUpdate()
     {
 		MegaphoneForceAmountNorm *= MegaphoneFalloff;
@@ -135,7 +176,7 @@ public class Walker : MonoBehaviour
 			MegaphoneForceAmountNorm = 0.0f;
 		}
 
-		Vector2 forceVector = Speed * m_Direction;
+		Vector2 forceVector = Speed * m_Direction.xz();
 		float clampVelocity = ClampVelocity;
 
 		if (MegaphoneForceAmountNorm != 0.0f)
@@ -151,7 +192,7 @@ public class Walker : MonoBehaviour
 		}
 
 
-		m_Rigidbody.AddForce(forceVector, ForceMode.VelocityChange);
+		m_Rigidbody.AddForce(forceVector.To3D(0.0f), ForceMode.VelocityChange);
 
 		m_Rigidbody.velocity = Vector3.ClampMagnitude(m_Rigidbody.velocity, clampVelocity);
 	}
