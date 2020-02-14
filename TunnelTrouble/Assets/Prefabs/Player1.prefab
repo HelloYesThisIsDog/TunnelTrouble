@@ -165,6 +165,7 @@ MonoBehaviour:
   GroundDistance: 1
   DashDistance: 20
   DashCooldown: 0.5
+  DashTrolleyImpact: 11
   DashSounds:
   - {fileID: 8300000, guid: 439cb9c62af2fe045baf4a7643dbf910, type: 3}
   - {fileID: 8300000, guid: ffcf91af929970445ae8aa4184f8a402, type: 3}
@@ -188,10 +189,11 @@ MonoBehaviour:
   - {fileID: 4111596570442183183}
   - {fileID: 4245242379568230546}
   - {fileID: 1285896184324551735}
-  MegaphoneCollider: {fileID: 3485694737614445231}
-  MegaphonePower: 100
   MegaphoneCooldown: 1
-  MegaphoneForceCenter: {fileID: 6636002357169180864}
+  MegaphoneImpactDistance: 2
+  MegaphoneInnerRadius: 5
+  MegaphoneOuterRadius: 10
+  MegaphoneOrthogonalPush: 0.5
   dash_ps: {fileID: 1932547012650172849}
 --- !u!54 &3917092994262404027
 Rigidbody:

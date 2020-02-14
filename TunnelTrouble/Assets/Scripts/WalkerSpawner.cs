@@ -11,6 +11,7 @@ public class WalkerSpawner : MonoBehaviour
     public int      BigWalkersPerBurst;
     public int      MaxSpawnCount   = int.MaxValue;
     public float    SpawnRadius     = 1.0f;
+	public float	WaitBeforeFirstSpawn = 30.0f;
 
     private float   m_LastSpawnTime = float.NegativeInfinity;
     private int     m_SpawnedCount = 0;
@@ -29,6 +30,14 @@ public class WalkerSpawner : MonoBehaviour
 
     private void Update()
     {
+		WaitBeforeFirstSpawn -= Time.deltaTime;
+		WaitBeforeFirstSpawn = Mathf.Max(WaitBeforeFirstSpawn, 0);
+
+		if (WaitBeforeFirstSpawn > 0)
+		{
+			return;
+		}
+
         bool intervalFinished = Time.time - m_LastSpawnTime > SpawnBurstInterval;
 
         if (intervalFinished)

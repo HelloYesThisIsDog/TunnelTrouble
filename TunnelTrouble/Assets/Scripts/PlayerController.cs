@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
 	public float		GroundDistance		= 0.2f;
 	public float		DashDistance		= 5f;
 	public float		DashCooldown		= 0.5f;
+	public float		DashTrolleyImpact	= 1.0f;
 	public AudioClip[]	DashSounds;
 	public float		DashVolume			= 1.0f;
 	public float		DashNoergelRadius	= 2.5f;
@@ -125,6 +126,7 @@ public class PlayerController : MonoBehaviour
 				AudioManager.Get().PlayRandomOneShot(gameObject, DashSounds, DashVolume);
 
 				PlayNoergelSound();
+				PushTrolley();
 				dash_ps.Play();
 			}
 		}
@@ -132,6 +134,24 @@ public class PlayerController : MonoBehaviour
 		UpdateHighlightedObject();
 
 		TryInteraction();
+	}
+
+	///////////////////////////////////////////////////////////////////////////
+
+	void PushTrolley()
+	{
+		Vector2 trolleyPos = ToolTrolley.Get().transform.position.xz();
+		Vector2 ownPos		= transform.position.xz();
+		Vector2 ownLookat	= transform.forward.xz();
+
+		if (Vector2.Distance(trolleyPos, ownPos) < 3.0f && Vector2.Dot(ownLookat, trolleyPos - ownPos) > 0)
+		{
+			Rigidbody trolleyRigidbody = ToolTrolley.Get().GetComponent<Rigidbody>();
+			Vector3 trollyForce = (trolleyPos - ownPos).To3D(0.0f).normalized * DashTrolleyImpact;
+
+			trolleyRigidbody.AddForce(trollyForce, ForceMode.VelocityChange);
+			Debug.Log(trollyForce);
+		}
 	}
 
 	///////////////////////////////////////////////////////////////////////////

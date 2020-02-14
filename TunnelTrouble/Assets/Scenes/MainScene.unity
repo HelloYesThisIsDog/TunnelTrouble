@@ -558,7 +558,7 @@ Transform:
   - {fileID: 2036727102}
   - {fileID: 1337305850}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &193287441
 MonoBehaviour:
@@ -850,7 +850,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &342137213
 PrefabInstance:
@@ -1169,7 +1169,7 @@ PrefabInstance:
     - target: {fileID: 6371537797900414943, guid: 9df9a7ed3edd46c4aaa9d5b6219ebe0e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6371537797900414943, guid: 9df9a7ed3edd46c4aaa9d5b6219ebe0e,
         type: 3}
@@ -1492,7 +1492,7 @@ Transform:
   - {fileID: 728312952}
   - {fileID: 1326759574}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &436808839
 PrefabInstance:
@@ -1662,6 +1662,59 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3800229149703604844}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &493789872
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 493789874}
+  - component: {fileID: 493789873}
+  m_Layer: 0
+  m_Name: WalkerSpawner2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &493789873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 493789872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9733dec3c1738be49b4bc831b54a8c23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SmallWalkerSpawnPrefab: {fileID: 8759019178428789368, guid: f0f0d873d9d038f4f9df6ca26061a1a8,
+    type: 3}
+  BigWalkerSpawnPrefab: {fileID: 6052737078535739312, guid: b0b4fcb1395ea8441855501e5f428ff5,
+    type: 3}
+  SpawnBurstInterval: 40
+  SmallWalkersPerBurst: 25
+  BigWalkersPerBurst: 3
+  MaxSpawnCount: 2147483647
+  SpawnRadius: 2
+  WaitBeforeFirstSpawn: 30
+--- !u!4 &493789874
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 493789872}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -40.2, y: 0, z: 21.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &529042369
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1881,7 +1934,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2748,7 +2801,7 @@ Transform:
   - {fileID: 58805889}
   - {fileID: 573770320}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &850339929
 GameObject:
@@ -3522,7 +3575,7 @@ Transform:
   - {fileID: 2124105527}
   - {fileID: 4559986213178082901}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1240652006
 MonoBehaviour:
@@ -3896,7 +3949,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1326759573
 PrefabInstance:
@@ -4317,7 +4370,7 @@ GameObject:
   - component: {fileID: 1654105342}
   - component: {fileID: 1654105341}
   m_Layer: 0
-  m_Name: WalkerSpawner
+  m_Name: WalkerSpawner1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4344,6 +4397,7 @@ MonoBehaviour:
   BigWalkersPerBurst: 1
   MaxSpawnCount: 2147483647
   SpawnRadius: 1
+  WaitBeforeFirstSpawn: 0
 --- !u!4 &1654105342
 Transform:
   m_ObjectHideFlags: 0
@@ -7090,7 +7144,7 @@ Transform:
   - {fileID: 2074088908}
   - {fileID: 886952198}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3800229148942003434
 PrefabInstance:
